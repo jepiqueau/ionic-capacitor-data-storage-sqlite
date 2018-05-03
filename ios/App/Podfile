@@ -1,0 +1,13 @@
+platform :ios, '10.0'
+use_frameworks!
+
+target 'App' do
+  # Add your Pods here
+  pod 'SQLite.swift', '~> 0.11.5'
+
+  # Automatic Capacitor Pod dependencies, do not delete
+  pod 'Capacitor', :path => '../../node_modules/@capacitor/ios'
+  pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
+  pod 'CapacitorDataStorageSqlite', :path => '../../node_modules/capacitor-data-storage-sqlite'
+  # Do not delete
+end

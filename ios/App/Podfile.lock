@@ -1,0 +1,44 @@
+PODS:
+  - Capacitor (1.0.0-alpha.35):
+    - CapacitorCordova (= 1.0.0-alpha.35)
+    - GCDWebServer (~> 3.0)
+  - CapacitorCordova (1.0.0-alpha.35)
+  - CapacitorDataStorageSqlite (0.0.1):
+    - Capacitor
+    - SQLite.swift
+  - GCDWebServer (3.4.2):
+    - GCDWebServer/Core (= 3.4.2)
+  - GCDWebServer/Core (3.4.2)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - CapacitorDataStorageSqlite (from `../../node_modules/capacitor-data-storage-sqlite`)
+  - SQLite.swift (~> 0.11.5)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - GCDWebServer
+    - SQLite.swift
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorDataStorageSqlite:
+    :path: "../../node_modules/capacitor-data-storage-sqlite"
+
+SPEC CHECKSUMS:
+  Capacitor: 6626398d94ba04d083a83057a3ef5f861096543a
+  CapacitorCordova: 0d287a27c9caf599aaf36a47622d0704c914b2b1
+  CapacitorDataStorageSqlite: 183e6c73ccfe70929dc0bbdddfb4a7185204e0a1
+  GCDWebServer: 8d67ee9f634b4bb91eb4b8aee440318a5fc6debd
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+
+PODFILE CHECKSUM: ebbd9a6de638110758498aa39f139de1bb24e40d
+
+COCOAPODS: 1.5.0

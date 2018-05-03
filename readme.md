@@ -34,6 +34,8 @@ Press on build and then run the current scheme
 Click on Test Plugin button
 
 you should see the output of the test:
+
+```
     Storing data successful
     Iskey successful
     Get keys succesful
@@ -42,4 +44,4 @@ you should see the output of the test:
     Remove key successful
     Clear Keys successful
     The test was successful
-    
+```

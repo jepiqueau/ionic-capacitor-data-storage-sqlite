@@ -18,16 +18,31 @@ npm install
 ### warning *** 
 As there is currently a misfunctionning of the Capacitor npm publish process for the IOS plugin, just after the installation you should open your favorite code editor and move the file ./node_modules/capacitor-data-storage-sqlite/ios/Plugin/CapacitorDataStorageSqlite.podspec to ./node_modules/capacitor-data-storage-sqlite/CapacitorDataStorageSqlite.podspec
 
-### buid the project
+### build the project
 
 ```bash
 npx cap update
 npm run build
 npx cap copy
+``` 
+
+### running on IOS
+
+```bash
 npx cap open ios
 ``` 
+
 Now you are in xcode so select your device or emulator
 Press on build and then run the current scheme
+
+### running on Android
+
+```bash
+npx cap open android
+``` 
+
+Now you are in android studio so select your device or emulator
+Press run App
 
 ### In the App
 

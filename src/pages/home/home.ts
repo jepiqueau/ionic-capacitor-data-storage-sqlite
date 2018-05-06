@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController , Platform} from 'ionic-angular';
 import { Plugins } from '@capacitor/core';
 import { CapacitorDataStorageSqlite } from 'capacitor-data-storage-sqlite/dist/esm';
 
@@ -9,7 +9,7 @@ import { CapacitorDataStorageSqlite } from 'capacitor-data-storage-sqlite/dist/e
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public platform: Platform) {
 
   }
   async testPlugin(){

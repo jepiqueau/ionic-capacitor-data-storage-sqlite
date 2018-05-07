@@ -15,9 +15,6 @@ git remote rm origin
 npm install
 ```
 
-### warning *** 
-As there is currently a misfunctionning of the Capacitor npm publish process for the IOS plugin, just after the installation you should open your favorite code editor and move the file ./node_modules/capacitor-data-storage-sqlite/ios/Plugin/CapacitorDataStorageSqlite.podspec to ./node_modules/capacitor-data-storage-sqlite/CapacitorDataStorageSqlite.podspec
-
 ### build the project
 
 ```bash

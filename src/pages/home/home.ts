@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController , Platform} from 'ionic-angular';
 import { Plugins } from '@capacitor/core';
-import { CapacitorDataStorageSqlite } from 'capacitor-data-storage-sqlite/dist/esm';
+import { CapacitorDataStorageSqlitePlugin } from 'capacitor-data-storage-sqlite';
 
 @Component({
   selector: 'page-home',
@@ -12,10 +12,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public platform: Platform) {
 
   }
-  async testPlugin(){
- 
+  async testPlugin(){ 
     const { CapacitorDataStorageSqlite } = Plugins;
-
     //populate some data
     //string
     let retpopulate: boolean = false;
@@ -28,6 +26,7 @@ export class HomePage {
     let result:any = await CapacitorDataStorageSqlite.set({key:"session", value:"Session Opened"});
     console.log("Save Data : " + result.result);
     result = await CapacitorDataStorageSqlite.get({key:"session"})
+    console.log('result ',result)
     console.log("Get Data : " + result.value);
     let ret1: boolean = false;
     if (result.value === "Session Opened") ret1 = true;

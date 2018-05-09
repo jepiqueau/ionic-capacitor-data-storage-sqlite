@@ -1,0 +1,6 @@
+{
+  "appId": "com.jeep.ioniccapacitordatastoragesqlite",
+  "appName": "IonicCapacitorDataStorageSQLite",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}

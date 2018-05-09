@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController , Platform} from 'ionic-angular';
+require('capacitor-data-storage-sqlite');
 import { Plugins } from '@capacitor/core';
-import { CapacitorDataStorageSqlite } from 'capacitor-data-storage-sqlite';
+
 
 @Component({
   selector: 'page-home',
@@ -13,6 +14,9 @@ export class HomePage {
 
   }
   async testPlugin(){
+    // @ts-ignore
+    let {CapacitorDataStorageSqlite} = Plugins;
+
     //populate some data
     //string
     let retpopulate: boolean = false;

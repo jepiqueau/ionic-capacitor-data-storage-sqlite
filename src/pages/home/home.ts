@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController , Platform} from 'ionic-angular';
 import { Plugins } from '@capacitor/core';
-import { CapacitorDataStorageSqlite } from 'capacitor-data-storage-sqlite/dist/esm';
+import { CapacitorDataStorageSqlite } from 'capacitor-data-storage-sqlite';
 
 @Component({
   selector: 'page-home',
@@ -13,9 +13,6 @@ export class HomePage {
 
   }
   async testPlugin(){
- 
-    const { CapacitorDataStorageSqlite } = Plugins;
-
     //populate some data
     //string
     let retpopulate: boolean = false;
@@ -31,7 +28,7 @@ export class HomePage {
     console.log("Get Data : " + result.value);
     let ret1: boolean = false;
     if (result.value === "Session Opened") ret1 = true;
-    // json 
+    // json
     let data:any = {'a':20,'b':'Hello World','c':{'c1':40,'c2':'cool'}}
     await CapacitorDataStorageSqlite.set({key:'testJson',value:JSON.stringify(data)})
     result = await CapacitorDataStorageSqlite.get({key:"testJson"})
@@ -56,11 +53,11 @@ export class HomePage {
     ret2 = result.result
     if (ret1 && !ret2) retiskey = true
     if (retiskey) document.querySelector('.iskey').classList.remove('hidden');
-    
+
     result = await CapacitorDataStorageSqlite.keys()
     console.log("Get keys : " + result.keys);
     console.log("Keys length " + result.keys.length)
-    if(result.keys.length === 3 && result.keys[0] === "session" 
+    if(result.keys.length === 3 && result.keys[0] === "session"
         && result.keys[1] === "testJson" && result.keys[2] === "testNumber") {
       retkeys = true;
       document.querySelector('.keys').classList.remove('hidden');
@@ -77,18 +74,18 @@ export class HomePage {
     CapacitorDataStorageSqlite.keysvalues().then((result) => {
       result.keysvalues.forEach(element => {
         console.log(element)
-      });    
+      });
       console.log("KeysValues length " + result.keysvalues.length)
-      if(result.keysvalues.length === 3 && 
+      if(result.keysvalues.length === 3 &&
           result.keysvalues[0].key === "session" && result.keysvalues[0].value === "Session Opened" &&
-          result.keysvalues[1].key === "testJson" && result.keysvalues[1].value === JSON.stringify(data) && 
+          result.keysvalues[1].key === "testJson" && result.keysvalues[1].value === JSON.stringify(data) &&
           result.keysvalues[2].key === "testNumber" && result.keysvalues[2].value === data1.toString()) {
         retkeysvalues = true;
         document.querySelector('.keysvalues').classList.remove('hidden');
         CapacitorDataStorageSqlite.remove({key:"testJson"}).then((result) => {
           if(result.result) {
             CapacitorDataStorageSqlite.keysvalues().then(async (res) => {
-              if(res.keysvalues.length === 2 && 
+              if(res.keysvalues.length === 2 &&
                 res.keysvalues[0].key === "session" && res.keysvalues[0].value === "Session Opened" &&
                 res.keysvalues[1].key === "testNumber" && res.keysvalues[1].value === data1.toString()) {
                 retremove = true;
@@ -103,20 +100,20 @@ export class HomePage {
                   document.querySelector('.clear').classList.remove('hidden');
                 }
                 if(retpopulate && retiskey && retkeys && retvalues && retkeysvalues && retremove && retclear) {
-                  document.querySelector('.success').classList.remove('hidden');      
+                  document.querySelector('.success').classList.remove('hidden');
                 } else {
-                  document.querySelector('.failure').classList.remove('hidden');                    
+                  document.querySelector('.failure').classList.remove('hidden');
                 }
               } else {
-                document.querySelector('.failure').classList.remove('hidden');                                    
-              }                   
+                document.querySelector('.failure').classList.remove('hidden');
+              }
             });
           } else {
-            document.querySelector('.failure').classList.remove('hidden');                    
+            document.querySelector('.failure').classList.remove('hidden');
           }
         });
       } else {
-        document.querySelector('.failure').classList.remove('hidden');                    
+        document.querySelector('.failure').classList.remove('hidden');
       }
     });
   }

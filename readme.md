@@ -21,6 +21,7 @@ npm install
 npx cap update
 npm run build
 npx cap copy
+npx cap copy web
 ``` 
 
 ### running on IOS
@@ -40,6 +41,19 @@ npx cap open android
 
 Now you are in android studio so select your device or emulator
 Press run App
+
+### running on Web
+
+```bash
+ionic serve
+``` 
+
+### running on Electron
+
+```bash
+cd electron
+npm run electron:start
+``` 
 
 ### In the App
 

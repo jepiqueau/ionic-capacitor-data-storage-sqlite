@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController , Platform} from 'ionic-angular';
 import { Plugins } from '@capacitor/core';
-import { CapacitorDataStorageSqlitePlugin } from 'capacitor-data-storage-sqlite';
+import { CapacitorDataStorageSqlite } from 'capacitor-data-storage-sqlite';
 
 @Component({
   selector: 'page-home',
@@ -13,7 +13,13 @@ export class HomePage {
 
   }
   async testPlugin(){ 
-    const { CapacitorDataStorageSqlite } = Plugins;
+    let storage: any;
+    if(this.platform.is('ios') || this.platform.is('android')) {
+      const { CapacitorDataStorageSqlite } = Plugins;
+      storage = CapacitorDataStorageSqlite;
+    } else {
+      storage = CapacitorDataStorageSqlite;     
+    }
     //populate some data
     //string
     let retpopulate: boolean = false;
@@ -23,40 +29,40 @@ export class HomePage {
     let retkeysvalues = false;
     let retremove = false;
     let retclear = false;
-    let result:any = await CapacitorDataStorageSqlite.set({key:"session", value:"Session Opened"});
+    let result:any = await storage.set({key:"session", value:"Session Opened"});
     console.log("Save Data : " + result.result);
-    result = await CapacitorDataStorageSqlite.get({key:"session"})
+    result = await storage.get({key:"session"})
     console.log('result ',result)
     console.log("Get Data : " + result.value);
     let ret1: boolean = false;
     if (result.value === "Session Opened") ret1 = true;
     // json 
     let data:any = {'a':20,'b':'Hello World','c':{'c1':40,'c2':'cool'}}
-    await CapacitorDataStorageSqlite.set({key:'testJson',value:JSON.stringify(data)})
-    result = await CapacitorDataStorageSqlite.get({key:"testJson"})
+    await storage.set({key:'testJson',value:JSON.stringify(data)})
+    result = await storage.get({key:"testJson"})
     console.log("Get Data : " + result.value);
     let ret2: boolean = false;
     if (result.value === JSON.stringify(data)) ret2 = true;
     // number
     let data1: any = 243.567
-    await CapacitorDataStorageSqlite.set({key:'testNumber',value:data1.toString()})
-    result = await CapacitorDataStorageSqlite.get({key:"testNumber"})
+    await storage.set({key:'testNumber',value:data1.toString()})
+    result = await storage.get({key:"testNumber"})
     console.log("Get Data : " + result.value);
     let ret3: boolean = false;
     if (result.value === data1.toString()) ret3 = true;
     if (ret1 && ret2 && ret3) retpopulate = true;
     if (retpopulate) document.querySelector('.populate').classList.remove('hidden');
 
-    result = await CapacitorDataStorageSqlite.iskey({key:"testNumber"})
+    result = await storage.iskey({key:"testNumber"})
     console.log("isKey testNumber " + result.result)
     ret1 = result.result
-    result = await CapacitorDataStorageSqlite.iskey({key:"foo"})
+    result = await storage.iskey({key:"foo"})
     console.log("isKey foo " + result.result)
     ret2 = result.result
     if (ret1 && !ret2) retiskey = true
     if (retiskey) document.querySelector('.iskey').classList.remove('hidden');
     
-    result = await CapacitorDataStorageSqlite.keys()
+    result = await storage.keys()
     console.log("Get keys : " + result.keys);
     console.log("Keys length " + result.keys.length)
     if(result.keys.length === 3 && result.keys[0] === "session" 
@@ -64,7 +70,7 @@ export class HomePage {
       retkeys = true;
       document.querySelector('.keys').classList.remove('hidden');
     }
-    result = await CapacitorDataStorageSqlite.values()
+    result = await storage.values()
     console.log("Get values : " + result.values);
     console.log("Values length " + result.values.length)
     if(result.values.length === 3 && result.values[0] === "Session Opened"
@@ -73,7 +79,7 @@ export class HomePage {
       document.querySelector('.values').classList.remove('hidden');
     }
 
-    CapacitorDataStorageSqlite.keysvalues().then((result) => {
+    storage.keysvalues().then((result) => {
       result.keysvalues.forEach(element => {
         console.log(element)
       });    
@@ -84,18 +90,18 @@ export class HomePage {
           result.keysvalues[2].key === "testNumber" && result.keysvalues[2].value === data1.toString()) {
         retkeysvalues = true;
         document.querySelector('.keysvalues').classList.remove('hidden');
-        CapacitorDataStorageSqlite.remove({key:"testJson"}).then((result) => {
+        storage.remove({key:"testJson"}).then((result) => {
           if(result.result) {
-            CapacitorDataStorageSqlite.keysvalues().then(async (res) => {
+            storage.keysvalues().then(async (res) => {
               if(res.keysvalues.length === 2 && 
                 res.keysvalues[0].key === "session" && res.keysvalues[0].value === "Session Opened" &&
                 res.keysvalues[1].key === "testNumber" && res.keysvalues[1].value === data1.toString()) {
                 retremove = true;
                 document.querySelector('.remove').classList.remove('hidden');
               }
-              result = await CapacitorDataStorageSqlite.clear()
+              result = await storage.clear()
               if(result.result) {
-                let res = await CapacitorDataStorageSqlite.keysvalues()
+                let res = await storage.keysvalues()
                 console.log("after clear res.keysvalues.length " + res.keysvalues.length)
                 if(res.keysvalues.length === 0) {
                   retclear = true;

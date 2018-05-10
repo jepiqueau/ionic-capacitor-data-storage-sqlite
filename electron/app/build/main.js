@@ -40,8 +40,9 @@ webpackEmptyAsyncContext.id = 150;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__capacitor_core__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__capacitor_core__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_capacitor_data_storage_sqlite__ = __webpack_require__(285);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -89,6 +90,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 
 
 
+
 var HomePage = /** @class */ (function () {
     function HomePage(navCtrl, platform) {
         this.navCtrl = navCtrl;
@@ -97,11 +99,17 @@ var HomePage = /** @class */ (function () {
     HomePage.prototype.testPlugin = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _this = this;
-            var CapacitorDataStorageSqlite, retpopulate, retiskey, retkeys, retvalues, retkeysvalues, retremove, retclear, result, ret1, data, ret2, data1, ret3;
+            var storage, CapacitorDataStorageSqlite_1, retpopulate, retiskey, retkeys, retvalues, retkeysvalues, retremove, retclear, result, ret1, data, ret2, data1, ret3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        CapacitorDataStorageSqlite = __WEBPACK_IMPORTED_MODULE_2__capacitor_core__["a" /* Plugins */].CapacitorDataStorageSqlite;
+                        if (this.platform.is('ios') || this.platform.is('android')) {
+                            CapacitorDataStorageSqlite_1 = __WEBPACK_IMPORTED_MODULE_2__capacitor_core__["a" /* Plugins */].CapacitorDataStorageSqlite;
+                            storage = CapacitorDataStorageSqlite_1;
+                        }
+                        else {
+                            storage = __WEBPACK_IMPORTED_MODULE_3_capacitor_data_storage_sqlite__["a" /* CapacitorDataStorageSqlite */];
+                        }
                         retpopulate = false;
                         retiskey = false;
                         retkeys = false;
@@ -109,11 +117,11 @@ var HomePage = /** @class */ (function () {
                         retkeysvalues = false;
                         retremove = false;
                         retclear = false;
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.set({ key: "session", value: "Session Opened" })];
+                        return [4 /*yield*/, storage.set({ key: "session", value: "Session Opened" })];
                     case 1:
                         result = _a.sent();
                         console.log("Save Data : " + result.result);
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.get({ key: "session" })];
+                        return [4 /*yield*/, storage.get({ key: "session" })];
                     case 2:
                         result = _a.sent();
                         console.log('result ', result);
@@ -122,10 +130,10 @@ var HomePage = /** @class */ (function () {
                         if (result.value === "Session Opened")
                             ret1 = true;
                         data = { 'a': 20, 'b': 'Hello World', 'c': { 'c1': 40, 'c2': 'cool' } };
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.set({ key: 'testJson', value: JSON.stringify(data) })];
+                        return [4 /*yield*/, storage.set({ key: 'testJson', value: JSON.stringify(data) })];
                     case 3:
                         _a.sent();
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.get({ key: "testJson" })];
+                        return [4 /*yield*/, storage.get({ key: "testJson" })];
                     case 4:
                         result = _a.sent();
                         console.log("Get Data : " + result.value);
@@ -133,10 +141,10 @@ var HomePage = /** @class */ (function () {
                         if (result.value === JSON.stringify(data))
                             ret2 = true;
                         data1 = 243.567;
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.set({ key: 'testNumber', value: data1.toString() })];
+                        return [4 /*yield*/, storage.set({ key: 'testNumber', value: data1.toString() })];
                     case 5:
                         _a.sent();
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.get({ key: "testNumber" })];
+                        return [4 /*yield*/, storage.get({ key: "testNumber" })];
                     case 6:
                         result = _a.sent();
                         console.log("Get Data : " + result.value);
@@ -147,12 +155,12 @@ var HomePage = /** @class */ (function () {
                             retpopulate = true;
                         if (retpopulate)
                             document.querySelector('.populate').classList.remove('hidden');
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.iskey({ key: "testNumber" })];
+                        return [4 /*yield*/, storage.iskey({ key: "testNumber" })];
                     case 7:
                         result = _a.sent();
                         console.log("isKey testNumber " + result.result);
                         ret1 = result.result;
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.iskey({ key: "foo" })];
+                        return [4 /*yield*/, storage.iskey({ key: "foo" })];
                     case 8:
                         result = _a.sent();
                         console.log("isKey foo " + result.result);
@@ -161,7 +169,7 @@ var HomePage = /** @class */ (function () {
                             retiskey = true;
                         if (retiskey)
                             document.querySelector('.iskey').classList.remove('hidden');
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.keys()];
+                        return [4 /*yield*/, storage.keys()];
                     case 9:
                         result = _a.sent();
                         console.log("Get keys : " + result.keys);
@@ -171,7 +179,7 @@ var HomePage = /** @class */ (function () {
                             retkeys = true;
                             document.querySelector('.keys').classList.remove('hidden');
                         }
-                        return [4 /*yield*/, CapacitorDataStorageSqlite.values()];
+                        return [4 /*yield*/, storage.values()];
                     case 10:
                         result = _a.sent();
                         console.log("Get values : " + result.values);
@@ -181,7 +189,7 @@ var HomePage = /** @class */ (function () {
                             retvalues = true;
                             document.querySelector('.values').classList.remove('hidden');
                         }
-                        CapacitorDataStorageSqlite.keysvalues().then(function (result) {
+                        storage.keysvalues().then(function (result) {
                             result.keysvalues.forEach(function (element) {
                                 console.log(element);
                             });
@@ -192,9 +200,9 @@ var HomePage = /** @class */ (function () {
                                 result.keysvalues[2].key === "testNumber" && result.keysvalues[2].value === data1.toString()) {
                                 retkeysvalues = true;
                                 document.querySelector('.keysvalues').classList.remove('hidden');
-                                CapacitorDataStorageSqlite.remove({ key: "testJson" }).then(function (result) {
+                                storage.remove({ key: "testJson" }).then(function (result) {
                                     if (result.result) {
-                                        CapacitorDataStorageSqlite.keysvalues().then(function (res) { return __awaiter(_this, void 0, void 0, function () {
+                                        storage.keysvalues().then(function (res) { return __awaiter(_this, void 0, void 0, function () {
                                             var res_1;
                                             return __generator(this, function (_a) {
                                                 switch (_a.label) {
@@ -205,11 +213,11 @@ var HomePage = /** @class */ (function () {
                                                             retremove = true;
                                                             document.querySelector('.remove').classList.remove('hidden');
                                                         }
-                                                        return [4 /*yield*/, CapacitorDataStorageSqlite.clear()];
+                                                        return [4 /*yield*/, storage.clear()];
                                                     case 1:
                                                         result = _a.sent();
                                                         if (!result.result) return [3 /*break*/, 3];
-                                                        return [4 /*yield*/, CapacitorDataStorageSqlite.keysvalues()];
+                                                        return [4 /*yield*/, storage.keysvalues()];
                                                     case 2:
                                                         res_1 = _a.sent();
                                                         console.log("after clear res.keysvalues.length " + res_1.keysvalues.length);
@@ -259,13 +267,13 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 197:
+/***/ 199:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(222);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -273,17 +281,17 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 220:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_home_home__ = __webpack_require__(194);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -332,13 +340,13 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 271:
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(194);
@@ -378,5 +386,5 @@ var MyApp = /** @class */ (function () {
 
 /***/ })
 
-},[197]);
+},[199]);
 //# sourceMappingURL=main.js.map

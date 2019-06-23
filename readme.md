@@ -54,7 +54,7 @@ Xcode will be opened with your project and will index the files. When completed,
 npx cap open android
 ``` 
 Android Studio will be opened with your project and will sync the files.
-In Android Studio go to the file MainActivity in app/src/main/java/com/example/ioniccapacitorvideoplayer and modified as follows
+In Android Studio go to the file MainActivity in app/src/main/java/com/example/ioniccapacitordatastoragesqlite and modified as follows
 
 ```
 package com.example.ioniccapacitordatastoragesqlite;

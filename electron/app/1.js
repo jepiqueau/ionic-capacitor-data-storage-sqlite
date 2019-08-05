@@ -1,16 +1,630 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[1],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/es5/build/chunk-1d62a940.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/es5/build/chunk-1d62a940.js ***!
-  \***********************************************************************/
-/*! exports provided: create */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/index-8421816f.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/index-8421816f.js ***!
+  \*****************************************************************/
+/*! exports provided: GESTURE_CONTROLLER, createGesture */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return create; });
-function transitionEnd(t,e){var i,s={passive:!0};function r(){i&&i()}function n(i){t===i.target&&(r(),e(i))}return t&&(t.addEventListener("webkitTransitionEnd",n,s),t.addEventListener("transitionend",n,s),i=function(){t.removeEventListener("webkitTransitionEnd",n,s),t.removeEventListener("transitionend",n,s)}),r}var CSS_VALUE_REGEX=/(^-?\d*\.?\d*)(.*)/,DURATION_MIN=32,TRANSITION_END_FALLBACK_PADDING_MS=400,TRANSFORM_PROPS={translateX:1,translateY:1,translateZ:1,scale:1,scaleX:1,scaleY:1,scaleZ:1,rotate:1,rotateX:1,rotateY:1,rotateZ:1,skewX:1,skewY:1,perspective:1},win="undefined"!=typeof window?window:{},raf=win.requestAnimationFrame?win.requestAnimationFrame.bind(win):function(t){return t(Date.now())},Animator=function(){function t(){this._hasDur=!1,this._hasTweenEffect=!1,this._isAsync=!1,this._isReverse=!1,this._destroyed=!1,this.hasChildren=!1,this.isPlaying=!1,this.hasCompleted=!1}return t.prototype.addElement=function(t){if(null!=t)if(t.length>0)for(var e=0;e<t.length;e++)this._addEl(t[e]);else this._addEl(t);return this},t.prototype._addEl=function(t){1===t.nodeType&&(this._elements=this._elements||[]).push(t)},t.prototype.add=function(t){return t.parent=this,this.hasChildren=!0,(this._childAnimations=this._childAnimations||[]).push(t),this},t.prototype.getDuration=function(t){return t&&void 0!==t.duration?t.duration:void 0!==this._duration?this._duration:this.parent?this.parent.getDuration():0},t.prototype.isRoot=function(){return!this.parent},t.prototype.duration=function(t){return this._duration=t,this},t.prototype.getEasing=function(){return this._isReverse&&void 0!==this._reversedEasingName?this._reversedEasingName:void 0!==this._easingName?this._easingName:this.parent&&this.parent.getEasing()||null},t.prototype.easing=function(t){return this._easingName=t,this},t.prototype.easingReverse=function(t){return this._reversedEasingName=t,this},t.prototype.from=function(t,e){return this._addProp("from",t,e),this},t.prototype.to=function(t,e,i){void 0===i&&(i=!1);var s=this._addProp("to",t,e);return i&&this.afterClearStyles(s.trans?["transform","-webkit-transform"]:[t]),this},t.prototype.fromTo=function(t,e,i,s){return this.from(t,e).to(t,i,s)},t.prototype._getProp=function(t){if(this._fxProperties)return this._fxProperties.find(function(e){return e.effectName===t})},t.prototype._addProp=function(t,e,i){var s=this._getProp(e);if(!s){var r=1===TRANSFORM_PROPS[e];s={effectName:e,trans:r,wc:r?"transform":e},(this._fxProperties=this._fxProperties||[]).push(s)}var n={val:i,num:0,effectUnit:""};if(s[t]=n,"string"==typeof i&&i.indexOf(" ")<0){var o=i.match(CSS_VALUE_REGEX);if(o){var a=parseFloat(o[1]);isNaN(a)||(n.num=a),n.effectUnit=o[0]!==o[2]?o[2]:""}}else"number"==typeof i&&(n.num=i);return s},t.prototype.beforeAddClass=function(t){return(this._beforeAddClasses=this._beforeAddClasses||[]).push(t),this},t.prototype.beforeRemoveClass=function(t){return(this._beforeRemoveClasses=this._beforeRemoveClasses||[]).push(t),this},t.prototype.beforeStyles=function(t){return this._beforeStyles=t,this},t.prototype.beforeClearStyles=function(t){this._beforeStyles=this._beforeStyles||{};for(var e=0,i=t;e<i.length;e++)this._beforeStyles[i[e]]="";return this},t.prototype.beforeAddRead=function(t){return(this._readCallbacks=this._readCallbacks||[]).push(t),this},t.prototype.beforeAddWrite=function(t){return(this._writeCallbacks=this._writeCallbacks||[]).push(t),this},t.prototype.afterAddClass=function(t){return(this._afterAddClasses=this._afterAddClasses||[]).push(t),this},t.prototype.afterRemoveClass=function(t){return(this._afterRemoveClasses=this._afterRemoveClasses||[]).push(t),this},t.prototype.afterStyles=function(t){return this._afterStyles=t,this},t.prototype.afterClearStyles=function(t){this._afterStyles=this._afterStyles||{};for(var e=0,i=t;e<i.length;e++)this._afterStyles[i[e]]="";return this},t.prototype.play=function(t){var e=this;this._destroyed||(this._isAsync=this._hasDuration(t),this._clearAsync(),this._playInit(t),raf(function(){raf(function(){e._playDomInspect(t)})}))},t.prototype.playAsync=function(t){var e=this;return new Promise(function(i){return e.onFinish(i,{oneTimeCallback:!0,clearExistingCallbacks:!0}),e.play(t),e})},t.prototype.playSync=function(){if(!this._destroyed){var t={duration:0};this._isAsync=!1,this._clearAsync(),this._playInit(t),this._playDomInspect(t)}},t.prototype._playInit=function(t){this._hasTweenEffect=!1,this.isPlaying=!0,this.hasCompleted=!1,this._hasDur=this.getDuration(t)>DURATION_MIN;var e=this._childAnimations;if(e)for(var i=0,s=e;i<s.length;i++)s[i]._playInit(t);this._hasDur&&(this._progress(0),this._willChange(!0))},t.prototype._playDomInspect=function(t){var e=this;this._beforeAnimation();var i=this.getDuration(t);this._isAsync&&this._asyncEnd(i,!0),this._playProgress(t),this._isAsync&&!this._destroyed&&raf(function(){e._playToStep(1)})},t.prototype._playProgress=function(t){var e=this._childAnimations;if(e)for(var i=0,s=e;i<s.length;i++)s[i]._playProgress(t);this._hasDur?this._setTrans(this.getDuration(t),!1):(this._progress(1),this._setAfterStyles(),this._didFinish(!0))},t.prototype._playToStep=function(t){if(!this._destroyed){var e=this._childAnimations;if(e)for(var i=0,s=e;i<s.length;i++)s[i]._playToStep(t);this._hasDur&&this._progress(t)}},t.prototype._asyncEnd=function(t,e){var i=this;i._unregisterTrnsEnd=transitionEnd(i._transEl(),function(){i._clearAsync(),i._playEnd(),i._didFinishAll(e,!0,!1)}),i._timerId=setTimeout(function(){i._timerId=void 0,i._clearAsync(),i._playEnd(e?1:0),i._didFinishAll(e,!0,!1)},t+TRANSITION_END_FALLBACK_PADDING_MS)},t.prototype._playEnd=function(t){var e=this._childAnimations;if(e)for(var i=0,s=e;i<s.length;i++)s[i]._playEnd(t);this._hasDur&&(void 0!==t&&(this._setTrans(0,!0),this._progress(t)),this._setAfterStyles(),this._willChange(!1))},t.prototype._hasDuration=function(t){if(this.getDuration(t)>DURATION_MIN)return!0;var e=this._childAnimations;if(e)for(var i=0,s=e;i<s.length;i++)if(s[i]._hasDuration(t))return!0;return!1},t.prototype._hasDomReads=function(){if(this._readCallbacks&&this._readCallbacks.length>0)return!0;var t=this._childAnimations;if(t)for(var e=0,i=t;e<i.length;e++)if(i[e]._hasDomReads())return!0;return!1},t.prototype.stop=function(t){void 0===t&&(t=1),this._clearAsync(),this._hasDur=!0,this._playEnd(t)},t.prototype._clearAsync=function(){this._unregisterTrnsEnd&&this._unregisterTrnsEnd(),this._timerId&&clearTimeout(this._timerId),this._timerId=this._unregisterTrnsEnd=void 0},t.prototype._progress=function(t){var e,i=this._elements,s=this._fxProperties;if(i&&0!==i.length&&s&&!this._destroyed){this._isReverse&&(t=1-t);var r,n=0,o=0,a="";for(n=0;n<s.length;n++)if((r=s[n]).from&&r.to){var h=r.from.num,l=r.to.num,f=h!==l;if(f&&(this._hasTweenEffect=!0),0===t?e=r.from.val:1===t?e=r.to.val:f&&(e=(l-h)*t+h+r.to.effectUnit),null!==e){var _=r.effectName;if(r.trans)a+=_+"("+e+") ";else for(o=0;o<i.length;o++)i[o].style.setProperty(_,e)}}if(a.length>0)for((!this._isReverse&&1!==t||this._isReverse&&0!==t)&&(a+="translateZ(0px)"),n=0;n<i.length;n++)i[n].style.setProperty("transform",a),i[n].style.setProperty("-webkit-transform",a)}},t.prototype._setTrans=function(t,e){var i=this._elements;if(i&&0!==i.length&&this._fxProperties)for(var s=e?"linear":this.getEasing(),r=t+"ms",n=0,o=i;n<o.length;n++){var a=o[n].style;t>0?(a.transitionDuration=r,null!==s&&(a.transitionTimingFunction=s)):a.transitionDuration="0"}},t.prototype._beforeAnimation=function(){this._fireBeforeReadFunc(),this._fireBeforeWriteFunc(),this._setBeforeStyles()},t.prototype._setBeforeStyles=function(){var t=this._childAnimations;if(t)for(var e=0,i=t;e<i.length;e++)i[e]._setBeforeStyles();var s=this._elements;if(s&&0!==s.length&&!this._isReverse)for(var r=this._beforeAddClasses,n=this._beforeRemoveClasses,o=0,a=s;o<a.length;o++){var h=a[o],l=h.classList;if(r)for(var f=0,_=r;f<_.length;f++)l.add(_[f]);if(n)for(var p=0,c=n;p<c.length;p++)l.remove(c[p]);if(this._beforeStyles)for(var d=0,u=Object.entries(this._beforeStyles);d<u.length;d++){var y=u[d];h.style.setProperty(y[0],y[1])}}},t.prototype._fireBeforeReadFunc=function(){var t=this._childAnimations;if(t)for(var e=0,i=t;e<i.length;e++)i[e]._fireBeforeReadFunc();var s=this._readCallbacks;if(s)for(var r=0,n=s;r<n.length;r++)(0,n[r])()},t.prototype._fireBeforeWriteFunc=function(){var t=this._childAnimations;if(t)for(var e=0,i=t;e<i.length;e++)i[e]._fireBeforeWriteFunc();var s=this._writeCallbacks;if(s)for(var r=0,n=s;r<n.length;r++)(0,n[r])()},t.prototype._setAfterStyles=function(){var t=this._elements;if(t)for(var e=0,i=t;e<i.length;e++){var s=i[e],r=s.classList;if(s.style.transitionDuration=s.style.transitionTimingFunction="",this._isReverse){var n=this._beforeAddClasses;if(n)for(var o=0,a=n;o<a.length;o++)r.remove(a[o]);var h=this._beforeRemoveClasses;if(h)for(var l=0,f=h;l<f.length;l++)r.add(f[l]);var _=this._beforeStyles;if(_)for(var p=0,c=Object.keys(_);p<c.length;p++)s.style.removeProperty(c[p])}else{var d=this._afterAddClasses;if(d)for(var u=0,y=d;u<y.length;u++)r.add(y[u]);var v=this._afterRemoveClasses;if(v)for(var m=0,g=v;m<g.length;m++)r.remove(g[m]);var A=this._afterStyles;if(A)for(var C=0,b=Object.entries(A);C<b.length;C++){var E=b[C];s.style.setProperty(E[0],E[1])}}}},t.prototype._willChange=function(t){var e,i,s=this._fxProperties;if(t&&s){e=[];for(var r=0,n=s;r<n.length;r++){var o=n[r].wc;"webkitTransform"===o?e.push("transform","-webkit-transform"):void 0!==o&&e.push(o)}i=e.join(",")}else i="";var a=this._elements;if(a)for(var h=0,l=a;h<l.length;h++)l[h].style.setProperty("will-change",i)},t.prototype.progressStart=function(){this._clearAsync(),this._beforeAnimation(),this._progressStart()},t.prototype._progressStart=function(){var t=this._childAnimations;if(t)for(var e=0,i=t;e<i.length;e++)i[e]._progressStart();this._setTrans(0,!0),this._willChange(!0)},t.prototype.progressStep=function(t){t=Math.min(1,Math.max(0,t));var e=this._childAnimations;if(e)for(var i=0,s=e;i<s.length;i++)s[i].progressStep(t);this._progress(t)},t.prototype.progressEnd=function(t,e,i){var s=this;void 0===i&&(i=-1),this._isReverse&&(e=1-e);var r=t?1:0,n=Math.abs(e-r);i<0?i=this._duration||0:n<.05&&(i=0),this._isAsync=i>30,this._progressEnd(t,r,i,this._isAsync),this._isAsync&&(this._asyncEnd(i,t),this._destroyed||raf(function(){s._playToStep(r)}))},t.prototype._progressEnd=function(t,e,i,s){var r=this._childAnimations;if(r)for(var n=0,o=r;n<o.length;n++)o[n]._progressEnd(t,e,i,s);s?(this.isPlaying=!0,this.hasCompleted=!1,this._hasDur=!0,this._willChange(!0),this._setTrans(i,!1)):(this._progress(e),this._willChange(!1),this._setAfterStyles(),this._didFinish(t))},t.prototype.onFinish=function(t,e){return e&&e.clearExistingCallbacks&&(this._onFinishCallbacks=this._onFinishOneTimeCallbacks=void 0),e&&e.oneTimeCallback?(this._onFinishOneTimeCallbacks=this._onFinishOneTimeCallbacks||[],this._onFinishOneTimeCallbacks.push(t)):(this._onFinishCallbacks=this._onFinishCallbacks||[],this._onFinishCallbacks.push(t)),this},t.prototype._didFinishAll=function(t,e,i){var s=this._childAnimations;if(s)for(var r=0,n=s;r<n.length;r++)n[r]._didFinishAll(t,e,i);(e&&this._isAsync||i&&!this._isAsync)&&this._didFinish(t)},t.prototype._didFinish=function(t){if(this.isPlaying=!1,this.hasCompleted=t,this._onFinishCallbacks)for(var e=0,i=this._onFinishCallbacks;e<i.length;e++)(0,i[e])(this);if(this._onFinishOneTimeCallbacks){for(var s=0,r=this._onFinishOneTimeCallbacks;s<r.length;s++)(0,r[s])(this);this._onFinishOneTimeCallbacks.length=0}},t.prototype.reverse=function(t){void 0===t&&(t=!0);var e=this._childAnimations;if(e)for(var i=0,s=e;i<s.length;i++)s[i].reverse(t);return this._isReverse=!!t,this},t.prototype.destroy=function(){this._didFinish(!1),this._destroyed=!0;var t=this._childAnimations;if(t)for(var e=0,i=t;e<i.length;e++)i[e].destroy();this._clearAsync(),this._elements&&(this._elements.length=0),this._readCallbacks&&(this._readCallbacks.length=0),this._writeCallbacks&&(this._writeCallbacks.length=0),this.parent=void 0,this._childAnimations&&(this._childAnimations.length=0),this._onFinishCallbacks&&(this._onFinishCallbacks.length=0),this._onFinishOneTimeCallbacks&&(this._onFinishOneTimeCallbacks.length=0)},t.prototype._transEl=function(){var t=this._childAnimations;if(t)for(var e=0,i=t;e<i.length;e++){var s=i[e]._transEl();if(s)return s}return this._hasTweenEffect&&this._hasDur&&void 0!==this._elements&&this._elements.length>0?this._elements[0]:null},t}();function create(t,e,i){return t?t(Animator,e,i):Promise.resolve(new Animator)}
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GESTURE_CONTROLLER", function() { return GESTURE_CONTROLLER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createGesture", function() { return createGesture; });
+/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
+/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
+
+
+var GestureController = /** @class */ (function () {
+    function GestureController() {
+        this.gestureId = 0;
+        this.requestedStart = new Map();
+        this.disabledGestures = new Map();
+        this.disabledScroll = new Set();
+    }
+    /**
+     * Creates a gesture delegate based on the GestureConfig passed
+     */
+    GestureController.prototype.createGesture = function (config) {
+        return new GestureDelegate(this, this.newID(), config.name, config.priority || 0, !!config.disableScroll);
+    };
+    /**
+     * Creates a blocker that will block any other gesture events from firing. Set in the ion-gesture component.
+     */
+    GestureController.prototype.createBlocker = function (opts) {
+        if (opts === void 0) { opts = {}; }
+        return new BlockerDelegate(this, this.newID(), opts.disable, !!opts.disableScroll);
+    };
+    GestureController.prototype.start = function (gestureName, id, priority) {
+        if (!this.canStart(gestureName)) {
+            this.requestedStart.delete(id);
+            return false;
+        }
+        this.requestedStart.set(id, priority);
+        return true;
+    };
+    GestureController.prototype.capture = function (gestureName, id, priority) {
+        if (!this.start(gestureName, id, priority)) {
+            return false;
+        }
+        var requestedStart = this.requestedStart;
+        var maxPriority = -10000;
+        requestedStart.forEach(function (value) {
+            maxPriority = Math.max(maxPriority, value);
+        });
+        if (maxPriority === priority) {
+            this.capturedId = id;
+            requestedStart.clear();
+            var event = new CustomEvent('ionGestureCaptured', { detail: { gestureName: gestureName } });
+            document.dispatchEvent(event);
+            return true;
+        }
+        requestedStart.delete(id);
+        return false;
+    };
+    GestureController.prototype.release = function (id) {
+        this.requestedStart.delete(id);
+        if (this.capturedId === id) {
+            this.capturedId = undefined;
+        }
+    };
+    GestureController.prototype.disableGesture = function (gestureName, id) {
+        var set = this.disabledGestures.get(gestureName);
+        if (set === undefined) {
+            set = new Set();
+            this.disabledGestures.set(gestureName, set);
+        }
+        set.add(id);
+    };
+    GestureController.prototype.enableGesture = function (gestureName, id) {
+        var set = this.disabledGestures.get(gestureName);
+        if (set !== undefined) {
+            set.delete(id);
+        }
+    };
+    GestureController.prototype.disableScroll = function (id) {
+        this.disabledScroll.add(id);
+        if (this.disabledScroll.size === 1) {
+            document.body.classList.add(BACKDROP_NO_SCROLL);
+        }
+    };
+    GestureController.prototype.enableScroll = function (id) {
+        this.disabledScroll.delete(id);
+        if (this.disabledScroll.size === 0) {
+            document.body.classList.remove(BACKDROP_NO_SCROLL);
+        }
+    };
+    GestureController.prototype.canStart = function (gestureName) {
+        if (this.capturedId !== undefined) {
+            // a gesture already captured
+            return false;
+        }
+        if (this.isDisabled(gestureName)) {
+            return false;
+        }
+        return true;
+    };
+    GestureController.prototype.isCaptured = function () {
+        return this.capturedId !== undefined;
+    };
+    GestureController.prototype.isScrollDisabled = function () {
+        return this.disabledScroll.size > 0;
+    };
+    GestureController.prototype.isDisabled = function (gestureName) {
+        var disabled = this.disabledGestures.get(gestureName);
+        if (disabled && disabled.size > 0) {
+            return true;
+        }
+        return false;
+    };
+    GestureController.prototype.newID = function () {
+        this.gestureId++;
+        return this.gestureId;
+    };
+    return GestureController;
+}());
+var GestureDelegate = /** @class */ (function () {
+    function GestureDelegate(ctrl, id, name, priority, disableScroll) {
+        this.id = id;
+        this.name = name;
+        this.disableScroll = disableScroll;
+        this.priority = priority * 1000000 + id;
+        this.ctrl = ctrl;
+    }
+    GestureDelegate.prototype.canStart = function () {
+        if (!this.ctrl) {
+            return false;
+        }
+        return this.ctrl.canStart(this.name);
+    };
+    GestureDelegate.prototype.start = function () {
+        if (!this.ctrl) {
+            return false;
+        }
+        return this.ctrl.start(this.name, this.id, this.priority);
+    };
+    GestureDelegate.prototype.capture = function () {
+        if (!this.ctrl) {
+            return false;
+        }
+        var captured = this.ctrl.capture(this.name, this.id, this.priority);
+        if (captured && this.disableScroll) {
+            this.ctrl.disableScroll(this.id);
+        }
+        return captured;
+    };
+    GestureDelegate.prototype.release = function () {
+        if (this.ctrl) {
+            this.ctrl.release(this.id);
+            if (this.disableScroll) {
+                this.ctrl.enableScroll(this.id);
+            }
+        }
+    };
+    GestureDelegate.prototype.destroy = function () {
+        this.release();
+        this.ctrl = undefined;
+    };
+    return GestureDelegate;
+}());
+var BlockerDelegate = /** @class */ (function () {
+    function BlockerDelegate(ctrl, id, disable, disableScroll) {
+        this.id = id;
+        this.disable = disable;
+        this.disableScroll = disableScroll;
+        this.ctrl = ctrl;
+    }
+    BlockerDelegate.prototype.block = function () {
+        if (!this.ctrl) {
+            return;
+        }
+        if (this.disable) {
+            for (var _i = 0, _a = this.disable; _i < _a.length; _i++) {
+                var gesture = _a[_i];
+                this.ctrl.disableGesture(gesture, this.id);
+            }
+        }
+        if (this.disableScroll) {
+            this.ctrl.disableScroll(this.id);
+        }
+    };
+    BlockerDelegate.prototype.unblock = function () {
+        if (!this.ctrl) {
+            return;
+        }
+        if (this.disable) {
+            for (var _i = 0, _a = this.disable; _i < _a.length; _i++) {
+                var gesture = _a[_i];
+                this.ctrl.enableGesture(gesture, this.id);
+            }
+        }
+        if (this.disableScroll) {
+            this.ctrl.enableScroll(this.id);
+        }
+    };
+    BlockerDelegate.prototype.destroy = function () {
+        this.unblock();
+        this.ctrl = undefined;
+    };
+    return BlockerDelegate;
+}());
+var BACKDROP_NO_SCROLL = 'backdrop-no-scroll';
+var GESTURE_CONTROLLER = new GestureController();
+var addEventListener = function (el, eventName, callback, opts) {
+    // use event listener options when supported
+    // otherwise it's just a boolean for the "capture" arg
+    var listenerOpts = supportsPassive(el) ? {
+        'capture': !!opts.capture,
+        'passive': !!opts.passive,
+    } : !!opts.capture;
+    var add;
+    var remove;
+    if (el['__zone_symbol__addEventListener']) {
+        add = '__zone_symbol__addEventListener';
+        remove = '__zone_symbol__removeEventListener';
+    }
+    else {
+        add = 'addEventListener';
+        remove = 'removeEventListener';
+    }
+    el[add](eventName, callback, listenerOpts);
+    return function () {
+        el[remove](eventName, callback, listenerOpts);
+    };
+};
+var supportsPassive = function (node) {
+    if (_sPassive === undefined) {
+        try {
+            var opts = Object.defineProperty({}, 'passive', {
+                get: function () {
+                    _sPassive = true;
+                }
+            });
+            node.addEventListener('optsTest', function () { return; }, opts);
+        }
+        catch (e) {
+            _sPassive = false;
+        }
+    }
+    return !!_sPassive;
+};
+var _sPassive;
+var MOUSE_WAIT = 2000;
+var createPointerEvents = function (el, pointerDown, pointerMove, pointerUp, options) {
+    var rmTouchStart;
+    var rmTouchMove;
+    var rmTouchEnd;
+    var rmTouchCancel;
+    var rmMouseStart;
+    var rmMouseMove;
+    var rmMouseUp;
+    var lastTouchEvent = 0;
+    var handleTouchStart = function (ev) {
+        lastTouchEvent = Date.now() + MOUSE_WAIT;
+        if (!pointerDown(ev)) {
+            return;
+        }
+        if (!rmTouchMove && pointerMove) {
+            rmTouchMove = addEventListener(el, 'touchmove', pointerMove, options);
+        }
+        if (!rmTouchEnd) {
+            rmTouchEnd = addEventListener(el, 'touchend', handleTouchEnd, options);
+        }
+        if (!rmTouchCancel) {
+            rmTouchCancel = addEventListener(el, 'touchcancel', handleTouchEnd, options);
+        }
+    };
+    var handleMouseDown = function (ev) {
+        if (lastTouchEvent > Date.now()) {
+            return;
+        }
+        if (!pointerDown(ev)) {
+            return;
+        }
+        if (!rmMouseMove && pointerMove) {
+            rmMouseMove = addEventListener(getDocument(el), 'mousemove', pointerMove, options);
+        }
+        if (!rmMouseUp) {
+            rmMouseUp = addEventListener(getDocument(el), 'mouseup', handleMouseUp, options);
+        }
+    };
+    var handleTouchEnd = function (ev) {
+        stopTouch();
+        if (pointerUp) {
+            pointerUp(ev);
+        }
+    };
+    var handleMouseUp = function (ev) {
+        stopMouse();
+        if (pointerUp) {
+            pointerUp(ev);
+        }
+    };
+    var stopTouch = function () {
+        if (rmTouchMove) {
+            rmTouchMove();
+        }
+        if (rmTouchEnd) {
+            rmTouchEnd();
+        }
+        if (rmTouchCancel) {
+            rmTouchCancel();
+        }
+        rmTouchMove = rmTouchEnd = rmTouchCancel = undefined;
+    };
+    var stopMouse = function () {
+        if (rmMouseMove) {
+            rmMouseMove();
+        }
+        if (rmMouseUp) {
+            rmMouseUp();
+        }
+        rmMouseMove = rmMouseUp = undefined;
+    };
+    var stop = function () {
+        stopTouch();
+        stopMouse();
+    };
+    var setDisabled = function (disabled) {
+        if (disabled) {
+            if (rmTouchStart) {
+                rmTouchStart();
+            }
+            if (rmMouseStart) {
+                rmMouseStart();
+            }
+            rmTouchStart = rmMouseStart = undefined;
+            stop();
+        }
+        else {
+            if (!rmTouchStart) {
+                rmTouchStart = addEventListener(el, 'touchstart', handleTouchStart, options);
+            }
+            if (!rmMouseStart) {
+                rmMouseStart = addEventListener(el, 'mousedown', handleMouseDown, options);
+            }
+        }
+    };
+    var destroy = function () {
+        setDisabled(true);
+        pointerUp = pointerMove = pointerDown = undefined;
+    };
+    return {
+        setDisabled: setDisabled,
+        stop: stop,
+        destroy: destroy
+    };
+};
+var getDocument = function (node) {
+    return node instanceof Document ? node : node.ownerDocument;
+};
+var createPanRecognizer = function (direction, thresh, maxAngle) {
+    var radians = maxAngle * (Math.PI / 180);
+    var isDirX = direction === 'x';
+    var maxCosine = Math.cos(radians);
+    var threshold = thresh * thresh;
+    var startX = 0;
+    var startY = 0;
+    var dirty = false;
+    var isPan = 0;
+    return {
+        start: function (x, y) {
+            startX = x;
+            startY = y;
+            isPan = 0;
+            dirty = true;
+        },
+        detect: function (x, y) {
+            if (!dirty) {
+                return false;
+            }
+            var deltaX = (x - startX);
+            var deltaY = (y - startY);
+            var distance = deltaX * deltaX + deltaY * deltaY;
+            if (distance < threshold) {
+                return false;
+            }
+            var hypotenuse = Math.sqrt(distance);
+            var cosine = (isDirX ? deltaX : deltaY) / hypotenuse;
+            if (cosine > maxCosine) {
+                isPan = 1;
+            }
+            else if (cosine < -maxCosine) {
+                isPan = -1;
+            }
+            else {
+                isPan = 0;
+            }
+            dirty = false;
+            return true;
+        },
+        isGesture: function () {
+            return isPan !== 0;
+        },
+        getDirection: function () {
+            return isPan;
+        }
+    };
+};
+var createGesture = function (config) {
+    var hasCapturedPan = false;
+    var hasStartedPan = false;
+    var hasFiredStart = true;
+    var isMoveQueued = false;
+    var finalConfig = Object.assign({ disableScroll: false, direction: 'x', gesturePriority: 0, passive: true, maxAngle: 40, threshold: 10 }, config);
+    var canStart = finalConfig.canStart;
+    var onWillStart = finalConfig.onWillStart;
+    var onStart = finalConfig.onStart;
+    var onEnd = finalConfig.onEnd;
+    var notCaptured = finalConfig.notCaptured;
+    var onMove = finalConfig.onMove;
+    var threshold = finalConfig.threshold;
+    var detail = {
+        type: 'pan',
+        startX: 0,
+        startY: 0,
+        startTimeStamp: 0,
+        currentX: 0,
+        currentY: 0,
+        velocityX: 0,
+        velocityY: 0,
+        deltaX: 0,
+        deltaY: 0,
+        timeStamp: 0,
+        event: undefined,
+        data: undefined
+    };
+    var pan = createPanRecognizer(finalConfig.direction, finalConfig.threshold, finalConfig.maxAngle);
+    var gesture = GESTURE_CONTROLLER.createGesture({
+        name: config.gestureName,
+        priority: config.gesturePriority,
+        disableScroll: config.disableScroll
+    });
+    var pointerDown = function (ev) {
+        var timeStamp = now(ev);
+        if (hasStartedPan || !hasFiredStart) {
+            return false;
+        }
+        updateDetail(ev, detail);
+        detail.startX = detail.currentX;
+        detail.startY = detail.currentY;
+        detail.startTimeStamp = detail.timeStamp = timeStamp;
+        detail.velocityX = detail.velocityY = detail.deltaX = detail.deltaY = 0;
+        detail.event = ev;
+        // Check if gesture can start
+        if (canStart && canStart(detail) === false) {
+            return false;
+        }
+        // Release fallback
+        gesture.release();
+        // Start gesture
+        if (!gesture.start()) {
+            return false;
+        }
+        hasStartedPan = true;
+        if (threshold === 0) {
+            return tryToCapturePan();
+        }
+        pan.start(detail.startX, detail.startY);
+        return true;
+    };
+    var pointerMove = function (ev) {
+        // fast path, if gesture is currently captured
+        // do minimum job to get user-land even dispatched
+        if (hasCapturedPan) {
+            if (!isMoveQueued && hasFiredStart) {
+                isMoveQueued = true;
+                calcGestureData(detail, ev);
+                Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["w"])(fireOnMove);
+            }
+            return;
+        }
+        // gesture is currently being detected
+        calcGestureData(detail, ev);
+        if (pan.detect(detail.currentX, detail.currentY)) {
+            if (!pan.isGesture() || !tryToCapturePan()) {
+                abortGesture();
+            }
+        }
+    };
+    var fireOnMove = function () {
+        // Since fireOnMove is called inside a RAF, onEnd() might be called,
+        // we must double check hasCapturedPan
+        if (!hasCapturedPan) {
+            return;
+        }
+        isMoveQueued = false;
+        if (onMove) {
+            onMove(detail);
+        }
+    };
+    var tryToCapturePan = function () {
+        if (gesture && !gesture.capture()) {
+            return false;
+        }
+        hasCapturedPan = true;
+        hasFiredStart = false;
+        // reset start position since the real user-land event starts here
+        // If the pan detector threshold is big, not resetting the start position
+        // will cause a jump in the animation equal to the detector threshold.
+        // the array of positions used to calculate the gesture velocity does not
+        // need to be cleaned, more points in the positions array always results in a
+        // more accurate value of the velocity.
+        detail.startX = detail.currentX;
+        detail.startY = detail.currentY;
+        detail.startTimeStamp = detail.timeStamp;
+        if (onWillStart) {
+            onWillStart(detail).then(fireOnStart);
+        }
+        else {
+            fireOnStart();
+        }
+        return true;
+    };
+    var fireOnStart = function () {
+        if (onStart) {
+            onStart(detail);
+        }
+        hasFiredStart = true;
+    };
+    var reset = function () {
+        hasCapturedPan = false;
+        hasStartedPan = false;
+        isMoveQueued = false;
+        hasFiredStart = true;
+        gesture.release();
+    };
+    // END *************************
+    var pointerUp = function (ev) {
+        var tmpHasCaptured = hasCapturedPan;
+        var tmpHasFiredStart = hasFiredStart;
+        reset();
+        if (!tmpHasFiredStart) {
+            return;
+        }
+        calcGestureData(detail, ev);
+        // Try to capture press
+        if (tmpHasCaptured) {
+            if (onEnd) {
+                onEnd(detail);
+            }
+            return;
+        }
+        // Not captured any event
+        if (notCaptured) {
+            notCaptured(detail);
+        }
+    };
+    var pointerEvents = createPointerEvents(finalConfig.el, pointerDown, pointerMove, pointerUp, {
+        capture: false,
+    });
+    var abortGesture = function () {
+        reset();
+        pointerEvents.stop();
+        if (notCaptured) {
+            notCaptured(detail);
+        }
+    };
+    return {
+        setDisabled: function (disabled) {
+            if (disabled && hasCapturedPan) {
+                pointerUp(undefined);
+            }
+            pointerEvents.setDisabled(disabled);
+        },
+        destroy: function () {
+            gesture.destroy();
+            pointerEvents.destroy();
+        }
+    };
+};
+var calcGestureData = function (detail, ev) {
+    if (!ev) {
+        return;
+    }
+    var prevX = detail.currentX;
+    var prevY = detail.currentY;
+    var prevT = detail.timeStamp;
+    updateDetail(ev, detail);
+    var currentX = detail.currentX;
+    var currentY = detail.currentY;
+    var timestamp = detail.timeStamp = now(ev);
+    var timeDelta = timestamp - prevT;
+    if (timeDelta > 0 && timeDelta < 100) {
+        var velocityX = (currentX - prevX) / timeDelta;
+        var velocityY = (currentY - prevY) / timeDelta;
+        detail.velocityX = velocityX * 0.7 + detail.velocityX * 0.3;
+        detail.velocityY = velocityY * 0.7 + detail.velocityY * 0.3;
+    }
+    detail.deltaX = currentX - detail.startX;
+    detail.deltaY = currentY - detail.startY;
+    detail.event = ev;
+};
+var updateDetail = function (ev, detail) {
+    // get X coordinates for either a mouse click
+    // or a touch depending on the given event
+    var x = 0;
+    var y = 0;
+    if (ev) {
+        var changedTouches = ev.changedTouches;
+        if (changedTouches && changedTouches.length > 0) {
+            var touch = changedTouches[0];
+            x = touch.clientX;
+            y = touch.clientY;
+        }
+        else if (ev.pageX !== undefined) {
+            x = ev.pageX;
+            y = ev.pageY;
+        }
+    }
+    detail.currentX = x;
+    detail.currentY = y;
+};
+var now = function (ev) {
+    return ev.timeStamp || Date.now();
+};
+
+
 
 /***/ })
 

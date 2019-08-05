@@ -1,17 +1,325 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[3],{
 
-/***/ "./node_modules/@ionic/core/dist/esm/es5/build/chunk-172145ad.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm/es5/build/chunk-172145ad.js ***!
-  \***********************************************************************/
-/*! exports provided: startInputShims */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-action-sheet-controller_8.entry.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-action-sheet-controller_8.entry.js ***!
+  \**************************************************************************************/
+/*! exports provided: ion_action_sheet_controller, ion_alert_controller, ion_anchor, ion_loading_controller, ion_modal_controller, ion_picker_controller, ion_popover_controller, ion_toast_controller */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startInputShims", function() { return startInputShims; });
-/* harmony import */ var _chunk_6d7d2f8c_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunk-6d7d2f8c.js */ "./node_modules/@ionic/core/dist/esm/es5/build/chunk-6d7d2f8c.js");
-var cloneMap=new WeakMap;function relocateInput(e,t,n,o){void 0===o&&(o=0),cloneMap.has(e)!==n&&(n?addClone(e,t,o):removeClone(e,t))}function isFocused(e){return e===e.getRootNode().activeElement}function addClone(e,t,n){var o=t.parentNode,r=t.cloneNode(!1);r.classList.add("cloned-input"),r.tabIndex=-1,o.appendChild(r),cloneMap.set(e,r);var a="rtl"===e.ownerDocument.dir?9999:-9999;e.style.pointerEvents="none",t.style.transform="translate3d("+a+"px,"+n+"px,0) scale(0)"}function removeClone(e,t){var n=cloneMap.get(e);n&&(cloneMap.delete(e),n.remove()),e.style.pointerEvents="",t.style.transform=""}function enableHideCaretOnScroll(e,t,n){if(!n||!t)return function(){};var o=function(n){isFocused(t)&&relocateInput(e,t,n)},r=function(){return relocateInput(e,t,!1)},a=function(){return o(!0)},i=function(){return o(!1)};return n.addEventListener("ionScrollStart",a),n.addEventListener("ionScrollEnd",i),t.addEventListener("blur",r),function(){n.removeEventListener("ionScrollStart",a),n.removeEventListener("ionScrollEnd",i),t.addEventListener("ionBlur",r)}}var SKIP_SELECTOR="input, textarea, [no-blur]";function enableInputBlurring(e){var t=!0,n=!1;function o(){n=!0}function r(){t=!0}function a(o){if(n)n=!1;else{var r=e.activeElement;if(r&&!r.matches(SKIP_SELECTOR)){var a=o.target;a!==r&&(a.matches(SKIP_SELECTOR)||a.closest(SKIP_SELECTOR)||(t=!1,setTimeout(function(){t||r.blur()},50)))}}}return e.addEventListener("ionScrollStart",o),e.addEventListener("focusin",r,!0),e.addEventListener("touchend",a,!1),function(){e.removeEventListener("ionScrollStart",o,!0),e.removeEventListener("focusin",r,!0),e.removeEventListener("touchend",a,!1)}}var SCROLL_ASSIST_SPEED=.3;function getScrollData(e,t,n){return calcScrollData((e.closest("ion-item,[ion-item]")||e).getBoundingClientRect(),t.getBoundingClientRect(),n,e.ownerDocument.defaultView.innerHeight)}function calcScrollData(e,t,n,o){var r=e.top,a=e.bottom,i=t.top,l=i+15,c=.5*Math.min(t.bottom,o-n)-a,u=l-r,s=Math.round(c<0?-c:u>0?-u:0),d=Math.min(s,r-i),f=Math.abs(d);return{scrollAmount:d,scrollDuration:Math.min(400,Math.max(150,f/SCROLL_ASSIST_SPEED)),scrollPadding:n,inputSafeY:4-(r-l)}}function enableScrollAssist(e,t,n,o){var r,a=function(e){r=Object(_chunk_6d7d2f8c_js__WEBPACK_IMPORTED_MODULE_0__["k"])(e)},i=function(a){if(r){var i=Object(_chunk_6d7d2f8c_js__WEBPACK_IMPORTED_MODULE_0__["k"])(a);hasPointerMoved(6,r,i)||isFocused(t)||(a.preventDefault(),a.stopPropagation(),jsSetFocus(e,t,n,o))}};return e.addEventListener("touchstart",a,!0),e.addEventListener("touchend",i,!0),function(){e.removeEventListener("touchstart",a,!0),e.removeEventListener("touchend",i,!0)}}function jsSetFocus(e,t,n,o){var r=getScrollData(e,n,o);Math.abs(r.scrollAmount)<4?t.focus():(relocateInput(e,t,!0,r.inputSafeY),t.focus(),n.scrollByPoint(0,r.scrollAmount,r.scrollDuration).then(function(){relocateInput(e,t,!1,r.inputSafeY),t.focus()}))}function hasPointerMoved(e,t,n){if(t&&n){var o=t.x-n.x,r=t.y-n.y;return o*o+r*r>e*e}return!1}var PADDING_TIMER_KEY="$ionPaddingTimer";function enableScrollPadding(e,t){function n(e){setScrollPadding(e.target,t)}function o(e){setScrollPadding(e.target,0)}return e.addEventListener("focusin",n),e.addEventListener("focusout",o),function(){e.removeEventListener("focusin",n),e.removeEventListener("focusout",o)}}function setScrollPadding(e,t){if("INPUT"===e.tagName&&!(e.parentElement&&"ION-INPUT"===e.parentElement.tagName||e.parentElement&&e.parentElement.parentElement&&"ION-SEARCHBAR"===e.parentElement.parentElement.tagName)){var n=e.closest("ion-content");if(null!==n){var o=n[PADDING_TIMER_KEY];o&&clearTimeout(o),t>0?n.style.setProperty("--keyboard-offset",t+"px"):n[PADDING_TIMER_KEY]=setTimeout(function(){n.style.setProperty("--keyboard-offset","0px")},120)}}}var INPUT_BLURRING=!0,SCROLL_PADDING=!0;function startInputShims(e,t){var n=t.getNumber("keyboardHeight",290),o=t.getBoolean("scrollAssist",!0),r=t.getBoolean("hideCaretOnScroll",!0),a=t.getBoolean("inputBlurring",!0),i=t.getBoolean("scrollPadding",!0),l=new WeakMap,c=new WeakMap;function u(e){var t=(e.shadowRoot||e).querySelector("input")||(e.shadowRoot||e).querySelector("textarea"),a=e.closest("ion-content");if(t){if(a&&r&&!l.has(e)){var i=enableHideCaretOnScroll(e,t,a);l.set(e,i)}a&&o&&!c.has(e)&&(i=enableScrollAssist(e,t,a,n),c.set(e,i))}}a&&INPUT_BLURRING&&enableInputBlurring(e),i&&SCROLL_PADDING&&enableScrollPadding(e,n);for(var s=0,d=Array.from(e.querySelectorAll("ion-input, ion-textarea"));s<d.length;s++)u(d[s]);e.body.addEventListener("ionInputDidLoad",function(e){u(e.target)}),e.body.addEventListener("ionInputDidUnload",function(e){var t,n;t=e.target,r&&((n=l.get(t))&&n(),l.delete(t)),o&&((n=c.get(t))&&n(),c.delete(t))})}
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_action_sheet_controller", function() { return ActionSheetController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_alert_controller", function() { return AlertController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_anchor", function() { return Anchor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_loading_controller", function() { return LoadingController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_modal_controller", function() { return ModalController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_picker_controller", function() { return PickerController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_popover_controller", function() { return PopoverController; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_toast_controller", function() { return ToastController; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
+/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
+/* harmony import */ var _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chunk-d83bfeae.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-d83bfeae.js");
+/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
+
+
+
+
+
+var ActionSheetController = /** @class */ (function () {
+    function ActionSheetController(hostRef) {
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Create an action sheet overlay with action sheet options.
+     *
+     * @param options The options to use to create the action sheet.
+     */
+    ActionSheetController.prototype.create = function (options) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["g"])('ion-action-sheet', options);
+    };
+    /**
+     * Dismiss the open action sheet overlay.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the action sheet.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the action sheet.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+     * @param id The id of the action sheet to dismiss. If an id is not provided, it will dismiss the most recently opened action sheet.
+     */
+    ActionSheetController.prototype.dismiss = function (data, role, id) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["h"])(document, data, role, 'ion-action-sheet', id);
+    };
+    /**
+     * Get the most recently opened action sheet overlay.
+     */
+    ActionSheetController.prototype.getTop = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["j"])(document, 'ion-action-sheet')];
+            });
+        });
+    };
+    return ActionSheetController;
+}());
+var AlertController = /** @class */ (function () {
+    function AlertController(hostRef) {
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Create an alert overlay with alert options.
+     *
+     * @param options The options to use to create the alert.
+     */
+    AlertController.prototype.create = function (options) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["g"])('ion-alert', options);
+    };
+    /**
+     * Dismiss the open alert overlay.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the alert.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the alert.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+     * @param id The id of the alert to dismiss. If an id is not provided, it will dismiss the most recently opened alert.
+     */
+    AlertController.prototype.dismiss = function (data, role, id) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["h"])(document, data, role, 'ion-alert', id);
+    };
+    /**
+     * Get the most recently opened alert overlay.
+     */
+    AlertController.prototype.getTop = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["j"])(document, 'ion-alert')];
+            });
+        });
+    };
+    return AlertController;
+}());
+/**
+ * @deprecated Use `ion-router-link` instead.
+ */
+var Anchor = /** @class */ (function () {
+    function Anchor(hostRef) {
+        var _this = this;
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        /**
+         * When using a router, it specifies the transition direction when navigating to
+         * another page using `href`.
+         */
+        this.routerDirection = 'forward';
+        this.onClick = function (ev) {
+            Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__["o"])(_this.href, ev, _this.routerDirection);
+        };
+    }
+    Anchor.prototype.componentDidLoad = function () {
+        console.warn('The <ion-anchor> component has been deprecated. Please use an <ion-router-link> if you are using a vanilla JS or Stencil project or an <a> with the Angular router.');
+    };
+    Anchor.prototype.render = function () {
+        var _a;
+        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var attrs = {
+            href: this.href,
+            rel: this.rel
+        };
+        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, class: Object.assign({}, Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__["c"])(this.color), (_a = {}, _a[mode] = true, _a['ion-activatable'] = true, _a)) }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("a", Object.assign({}, attrs), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null))));
+    };
+    Object.defineProperty(Anchor, "style", {
+        get: function () { return ":host{--background:transparent;--color:var(--ion-color-primary,#3880ff);background:var(--background);color:var(--color)}:host(.ion-color){color:var(--ion-color-base)}a{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit}"; },
+        enumerable: true,
+        configurable: true
+    });
+    return Anchor;
+}());
+var LoadingController = /** @class */ (function () {
+    function LoadingController(hostRef) {
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Create a loading overlay with loading options.
+     *
+     * @param options The options to use to create the loading.
+     */
+    LoadingController.prototype.create = function (options) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["g"])('ion-loading', options);
+    };
+    /**
+     * Dismiss the open loading overlay.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the loading.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the loading.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+     * @param id The id of the loading to dismiss. If an id is not provided, it will dismiss the most recently opened loading.
+     */
+    LoadingController.prototype.dismiss = function (data, role, id) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["h"])(document, data, role, 'ion-loading', id);
+    };
+    /**
+     * Get the most recently opened loading overlay.
+     */
+    LoadingController.prototype.getTop = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["j"])(document, 'ion-loading')];
+            });
+        });
+    };
+    return LoadingController;
+}());
+var ModalController = /** @class */ (function () {
+    function ModalController(hostRef) {
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Create a modal overlay with modal options.
+     *
+     * @param options The options to use to create the modal.
+     */
+    ModalController.prototype.create = function (options) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["g"])('ion-modal', options);
+    };
+    /**
+     * Dismiss the open modal overlay.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the modal.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the modal.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+     * @param id The id of the modal to dismiss. If an id is not provided, it will dismiss the most recently opened modal.
+     */
+    ModalController.prototype.dismiss = function (data, role, id) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["h"])(document, data, role, 'ion-modal', id);
+    };
+    /**
+     * Get the most recently opened modal overlay.
+     */
+    ModalController.prototype.getTop = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["j"])(document, 'ion-modal')];
+            });
+        });
+    };
+    return ModalController;
+}());
+var PickerController = /** @class */ (function () {
+    function PickerController(hostRef) {
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Create a picker overlay with picker options.
+     *
+     * @param options The options to use to create the picker.
+     */
+    PickerController.prototype.create = function (options) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["g"])('ion-picker', options);
+    };
+    /**
+     * Dismiss the open picker overlay.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the picker.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the picker.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+     * @param id The id of the picker to dismiss. If an id is not provided, it will dismiss the most recently opened picker.
+     */
+    PickerController.prototype.dismiss = function (data, role, id) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["h"])(document, data, role, 'ion-picker', id);
+    };
+    /**
+     * Get the most recently opened picker overlay.
+     */
+    PickerController.prototype.getTop = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["j"])(document, 'ion-picker')];
+            });
+        });
+    };
+    return PickerController;
+}());
+var PopoverController = /** @class */ (function () {
+    function PopoverController(hostRef) {
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Create a popover overlay with popover options.
+     *
+     * @param options The options to use to create the popover.
+     */
+    PopoverController.prototype.create = function (options) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["g"])('ion-popover', options);
+    };
+    /**
+     * Dismiss the open popover overlay.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the popover.
+     * This can be useful in a button handler for determining which button was
+     * clicked to dismiss the popover.
+     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
+     * @param id The id of the popover to dismiss. If an id is not provided, it will dismiss the most recently opened popover.
+     */
+    PopoverController.prototype.dismiss = function (data, role, id) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["h"])(document, data, role, 'ion-popover', id);
+    };
+    /**
+     * Get the most recently opened popover overlay.
+     */
+    PopoverController.prototype.getTop = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["j"])(document, 'ion-popover')];
+            });
+        });
+    };
+    return PopoverController;
+}());
+var ToastController = /** @class */ (function () {
+    function ToastController(hostRef) {
+        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    }
+    /**
+     * Create a toast overlay with toast options.
+     *
+     * @param options The options to use to create the toast.
+     */
+    ToastController.prototype.create = function (options) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["g"])('ion-toast', options);
+    };
+    /**
+     * Dismiss the open toast overlay.
+     *
+     * @param data Any data to emit in the dismiss events.
+     * @param role The role of the element that is dismissing the toast. For example, 'cancel' or 'backdrop'.
+     * @param id The id of the toast to dismiss. If an id is not provided, it will dismiss the most recently opened toast.
+     */
+    ToastController.prototype.dismiss = function (data, role, id) {
+        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["h"])(document, data, role, 'ion-toast', id);
+    };
+    /**
+     * Get the most recently opened toast overlay.
+     */
+    ToastController.prototype.getTop = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["j"])(document, 'ion-toast')];
+            });
+        });
+    };
+    return ToastController;
+}());
+
+
 
 /***/ })
 

@@ -547,13 +547,15 @@ __webpack_require__.r(__webpack_exports__);
 var AppPluginWeb = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](AppPluginWeb, _super);
     function AppPluginWeb() {
-        return _super.call(this, {
+        var _this = _super.call(this, {
             name: 'App',
             platforms: ['web']
         }) || this;
+        document.addEventListener('visibilitychange', _this.handleVisibilityChange.bind(_this), false);
+        return _this;
     }
     AppPluginWeb.prototype.exitApp = function () {
-        throw new Error("Method not implemented.");
+        throw new Error('Method not implemented.');
     };
     AppPluginWeb.prototype.canOpenUrl = function (_options) {
         return Promise.resolve({ value: true });
@@ -563,6 +565,12 @@ var AppPluginWeb = /** @class */ (function (_super) {
     };
     AppPluginWeb.prototype.getLaunchUrl = function () {
         return Promise.resolve({ url: '' });
+    };
+    AppPluginWeb.prototype.handleVisibilityChange = function () {
+        var data = {
+            isActive: document.hidden !== true
+        };
+        this.notifyListeners('appStateChange', data);
     };
     return AppPluginWeb;
 }(_index__WEBPACK_IMPORTED_MODULE_1__["WebPlugin"]));
@@ -5428,6 +5436,17 @@ module.exports = localforage_js;
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/index.js!./src/app/home/home.page.html":
+/*!***************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/home/home.page.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"ion-padding\">\n    The world is your oyster.\n    <p>If you get lost, the <a target=\"_blank\" rel=\"noopener\" href=\"https://ionicframework.com/docs\">docs</a> will be your guide.</p>\n    <ion-button (click)=\"testPlugin()\" color='primary' size=\"large\">Test Plugin</ion-button>\n    <p class=\"populate hidden\">\n      Storing data successful\n    </p>\n    <p class=\"iskey hidden\">\n      Iskey successful\n    </p>\n    <p class=\"keys hidden\">\n      Get keys successful\n    </p>\n    <p class=\"values hidden\">\n      Get values successful\n    </p>\n    <p class=\"keysvalues hidden\">\n      Get keys/values successful\n    </p>\n    <p class=\"remove hidden\">\n      Remove key successful\n    </p>\n    <p class=\"clear hidden\">\n      Clear keys successful\n    </p>\n    <p class=\"success hidden\">\n      The test was successful\n    </p>\n    <p class=\"failure hidden\">\n      The test failed\n    </p>\n  </div>\n</ion-content>\n"
+
+/***/ }),
+
 /***/ "./src/app/home/home.module.ts":
 /*!*************************************!*\
   !*** ./src/app/home/home.module.ts ***!
@@ -5478,17 +5497,6 @@ var HomePageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/home/home.page.html":
-/*!*************************************!*\
-  !*** ./src/app/home/home.page.html ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"ion-padding\">\n    The world is your oyster.\n    <p>If you get lost, the <a target=\"_blank\" rel=\"noopener\" href=\"https://ionicframework.com/docs\">docs</a> will be your guide.</p>\n    <ion-button (click)=\"testPlugin()\" color='primary' size=\"large\">Test Plugin</ion-button>\n    <p class=\"populate hidden\">\n      Storing data successful\n    </p>\n    <p class=\"iskey hidden\">\n      Iskey successful\n    </p>\n    <p class=\"keys hidden\">\n      Get keys successful\n    </p>\n    <p class=\"values hidden\">\n      Get values successful\n    </p>\n    <p class=\"keysvalues hidden\">\n      Get keys/values successful\n    </p>\n    <p class=\"remove hidden\">\n      Remove key successful\n    </p>\n    <p class=\"clear hidden\">\n      Clear keys successful\n    </p>\n    <p class=\"success hidden\">\n      The test was successful\n    </p>\n    <p class=\"failure hidden\">\n      The test failed\n    </p>\n  </div>\n</ion-content>\n"
-
-/***/ }),
-
 /***/ "./src/app/home/home.page.scss":
 /*!*************************************!*\
   !*** ./src/app/home/home.page.scss ***!
@@ -5496,7 +5504,7 @@ module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Ionic Bl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".hidden {\n  visibility: hidden; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9xdWVhdWplYW5waWVycmUvRG9jdW1lbnRzL1Byb2plY3Rzd2l0aENhcGFjaXRvci9wdWJsaXNoUHJvamVjdHMvaW9uaWM0LWNhcGFjaXRvci1hcHBzL29uZS9pb25pYy1jYXBhY2l0b3ItZGF0YS1zdG9yYWdlLXNxbGl0ZS9zcmMvYXBwL2hvbWUvaG9tZS5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxrQkFBa0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaGlkZGVuIHtcbiAgICB2aXNpYmlsaXR5OiBoaWRkZW47XG59XG5cbiJdfQ== */"
+module.exports = ".hidden {\n  visibility: hidden;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9xdWVhdWplYW5waWVycmUvRG9jdW1lbnRzL1Byb2plY3Rzd2l0aENhcGFjaXRvci9wdWJsaXNoUHJvamVjdHMvaW9uaWM0LWNhcGFjaXRvci1hcHBzL2lvbmljLWNhcGFjaXRvci1kYXRhLXN0b3JhZ2Utc3FsaXRlL3NyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmhpZGRlbiB7XG4gICAgdmlzaWJpbGl0eTogaGlkZGVuO1xufVxuXG4iLCIuaGlkZGVuIHtcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -5688,7 +5696,7 @@ var HomePage = /** @class */ (function () {
     HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-home',
-            template: __webpack_require__(/*! ./home.page.html */ "./src/app/home/home.page.html"),
+            template: __webpack_require__(/*! raw-loader!./home.page.html */ "./node_modules/raw-loader/index.js!./src/app/home/home.page.html"),
             styles: [__webpack_require__(/*! ./home.page.scss */ "./src/app/home/home.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])

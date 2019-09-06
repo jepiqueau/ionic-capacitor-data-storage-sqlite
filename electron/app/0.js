@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/chunk-00265c49.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/chunk-00265c49.js ***!
-  \*****************************************************************/
+/***/ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-00265c49.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/framework-delegate-00265c49.js ***!
+  \******************************************************************************/
 /*! exports provided: a, d */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -59,9 +59,9 @@ var detachComponent = function (delegate, element) {
 
 /***/ }),
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/chunk-7507b2b9.js":
+/***/ "./node_modules/@ionic/core/dist/esm-es5/index-84f27767.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/chunk-7507b2b9.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm-es5/index-84f27767.js ***!
   \*****************************************************************/
 /*! exports provided: d, l, s, t */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -73,17 +73,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return setPageHidden; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return transition; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-94c4865f.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-94c4865f.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants-94c4865f.js */ "./node_modules/@ionic/core/dist/esm-es5/constants-94c4865f.js");
 var _this = undefined;
 
 
 
-var iosTransitionAnimation = function () { return __webpack_require__.e(/*! import() | ios-transition-3107e07c-js */ "ios-transition-3107e07c-js").then(__webpack_require__.bind(null, /*! ./ios.transition-3107e07c.js */ "./node_modules/@ionic/core/dist/esm-es5/ios.transition-3107e07c.js")); };
-var mdTransitionAnimation = function () { return __webpack_require__.e(/*! import() | md-transition-90b00ffe-js */ "md-transition-90b00ffe-js").then(__webpack_require__.bind(null, /*! ./md.transition-90b00ffe.js */ "./node_modules/@ionic/core/dist/esm-es5/md.transition-90b00ffe.js")); };
+var iosTransitionAnimation = function () { return __webpack_require__.e(/*! import() | ios-transition-96fe915f-js */ "ios-transition-96fe915f-js").then(__webpack_require__.bind(null, /*! ./ios.transition-96fe915f.js */ "./node_modules/@ionic/core/dist/esm-es5/ios.transition-96fe915f.js")); };
+var mdTransitionAnimation = function () { return __webpack_require__.e(/*! import() | md-transition-bf76a31e-js */ "md-transition-bf76a31e-js").then(__webpack_require__.bind(null, /*! ./md.transition-bf76a31e.js */ "./node_modules/@ionic/core/dist/esm-es5/md.transition-bf76a31e.js")); };
 var transition = function (opts) {
     return new Promise(function (resolve, reject) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["w"])(function () {
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["w"])(function () {
             beforeTransition(opts);
             runTransition(opts).then(function (result) {
                 if (result.animation) {
@@ -136,7 +136,7 @@ var afterTransition = function (opts) {
     }
 };
 var getAnimationBuilder = function (opts) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-    var builder, _a;
+    var getAnimation, _a;
     return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -156,25 +156,39 @@ var getAnimationBuilder = function (opts) { return tslib__WEBPACK_IMPORTED_MODUL
                 _a = (_b.sent()).mdTransitionAnimation;
                 _b.label = 4;
             case 4:
-                builder = _a;
-                return [2 /*return*/, builder];
+                getAnimation = _a;
+                return [2 /*return*/, getAnimation];
         }
     });
 }); };
 var animation = function (animationBuilder, opts) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-    var trans;
+    var trans, mod, err_1, didComplete;
     return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, waitForReady(opts, true)];
             case 1:
                 _a.sent();
-                return [4 /*yield*/, __webpack_require__.e(/*! import() | index-d9adb105-js */ "index-d9adb105-js").then(__webpack_require__.bind(null, /*! ./index-d9adb105.js */ "./node_modules/@ionic/core/dist/esm-es5/index-d9adb105.js")).then(function (mod) { return mod.create(animationBuilder, opts.baseEl, opts); })];
+                _a.label = 2;
             case 2:
+                _a.trys.push([2, 5, , 6]);
+                return [4 /*yield*/, __webpack_require__.e(/*! import() | index-ae28cb4b-js */ "index-ae28cb4b-js").then(__webpack_require__.bind(null, /*! ./index-ae28cb4b.js */ "./node_modules/@ionic/core/dist/esm-es5/index-ae28cb4b.js"))];
+            case 3:
+                mod = _a.sent();
+                return [4 /*yield*/, mod.create(animationBuilder, opts.baseEl, opts)];
+            case 4:
                 trans = _a.sent();
+                return [3 /*break*/, 6];
+            case 5:
+                err_1 = _a.sent();
+                trans = animationBuilder(opts.baseEl, opts);
+                return [3 /*break*/, 6];
+            case 6:
                 fireWillEvents(opts.enteringEl, opts.leavingEl);
                 return [4 /*yield*/, playTransition(trans, opts)];
-            case 3:
-                _a.sent();
+            case 7:
+                didComplete = _a.sent();
+                // TODO: Remove AnimationBuilder
+                trans.hasCompleted = didComplete;
                 if (opts.progressCallback) {
                     opts.progressCallback(undefined);
                 }
@@ -244,12 +258,13 @@ var notifyViewReady = function (viewIsReady, enteringEl) { return tslib__WEBPACK
 }); };
 var playTransition = function (trans, opts) {
     var progressCallback = opts.progressCallback;
+    // TODO: Remove AnimationBuilder
     var promise = new Promise(function (resolve) { return trans.onFinish(resolve); });
     // cool, let's do this, start the transition
     if (progressCallback) {
         // this is a swipe to go back, just get the transition progress ready
         // kick off the swipe animation start
-        trans.progressStart();
+        trans.progressStart(true);
         progressCallback(trans);
     }
     else {
@@ -262,12 +277,12 @@ var playTransition = function (trans, opts) {
     return promise;
 };
 var fireWillEvents = function (enteringEl, leavingEl) {
-    lifecycle(leavingEl, _chunk_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["b"]);
-    lifecycle(enteringEl, _chunk_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["L"]);
+    lifecycle(leavingEl, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["b"]);
+    lifecycle(enteringEl, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["L"]);
 };
 var fireDidEvents = function (enteringEl, leavingEl) {
-    lifecycle(enteringEl, _chunk_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["a"]);
-    lifecycle(leavingEl, _chunk_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["c"]);
+    lifecycle(enteringEl, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["a"]);
+    lifecycle(leavingEl, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_2__["c"]);
 };
 var lifecycle = function (el, eventName) {
     if (el) {

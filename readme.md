@@ -63,7 +63,7 @@ import android.os.Bundle;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
-import com.jeep.plugin.capacitor.CapacitorDataStorageSqlite;
+import com.jeep.plugin.capacitor.capacitordatastoragesqlite.CapacitorDataStorageSqlite;
 
 
 import java.util.ArrayList;
@@ -101,6 +101,9 @@ ng serve
 open your browser on http://localhost:4200/
 
 ### running on Electron
+```bash
+npx cap open electron
+```
 
 ```bash
 cd electron

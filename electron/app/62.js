@@ -1,192 +1,540 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[62],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-segment_2-md.entry.js":
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-select_3-ios.entry.js":
 /*!*************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-segment_2-md.entry.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-select_3-ios.entry.js ***!
   \*************************************************************************/
-/*! exports provided: ion_segment, ion_segment_button */
+/*! exports provided: ion_select, ion_select_option, ion_select_popover */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_segment", function() { return Segment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_segment_button", function() { return SegmentButton; });
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
-/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_select", function() { return Select; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_select_option", function() { return SelectOption; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_select_popover", function() { return SelectPopover; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
+/* harmony import */ var _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./overlays-6ea64c21.js */ "./node_modules/@ionic/core/dist/esm-es5/overlays-6ea64c21.js");
+/* harmony import */ var _theme_353a032e_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./theme-353a032e.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-353a032e.js");
+/* harmony import */ var _helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-c90aaa66.js");
+/* harmony import */ var _watch_options_56e2e31f_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./watch-options-56e2e31f.js */ "./node_modules/@ionic/core/dist/esm-es5/watch-options-56e2e31f.js");
 
 
 
-/**
- * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
- */
-var Segment = /** @class */ (function () {
-    function Segment(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+
+
+
+
+var Select = /** @class */ (function () {
+    function class_1(hostRef) {
+        var _this = this;
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        this.inputId = "ion-sel-" + selectIds++;
+        this.didInit = false;
+        this.isExpanded = false;
         /**
-         * If `true`, the user cannot interact with the segment.
+         * If `true`, the user cannot interact with the select.
          */
         this.disabled = false;
         /**
-         * If `true`, the segment buttons will overflow and the user can swipe to see them.
+         * The text to display on the cancel button.
          */
-        this.scrollable = false;
-        this.ionChange = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionChange", 7);
-        this.ionStyle = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionStyle", 7);
+        this.cancelText = 'Cancel';
+        /**
+         * The text to display on the ok button.
+         */
+        this.okText = 'OK';
+        /**
+         * The name of the control, which is submitted with the form data.
+         */
+        this.name = this.inputId;
+        /**
+         * If `true`, the select can accept multiple values.
+         */
+        this.multiple = false;
+        /**
+         * The interface the select should use: `action-sheet`, `popover` or `alert`.
+         */
+        this.interface = 'alert';
+        /**
+         * Any additional options that the `alert`, `action-sheet` or `popover` interface
+         * can take. See the [AlertController API docs](../../alert/AlertController/#create), the
+         * [ActionSheetController API docs](../../action-sheet/ActionSheetController/#create) and the
+         * [PopoverController API docs](../../popover/PopoverController/#create) for the
+         * create options for each interface.
+         */
+        this.interfaceOptions = {};
+        this.onClick = function (ev) {
+            _this.setFocus();
+            _this.open(ev);
+        };
+        this.onFocus = function () {
+            _this.ionFocus.emit();
+        };
+        this.onBlur = function () {
+            _this.ionBlur.emit();
+        };
+        this.ionChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionChange", 7);
+        this.ionCancel = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionCancel", 7);
+        this.ionFocus = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
+        this.ionBlur = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
+        this.ionStyle = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionStyle", 7);
     }
-    Segment.prototype.valueChanged = function (value) {
-        this.updateButtons();
-        this.ionChange.emit({ value: value });
-    };
-    Segment.prototype.segmentClick = function (ev) {
-        var selectedButton = ev.target;
-        this.value = selectedButton.value;
-    };
-    Segment.prototype.componentWillLoad = function () {
+    class_1.prototype.disabledChanged = function () {
         this.emitStyle();
     };
-    Segment.prototype.componentDidLoad = function () {
-        if (this.value == null) {
-            var checked = this.getButtons().find(function (b) { return b.checked; });
-            if (checked) {
-                this.value = checked.value;
-            }
+    class_1.prototype.valueChanged = function () {
+        this.updateOptions();
+        this.emitStyle();
+        if (this.didInit) {
+            this.ionChange.emit({
+                value: this.value,
+            });
         }
-        this.updateButtons();
     };
-    Segment.prototype.emitStyle = function () {
-        this.ionStyle.emit({
-            'segment': true
+    class_1.prototype.connectedCallback = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var checked, checked;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (this.value === undefined) {
+                    if (this.multiple) {
+                        checked = this.childOpts.filter(function (o) { return o.selected; });
+                        this.value = checked.map(function (o) { return getOptionValue(o); });
+                    }
+                    else {
+                        checked = this.childOpts.find(function (o) { return o.selected; });
+                        if (checked) {
+                            this.value = getOptionValue(checked);
+                        }
+                    }
+                }
+                this.updateOptions();
+                this.updateOverlayOptions();
+                this.emitStyle();
+                this.mutationO = Object(_watch_options_56e2e31f_js__WEBPACK_IMPORTED_MODULE_6__["w"])(this.el, 'ion-select-option', function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                        this.updateOptions();
+                        this.updateOverlayOptions();
+                        return [2 /*return*/];
+                    });
+                }); });
+                return [2 /*return*/];
+            });
         });
     };
-    Segment.prototype.updateButtons = function () {
-        var value = this.value;
-        for (var _i = 0, _a = this.getButtons(); _i < _a.length; _i++) {
-            var button = _a[_i];
-            button.checked = (button.value === value);
+    class_1.prototype.disconnectedCallback = function () {
+        if (this.mutationO) {
+            this.mutationO.disconnect();
+            this.mutationO = undefined;
         }
     };
-    Segment.prototype.getButtons = function () {
-        return Array.from(this.el.querySelectorAll('ion-segment-button'));
+    class_1.prototype.componentDidLoad = function () {
+        this.didInit = true;
     };
-    Segment.prototype.hostData = function () {
-        var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        return {
-            class: Object.assign({}, Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color), (_a = {}, _a[mode] = true, _a['segment-disabled'] = this.disabled, _a['segment-scrollable'] = this.scrollable, _a))
-        };
+    /**
+     * Open the select overlay. The overlay is either an alert, action sheet, or popover,
+     * depending on the `interface` property on the `ion-select`.
+     *
+     * @param event The user interface event that called the open.
+     */
+    class_1.prototype.open = function (event) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var overlay, _a;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (this.disabled || this.isExpanded) {
+                            return [2 /*return*/, undefined];
+                        }
+                        _a = this;
+                        return [4 /*yield*/, this.createOverlay(event)];
+                    case 1:
+                        overlay = _a.overlay = _b.sent();
+                        this.isExpanded = true;
+                        overlay.onDidDismiss().then(function () {
+                            _this.overlay = undefined;
+                            _this.isExpanded = false;
+                            _this.setFocus();
+                        });
+                        return [4 /*yield*/, overlay.present()];
+                    case 2:
+                        _b.sent();
+                        return [2 /*return*/, overlay];
+                }
+            });
+        });
     };
-    Object.defineProperty(Segment.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); },
+    class_1.prototype.createOverlay = function (ev) {
+        var selectInterface = this.interface;
+        if ((selectInterface === 'action-sheet' || selectInterface === 'popover') && this.multiple) {
+            console.warn("Select interface cannot be \"" + selectInterface + "\" with a multi-value select. Using the \"alert\" interface instead.");
+            selectInterface = 'alert';
+        }
+        if (selectInterface === 'popover' && !ev) {
+            console.warn('Select interface cannot be a "popover" without passing an event. Using the "alert" interface instead.');
+            selectInterface = 'alert';
+        }
+        if (selectInterface === 'popover') {
+            return this.openPopover(ev);
+        }
+        if (selectInterface === 'action-sheet') {
+            return this.openActionSheet();
+        }
+        return this.openAlert();
+    };
+    class_1.prototype.updateOverlayOptions = function () {
+        var overlay = this.overlay;
+        if (!overlay) {
+            return;
+        }
+        var childOpts = this.childOpts;
+        switch (this.interface) {
+            case 'action-sheet':
+                overlay.buttons = this.createActionSheetButtons(childOpts);
+                break;
+            case 'popover':
+                var popover = overlay.querySelector('ion-select-popover');
+                if (popover) {
+                    popover.options = this.createPopoverOptions(childOpts);
+                }
+                break;
+            case 'alert':
+                var inputType = (this.multiple ? 'checkbox' : 'radio');
+                overlay.inputs = this.createAlertInputs(childOpts, inputType);
+                break;
+        }
+    };
+    class_1.prototype.createActionSheetButtons = function (data) {
+        var _this = this;
+        var actionSheetButtons = data.map(function (option) {
+            return {
+                role: (option.selected ? 'selected' : ''),
+                text: option.textContent,
+                handler: function () {
+                    _this.value = getOptionValue(option);
+                }
+            };
+        });
+        // Add "cancel" button
+        actionSheetButtons.push({
+            text: this.cancelText,
+            role: 'cancel',
+            handler: function () {
+                _this.ionCancel.emit();
+            }
+        });
+        return actionSheetButtons;
+    };
+    class_1.prototype.createAlertInputs = function (data, inputType) {
+        return data.map(function (o) {
+            return {
+                type: inputType,
+                label: o.textContent,
+                value: getOptionValue(o),
+                checked: o.selected,
+                disabled: o.disabled
+            };
+        });
+    };
+    class_1.prototype.createPopoverOptions = function (data) {
+        var _this = this;
+        return data.map(function (o) {
+            var value = getOptionValue(o);
+            return {
+                text: o.textContent,
+                value: value,
+                checked: o.selected,
+                disabled: o.disabled,
+                handler: function () {
+                    _this.value = value;
+                    _this.close();
+                }
+            };
+        });
+    };
+    class_1.prototype.openPopover = function (ev) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var interfaceOptions, mode, popoverOpts;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                interfaceOptions = this.interfaceOptions;
+                mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+                popoverOpts = Object.assign({ mode: mode }, interfaceOptions, { component: 'ion-select-popover', cssClass: ['select-popover', interfaceOptions.cssClass], event: ev, componentProps: {
+                        header: interfaceOptions.header,
+                        subHeader: interfaceOptions.subHeader,
+                        message: interfaceOptions.message,
+                        value: this.value,
+                        options: this.createPopoverOptions(this.childOpts)
+                    } });
+                return [2 /*return*/, _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["c"].create(popoverOpts)];
+            });
+        });
+    };
+    class_1.prototype.openActionSheet = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var mode, interfaceOptions, actionSheetOpts;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+                interfaceOptions = this.interfaceOptions;
+                actionSheetOpts = Object.assign({ mode: mode }, interfaceOptions, { buttons: this.createActionSheetButtons(this.childOpts), cssClass: ['select-action-sheet', interfaceOptions.cssClass] });
+                return [2 /*return*/, _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["b"].create(actionSheetOpts)];
+            });
+        });
+    };
+    class_1.prototype.openAlert = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var label, labelText, interfaceOptions, inputType, mode, alertOpts;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                label = this.getLabel();
+                labelText = (label) ? label.textContent : null;
+                interfaceOptions = this.interfaceOptions;
+                inputType = (this.multiple ? 'checkbox' : 'radio');
+                mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+                alertOpts = Object.assign({ mode: mode }, interfaceOptions, { header: interfaceOptions.header ? interfaceOptions.header : labelText, inputs: this.createAlertInputs(this.childOpts, inputType), buttons: [
+                        {
+                            text: this.cancelText,
+                            role: 'cancel',
+                            handler: function () {
+                                _this.ionCancel.emit();
+                            }
+                        },
+                        {
+                            text: this.okText,
+                            handler: function (selectedValues) {
+                                _this.value = selectedValues;
+                            }
+                        }
+                    ], cssClass: ['select-alert', interfaceOptions.cssClass,
+                        (this.multiple ? 'multiple-select-alert' : 'single-select-alert')] });
+                return [2 /*return*/, _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["a"].create(alertOpts)];
+            });
+        });
+    };
+    /**
+     * Close the select interface.
+     */
+    class_1.prototype.close = function () {
+        // TODO check !this.overlay || !this.isFocus()
+        if (!this.overlay) {
+            return Promise.resolve(false);
+        }
+        return this.overlay.dismiss();
+    };
+    class_1.prototype.updateOptions = function () {
+        // iterate all options, updating the selected prop
+        var canSelect = true;
+        var _a = this, value = _a.value, childOpts = _a.childOpts, compareWith = _a.compareWith, multiple = _a.multiple;
+        for (var _i = 0, childOpts_1 = childOpts; _i < childOpts_1.length; _i++) {
+            var selectOption = childOpts_1[_i];
+            var optValue = getOptionValue(selectOption);
+            var selected = canSelect && isOptionSelected(value, optValue, compareWith);
+            selectOption.selected = selected;
+            // if current option is selected and select is single-option, we can't select
+            // any option more
+            if (selected && !multiple) {
+                canSelect = false;
+            }
+        }
+    };
+    class_1.prototype.getLabel = function () {
+        return Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this.el);
+    };
+    class_1.prototype.hasValue = function () {
+        return this.getText() !== '';
+    };
+    Object.defineProperty(class_1.prototype, "childOpts", {
+        get: function () {
+            return Array.from(this.el.querySelectorAll('ion-select-option'));
+        },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Segment, "watchers", {
+    class_1.prototype.getText = function () {
+        var selectedText = this.selectedText;
+        if (selectedText != null && selectedText !== '') {
+            return selectedText;
+        }
+        return generateText(this.childOpts, this.value, this.compareWith);
+    };
+    class_1.prototype.setFocus = function () {
+        if (this.buttonEl) {
+            this.buttonEl.focus();
+        }
+    };
+    class_1.prototype.emitStyle = function () {
+        this.ionStyle.emit({
+            'interactive': true,
+            'select': true,
+            'has-placeholder': this.placeholder != null,
+            'has-value': this.hasValue(),
+            'interactive-disabled': this.disabled,
+            'select-disabled': this.disabled
+        });
+    };
+    class_1.prototype.render = function () {
+        var _a;
+        var _this = this;
+        var _b = this, placeholder = _b.placeholder, name = _b.name, disabled = _b.disabled, isExpanded = _b.isExpanded, value = _b.value, el = _b.el;
+        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var labelId = this.inputId + '-lbl';
+        var label = Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(el);
+        if (label) {
+            label.id = labelId;
+        }
+        var addPlaceholderClass = false;
+        var selectText = this.getText();
+        if (selectText === '' && placeholder != null) {
+            selectText = placeholder;
+            addPlaceholderClass = true;
+        }
+        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["r"])(true, el, name, parseValue(value), disabled);
+        var selectTextClasses = {
+            'select-text': true,
+            'select-placeholder': addPlaceholderClass
+        };
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "combobox", "aria-haspopup": "dialog", "aria-disabled": disabled ? 'true' : null, "aria-expanded": "" + isExpanded, "aria-labelledby": labelId, class: (_a = {},
+                _a[mode] = true,
+                _a['in-item'] = Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_4__["h"])('ion-item', el),
+                _a['select-disabled'] = disabled,
+                _a) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: selectTextClasses }, selectText), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "select-icon", role: "presentation" }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "select-icon-inner" })), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled, ref: (function (btnEl) { return _this.buttonEl = btnEl; }) })));
+    };
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(class_1, "watchers", {
         get: function () {
             return {
+                "disabled": ["disabledChanged"],
+                "placeholder": ["disabledChanged"],
                 "value": ["valueChanged"]
             };
         },
         enumerable: true,
         configurable: true
     });
-    Segment.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["H"], this.hostData()); };
-    Object.defineProperty(Segment, "style", {
-        get: function () { return ".sc-ion-segment-md-h{--indicator-color-checked:initial;--ripple-color:currentColor;--color-activated:initial;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;display:-ms-flexbox;display:flex;-ms-flex-align:stretch;align-items:stretch;-ms-flex-pack:center;justify-content:center;width:100%;font-family:var(--ion-font-family,inherit);text-align:center}.sc-ion-segment-md-s > .segment-button-disabled, .segment-disabled.sc-ion-segment-md-h{pointer-events:none}.segment-scrollable.sc-ion-segment-md-h{-ms-flex-pack:start;justify-content:start;width:auto;overflow-x:scroll}.segment-scrollable.sc-ion-segment-md-h::-webkit-scrollbar{display:none}.sc-ion-segment-md-h{--background:none;--background-checked:none;--background-hover:rgba(var(--ion-color-primary-rgb,56,128,255),0.04);--background-activated:rgba(var(--ion-color-primary-rgb,56,128,255),0.16);--color:rgba(var(--ion-text-color-rgb,0,0,0),0.6);--color-checked:var(--ion-color-primary,#3880ff);--color-checked-disabled:var(--color-checked);--indicator-color:transparent}.segment-disabled.sc-ion-segment-md-h{opacity:.3}.sc-ion-segment-md-h.ion-color.sc-ion-segment-md-s > ion-segment-button{--background-activated:rgba(var(--ion-color-base-rgb),0.16);--ripple-color:var(--ion-color-base);background:transparent;color:rgba(var(--ion-text-color-rgb,0,0,0),.6)}.sc-ion-segment-md-h.ion-color.sc-ion-segment-md-s > .segment-button-checked{--indicator-color-checked:var(--ion-color-base);color:var(--ion-color-base)}.sc-ion-segment-md-h.ion-color.sc-ion-segment-md-s > .segment-button-checked.activated{color:var(--ion-color-base)}\@media (any-hover:hover){.sc-ion-segment-md-h.ion-color.sc-ion-segment-md-s > ion-segment-button:hover{background:rgba(var(--ion-color-base-rgb),.04)}}.sc-ion-segment-md-hion-toolbar:not(.ion-color):not(.ion-color).sc-ion-segment-md-s > ion-segment-button, ion-toolbar:not(.ion-color) .sc-ion-segment-md-h:not(.ion-color).sc-ion-segment-md-s > ion-segment-button{color:var(--ion-toolbar-color-unchecked,var(--color))}.sc-ion-segment-md-hion-toolbar:not(.ion-color):not(.ion-color).sc-ion-segment-md-s > .segment-button-checked, ion-toolbar:not(.ion-color) .sc-ion-segment-md-h:not(.ion-color).sc-ion-segment-md-s > .segment-button-checked{--indicator-color-checked:var(--ion-toolbar-color-checked,var(--color-checked));color:var(--ion-toolbar-color-checked,var(--color-checked))}.sc-ion-segment-md-hion-toolbar.ion-color:not(.ion-color).sc-ion-segment-md-s > ion-segment-button, ion-toolbar.ion-color .sc-ion-segment-md-h:not(.ion-color).sc-ion-segment-md-s > ion-segment-button{--background-hover:rgba(var(--ion-color-contrast-rgb),0.04);--background-activated:var(--ion-color-base);--color:rgba(var(--ion-color-contrast-rgb),0.6);--color-checked:var(--ion-color-contrast);--indicator-color-checked:var(--ion-color-contrast)}"; },
+    Object.defineProperty(class_1, "style", {
+        get: function () { return ":host{padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;font-family:var(--ion-font-family,inherit);overflow:hidden;z-index:2}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}:host(.in-item){position:static;max-width:45%}:host(.select-disabled){opacity:.4;pointer-events:none}:host(.ion-focused) button{border:2px solid #5e9ed6}.select-placeholder{color:currentColor;opacity:.33}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.select-icon{position:relative}.select-text{-ms-flex:1;flex:1;min-width:16px;font-size:inherit;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.select-icon-inner{left:5px;top:50%;margin-top:-3px;position:absolute;width:0;height:0;border-top:5px solid;border-right:5px solid transparent;border-left:5px solid transparent;color:currentColor;opacity:.33;pointer-events:none}:host-context([dir=rtl]) .select-icon-inner,[dir=rtl] .select-icon-inner{left:unset;right:unset;right:5px}:host{--padding-top:10px;--padding-end:8px;--padding-bottom:10px;--padding-start:16px}.select-icon{width:12px;height:18px}"; },
         enumerable: true,
         configurable: true
     });
-    return Segment;
+    return class_1;
 }());
-var ids = 0;
-/**
- * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
- */
-var SegmentButton = /** @class */ (function () {
-    function SegmentButton(hostRef) {
-        var _this = this;
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+var getOptionValue = function (el) {
+    var value = el.value;
+    return (value === undefined)
+        ? el.textContent || ''
+        : value;
+};
+var parseValue = function (value) {
+    if (value == null) {
+        return undefined;
+    }
+    if (Array.isArray(value)) {
+        return value.join(',');
+    }
+    return value.toString();
+};
+var isOptionSelected = function (currentValue, compareValue, compareWith) {
+    if (currentValue === undefined) {
+        return false;
+    }
+    if (Array.isArray(currentValue)) {
+        return currentValue.some(function (val) { return compareOptions(val, compareValue, compareWith); });
+    }
+    else {
+        return compareOptions(currentValue, compareValue, compareWith);
+    }
+};
+var compareOptions = function (currentValue, compareValue, compareWith) {
+    if (typeof compareWith === 'function') {
+        return compareWith(currentValue, compareValue);
+    }
+    else if (typeof compareWith === 'string') {
+        return currentValue[compareWith] === compareValue[compareWith];
+    }
+    else {
+        return currentValue === compareValue;
+    }
+};
+var generateText = function (opts, value, compareWith) {
+    if (value === undefined) {
+        return '';
+    }
+    if (Array.isArray(value)) {
+        return value
+            .map(function (v) { return textForValue(opts, v, compareWith); })
+            .filter(function (opt) { return opt !== null; })
+            .join(', ');
+    }
+    else {
+        return textForValue(opts, value, compareWith) || '';
+    }
+};
+var textForValue = function (opts, value, compareWith) {
+    var selectOpt = opts.find(function (opt) {
+        return compareOptions(getOptionValue(opt), value, compareWith);
+    });
+    return selectOpt
+        ? selectOpt.textContent
+        : null;
+};
+var selectIds = 0;
+var SelectOption = /** @class */ (function () {
+    function class_2(hostRef) {
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        this.inputId = "ion-selopt-" + selectOptionIds++;
         /**
-         * If `true`, the segment button is selected.
-         */
-        this.checked = false;
-        /**
-         * If `true`, the user cannot interact with the segment button.
+         * If `true`, the user cannot interact with the select option.
          */
         this.disabled = false;
         /**
-         * Set the layout of the text and icon in the segment.
+         * If `true`, the element is selected.
          */
-        this.layout = 'icon-top';
-        /**
-         * The type of the button.
-         */
-        this.type = 'button';
-        /**
-         * The value of the segment button.
-         */
-        this.value = 'ion-sb-' + (ids++);
-        this.onClick = function () {
-            _this.checked = true;
-        };
-        this.ionSelect = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionSelect", 7);
+        this.selected = false;
     }
-    SegmentButton.prototype.checkedChanged = function (checked, prev) {
-        if (checked && !prev) {
-            this.ionSelect.emit();
+    class_2.prototype.render = function () {
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { role: "option", id: this.inputId, class: Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this) }));
+    };
+    Object.defineProperty(class_2.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(class_2, "style", {
+        get: function () { return ":host{display:none}"; },
+        enumerable: true,
+        configurable: true
+    });
+    return class_2;
+}());
+var selectOptionIds = 0;
+var SelectPopover = /** @class */ (function () {
+    function class_3(hostRef) {
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        /** Array of options for the popover */
+        this.options = [];
+    }
+    class_3.prototype.onSelect = function (ev) {
+        var option = this.options.find(function (o) { return o.value === ev.target.value; });
+        if (option) {
+            Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["s"])(option.handler);
         }
     };
-    Object.defineProperty(SegmentButton.prototype, "hasLabel", {
-        get: function () {
-            return !!this.el.querySelector('ion-label');
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SegmentButton.prototype, "hasIcon", {
-        get: function () {
-            return !!this.el.querySelector('ion-icon');
-        },
-        enumerable: true,
-        configurable: true
-    });
-    SegmentButton.prototype.render = function () {
-        var _a;
-        var _b = this, checked = _b.checked, type = _b.type, disabled = _b.disabled, hasIcon = _b.hasIcon, hasLabel = _b.hasLabel, layout = _b.layout;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, "aria-disabled": disabled ? 'true' : null, class: (_a = {},
-                _a[mode] = true,
-                _a['segment-button-has-label'] = hasLabel,
-                _a['segment-button-has-icon'] = hasIcon,
-                _a['segment-button-has-label-only'] = hasLabel && !hasIcon,
-                _a['segment-button-has-icon-only'] = hasIcon && !hasLabel,
-                _a['segment-button-disabled'] = disabled,
-                _a['segment-button-checked'] = checked,
-                _a["segment-button-layout-" + layout] = true,
-                _a['ion-activatable'] = true,
-                _a['ion-activatable-instant'] = true,
-                _a) }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { type: type, "aria-pressed": checked ? 'true' : null, class: "button-native", disabled: disabled }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("slot", null), mode === 'md' && Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("ion-ripple-effect", null)), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "segment-button-indicator" })));
+    class_3.prototype.render = function () {
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { class: Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-list", null, this.header !== undefined && Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-list-header", null, this.header), (this.subHeader !== undefined || this.message !== undefined) &&
+            Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-item", null, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-label", { class: "ion-text-wrap" }, this.subHeader !== undefined && Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("h3", null, this.subHeader), this.message !== undefined && Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("p", null, this.message))), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-radio-group", null, this.options.map(function (option) { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-item", null, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-label", null, option.text), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-radio", { checked: option.checked, value: option.value, disabled: option.disabled })); })))));
     };
-    Object.defineProperty(SegmentButton.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); },
+    Object.defineProperty(class_3, "style", {
+        get: function () { return ".sc-ion-select-popover-h ion-list.sc-ion-select-popover{margin-left:0;margin-right:0;margin-top:-1px;margin-bottom:-1px}.sc-ion-select-popover-h ion-label.sc-ion-select-popover, .sc-ion-select-popover-h ion-list-header.sc-ion-select-popover{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}"; },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(SegmentButton, "watchers", {
-        get: function () {
-            return {
-                "checked": ["checkedChanged"]
-            };
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(SegmentButton, "style", {
-        get: function () { return ":host{--padding-start:0;--padding-end:0;display:-ms-flexbox;display:flex;-ms-flex:1 0 auto;flex:1 0 auto;-ms-flex-direction:column;flex-direction:column;height:auto;border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);color:var(--color);text-decoration:none;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;-webkit-font-kerning:none;font-kerning:none}:host(:first-of-type){border-top-left-radius:var(--border-radius);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:var(--border-radius)}:host-context([dir=rtl]):first-of-type,:host-context([dir=rtl]):host(:first-of-type){border-top-left-radius:0;border-top-right-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius);border-bottom-left-radius:0}:host(:not(:first-of-type)){border-left-width:0}:host-context([dir=rtl]):host(:not(:first-of-type)),:host-context([dir=rtl]):not(:first-of-type){border-right-width:0;border-left-width:var(--border-width)}:host(:last-of-type){border-top-left-radius:0;border-top-right-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius);border-bottom-left-radius:0}:host-context([dir=rtl]):host(:last-of-type),:host-context([dir=rtl]):last-of-type{border-top-left-radius:var(--border-radius);border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:var(--border-radius)}.button-native{border-radius:inherit;font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;letter-spacing:inherit;text-decoration:inherit;text-overflow:inherit;text-transform:inherit;text-align:inherit;white-space:inherit;color:inherit;margin-left:var(--margin-start);margin-right:var(--margin-end);margin-top:var(--margin-top);margin-bottom:var(--margin-bottom);padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;-ms-flex-direction:inherit;flex-direction:inherit;-ms-flex-positive:1;flex-grow:1;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;width:100%;min-width:inherit;max-width:inherit;height:auto;min-height:inherit;max-height:inherit;-webkit-transition:var(--transition);transition:var(--transition);border:none;outline:none;background:transparent;contain:content;cursor:pointer}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.button-native{margin-left:unset;margin-right:unset;-webkit-margin-start:var(--margin-start);margin-inline-start:var(--margin-start);-webkit-margin-end:var(--margin-end);margin-inline-end:var(--margin-end);padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}.segment-button-indicator{-ms-flex-item-align:end;align-self:flex-end;width:100%;height:2px;background-color:var(--indicator-color);opacity:1}:host(.segment-button-checked){background:var(--background-checked);color:var(--color-checked)}:host(.segment-button-checked) .segment-button-indicator{background-color:var(--indicator-color-checked,var(--color-checked))}:host(.activated){color:var(--color-activated,var(--color))}:host(.segment-button-disabled){color:var(--color-disabled)}:host(.segment-button-disabled.segment-button-checked){color:var(--color-checked-disabled)}::slotted(ion-icon){-ms-flex-order:-1;order:-1}::slotted(ion-label){display:block;-ms-flex-item-align:center;align-self:center;line-height:22px;text-overflow:ellipsis;white-space:nowrap;-webkit-box-sizing:border-box;box-sizing:border-box}:host(.segment-button-layout-icon-start) .button-native{-ms-flex-direction:row;flex-direction:row}:host(.segment-button-layout-icon-end) .button-native{-ms-flex-direction:row-reverse;flex-direction:row-reverse}:host(.segment-button-layout-icon-bottom) .button-native{-ms-flex-direction:column-reverse;flex-direction:column-reverse}:host(.segment-button-layout-icon-hide) ::slotted(ion-icon),:host(.segment-button-layout-label-hide) ::slotted(ion-label){display:none}ion-ripple-effect{color:var(--ripple-color,var(--color-checked))}:host{--padding-top:0;--padding-end:16px;--padding-bottom:0;--padding-start:16px;--transition:color 0.15s linear 0s,opacity 0.15s linear 0s;min-width:90px;max-width:360px;min-height:48px;font-size:14px;font-weight:500;letter-spacing:.06em;line-height:40px;text-transform:uppercase}:host(.activated),:host(.segment-button-checked){--border-color:var(--ion-color-primary,#3880ff);opacity:1}:host(.segment-button-disabled){opacity:.3}::slotted(ion-icon){font-size:24px}::slotted(ion-icon),::slotted(ion-label){margin-top:12px;margin-bottom:12px}:host(.segment-button-layout-icon-bottom) ::slotted(ion-icon),:host(.segment-button-layout-icon-top) ::slotted(ion-label){margin-top:0}:host(.segment-button-layout-icon-bottom) ::slotted(ion-label),:host(.segment-button-layout-icon-top) ::slotted(ion-icon){margin-bottom:0}:host(.segment-button-layout-icon-start) ::slotted(ion-label){margin-left:8px;margin-right:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.segment-button-layout-icon-start) ::slotted(ion-label){margin-left:unset;margin-right:unset;-webkit-margin-start:8px;margin-inline-start:8px;-webkit-margin-end:0;margin-inline-end:0}}:host(.segment-button-layout-icon-end) ::slotted(ion-label){margin-left:0;margin-right:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.segment-button-layout-icon-end) ::slotted(ion-label){margin-left:unset;margin-right:unset;-webkit-margin-start:0;margin-inline-start:0;-webkit-margin-end:8px;margin-inline-end:8px}}:host(.segment-button-has-icon-only) ::slotted(ion-icon),:host(.segment-button-has-label-only) ::slotted(ion-label){margin-top:12px;margin-bottom:12px}:host(.segment-button-checked.activated){color:var(--color-checked)}\@media (any-hover:hover){:host(:hover){background:var(--background-hover)}}"; },
-        enumerable: true,
-        configurable: true
-    });
-    return SegmentButton;
+    return class_3;
 }());
 
 

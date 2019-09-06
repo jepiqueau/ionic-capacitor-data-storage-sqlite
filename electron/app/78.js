@@ -1,198 +1,607 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[78],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-toggle-md.entry.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-toggle-md.entry.js ***!
-  \**********************************************************************/
-/*! exports provided: ion_toggle */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-virtual-scroll.entry.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-virtual-scroll.entry.js ***!
+  \***************************************************************************/
+/*! exports provided: ion_virtual_scroll */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_toggle", function() { return Toggle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_virtual_scroll", function() { return VirtualScroll; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
-/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
-/* harmony import */ var _chunk_4e92c885_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chunk-4e92c885.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-4e92c885.js");
-/* harmony import */ var _chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chunk-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-c90aaa66.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
 
 
 
-
-
-
-/**
- * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
- */
-var Toggle = /** @class */ (function () {
-    function Toggle(hostRef) {
-        var _this = this;
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.inputId = "ion-tg-" + toggleIds++;
-        this.lastDrag = 0;
-        this.activated = false;
-        /**
-         * The name of the control, which is submitted with the form data.
-         */
-        this.name = this.inputId;
-        /**
-         * If `true`, the toggle is selected.
-         */
-        this.checked = false;
-        /**
-         * If `true`, the user cannot interact with the toggle.
-         */
-        this.disabled = false;
-        /**
-         * The value of the toggle does not mean if it's checked or not, use the `checked`
-         * property for that.
-         *
-         * The value of a toggle is analogous to the value of a `<input type="checkbox">`,
-         * it's only used when the toggle participates in a native `<form>`.
-         */
-        this.value = 'on';
-        this.onClick = function () {
-            if (_this.lastDrag + 300 < Date.now()) {
-                _this.checked = !_this.checked;
-            }
-        };
-        this.onFocus = function () {
-            _this.ionFocus.emit();
-        };
-        this.onBlur = function () {
-            _this.ionBlur.emit();
-        };
-        this.ionChange = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionChange", 7);
-        this.ionFocus = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
-        this.ionStyle = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionStyle", 7);
+var CELL_TYPE_ITEM = 'item';
+var CELL_TYPE_HEADER = 'header';
+var CELL_TYPE_FOOTER = 'footer';
+var NODE_CHANGE_NONE = 0;
+var NODE_CHANGE_POSITION = 1;
+var NODE_CHANGE_CELL = 2;
+var MIN_READS = 2;
+var updateVDom = function (dom, heightIndex, cells, range) {
+    // reset dom
+    for (var _i = 0, dom_1 = dom; _i < dom_1.length; _i++) {
+        var node = dom_1[_i];
+        node.change = NODE_CHANGE_NONE;
+        node.d = true;
     }
-    Toggle.prototype.checkedChanged = function (isChecked) {
-        this.ionChange.emit({
-            checked: isChecked,
-            value: this.value
-        });
-    };
-    Toggle.prototype.disabledChanged = function () {
-        this.emitStyle();
-        if (this.gesture) {
-            this.gesture.setDisabled(this.disabled);
+    // try to match into exisiting dom
+    var toMutate = [];
+    var end = range.offset + range.length;
+    var _loop_1 = function (i) {
+        var cell = cells[i];
+        var node = dom.find(function (n) { return n.d && n.cell === cell; });
+        if (node) {
+            var top = heightIndex[i];
+            if (top !== node.top) {
+                node.top = top;
+                node.change = NODE_CHANGE_POSITION;
+            }
+            node.d = false;
+        }
+        else {
+            toMutate.push(cell);
         }
     };
-    Toggle.prototype.componentWillLoad = function () {
-        this.emitStyle();
+    for (var i = range.offset; i < end; i++) {
+        _loop_1(i);
+    }
+    // needs to append
+    var pool = dom.filter(function (n) { return n.d; });
+    var _loop_2 = function (cell) {
+        var node = pool.find(function (n) { return n.d && n.cell.type === cell.type; });
+        var index = cell.i;
+        if (node) {
+            node.d = false;
+            node.change = NODE_CHANGE_CELL;
+            node.cell = cell;
+            node.top = heightIndex[index];
+        }
+        else {
+            dom.push({
+                d: false,
+                cell: cell,
+                visible: true,
+                change: NODE_CHANGE_CELL,
+                top: heightIndex[index],
+            });
+        }
     };
-    Toggle.prototype.componentDidLoad = function () {
+    for (var _a = 0, toMutate_1 = toMutate; _a < toMutate_1.length; _a++) {
+        var cell = toMutate_1[_a];
+        _loop_2(cell);
+    }
+    dom
+        .filter(function (n) { return n.d && n.top !== -9999; })
+        .forEach(function (n) {
+        n.change = NODE_CHANGE_POSITION;
+        n.top = -9999;
+    });
+};
+var doRender = function (el, nodeRender, dom, updateCellHeight) {
+    var children = Array.from(el.children).filter(function (n) { return n.tagName !== 'TEMPLATE'; });
+    var childrenNu = children.length;
+    var child;
+    for (var i = 0; i < dom.length; i++) {
+        var node = dom[i];
+        var cell = node.cell;
+        // the cell change, the content must be updated
+        if (node.change === NODE_CHANGE_CELL) {
+            if (i < childrenNu) {
+                child = children[i];
+                nodeRender(child, cell, i);
+            }
+            else {
+                var newChild = createNode(el, cell.type);
+                child = nodeRender(newChild, cell, i) || newChild;
+                child.classList.add('virtual-item');
+                el.appendChild(child);
+            }
+            child['$ionCell'] = cell;
+        }
+        else {
+            child = children[i];
+        }
+        // only update position when it changes
+        if (node.change !== NODE_CHANGE_NONE) {
+            child.style.transform = "translate3d(0," + node.top + "px,0)";
+        }
+        // update visibility
+        var visible = cell.visible;
+        if (node.visible !== visible) {
+            if (visible) {
+                child.classList.remove('virtual-loading');
+            }
+            else {
+                child.classList.add('virtual-loading');
+            }
+            node.visible = visible;
+        }
+        // dynamic height
+        if (cell.reads > 0) {
+            updateCellHeight(cell, child);
+            cell.reads--;
+        }
+    }
+};
+var createNode = function (el, type) {
+    var template = getTemplate(el, type);
+    if (template && el.ownerDocument) {
+        return el.ownerDocument.importNode(template.content, true).children[0];
+    }
+    return null;
+};
+var getTemplate = function (el, type) {
+    switch (type) {
+        case CELL_TYPE_ITEM: return el.querySelector('template:not([name])');
+        case CELL_TYPE_HEADER: return el.querySelector('template[name=header]');
+        case CELL_TYPE_FOOTER: return el.querySelector('template[name=footer]');
+    }
+};
+var getViewport = function (scrollTop, vierportHeight, margin) {
+    return {
+        top: Math.max(scrollTop - margin, 0),
+        bottom: scrollTop + vierportHeight + margin
+    };
+};
+var getRange = function (heightIndex, viewport, buffer) {
+    var topPos = viewport.top;
+    var bottomPos = viewport.bottom;
+    // find top index
+    var i = 0;
+    for (; i < heightIndex.length; i++) {
+        if (heightIndex[i] > topPos) {
+            break;
+        }
+    }
+    var offset = Math.max(i - buffer - 1, 0);
+    // find bottom index
+    for (; i < heightIndex.length; i++) {
+        if (heightIndex[i] >= bottomPos) {
+            break;
+        }
+    }
+    var end = Math.min(i + buffer, heightIndex.length);
+    var length = end - offset;
+    return { offset: offset, length: length };
+};
+var getShouldUpdate = function (dirtyIndex, currentRange, range) {
+    var end = range.offset + range.length;
+    return (dirtyIndex <= end ||
+        currentRange.offset !== range.offset ||
+        currentRange.length !== range.length);
+};
+var findCellIndex = function (cells, index) {
+    var max = cells.length > 0 ? cells[cells.length - 1].index : 0;
+    if (index === 0) {
+        return 0;
+    }
+    else if (index === max + 1) {
+        return cells.length;
+    }
+    else {
+        return cells.findIndex(function (c) { return c.index === index; });
+    }
+};
+var inplaceUpdate = function (dst, src, offset) {
+    if (offset === 0 && src.length >= dst.length) {
+        return src;
+    }
+    for (var i = 0; i < src.length; i++) {
+        dst[i + offset] = src[i];
+    }
+    return dst;
+};
+var calcCells = function (items, itemHeight, headerHeight, footerHeight, headerFn, footerFn, approxHeaderHeight, approxFooterHeight, approxItemHeight, j, offset, len) {
+    var cells = [];
+    var end = len + offset;
+    for (var i = offset; i < end; i++) {
+        var item = items[i];
+        if (headerFn) {
+            var value = headerFn(item, i, items);
+            if (value != null) {
+                cells.push({
+                    i: j++,
+                    type: CELL_TYPE_HEADER,
+                    value: value,
+                    index: i,
+                    height: headerHeight ? headerHeight(value, i) : approxHeaderHeight,
+                    reads: headerHeight ? 0 : MIN_READS,
+                    visible: !!headerHeight,
+                });
+            }
+        }
+        cells.push({
+            i: j++,
+            type: CELL_TYPE_ITEM,
+            value: item,
+            index: i,
+            height: itemHeight ? itemHeight(item, i) : approxItemHeight,
+            reads: itemHeight ? 0 : MIN_READS,
+            visible: !!itemHeight,
+        });
+        if (footerFn) {
+            var value = footerFn(item, i, items);
+            if (value != null) {
+                cells.push({
+                    i: j++,
+                    type: CELL_TYPE_FOOTER,
+                    value: value,
+                    index: i,
+                    height: footerHeight ? footerHeight(value, i) : approxFooterHeight,
+                    reads: footerHeight ? 0 : MIN_READS,
+                    visible: !!footerHeight,
+                });
+            }
+        }
+    }
+    return cells;
+};
+var calcHeightIndex = function (buf, cells, index) {
+    var acum = buf[index];
+    for (var i = index; i < buf.length; i++) {
+        buf[i] = acum;
+        acum += cells[i].height;
+    }
+    return acum;
+};
+var resizeBuffer = function (buf, len) {
+    if (!buf) {
+        return new Uint32Array(len);
+    }
+    if (buf.length === len) {
+        return buf;
+    }
+    else if (len > buf.length) {
+        var newBuf = new Uint32Array(len);
+        newBuf.set(buf);
+        return newBuf;
+    }
+    else {
+        return buf.subarray(0, len);
+    }
+};
+var positionForIndex = function (index, cells, heightIndex) {
+    var cell = cells.find(function (c) { return c.type === CELL_TYPE_ITEM && c.index === index; });
+    if (cell) {
+        return heightIndex[cell.i];
+    }
+    return -1;
+};
+var VirtualScroll = /** @class */ (function () {
+    function class_1(hostRef) {
+        var _this = this;
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        this.range = { offset: 0, length: 0 };
+        this.viewportHeight = 0;
+        this.cells = [];
+        this.virtualDom = [];
+        this.isEnabled = false;
+        this.viewportOffset = 0;
+        this.currentScrollTop = 0;
+        this.indexDirty = 0;
+        this.lastItemLen = 0;
+        this.totalHeight = 0;
+        /**
+         * It is important to provide this
+         * if virtual item height will be significantly larger than the default
+         * The approximate height of each virtual item template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+        this.approxItemHeight = 45;
+        /**
+         * The approximate height of each header template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+        this.approxHeaderHeight = 30;
+        /**
+         * The approximate width of each footer template's cell.
+         * This dimension is used to help determine how many cells should
+         * be created when initialized, and to help calculate the height of
+         * the scrollable area. This height value can only use `px` units.
+         * Note that the actual rendered size of each cell comes from the
+         * app's CSS, whereas this approximation is used to help calculate
+         * initial dimensions before the item has been rendered.
+         */
+        this.approxFooterHeight = 30;
+        this.onScroll = function () {
+            _this.updateVirtualScroll();
+        };
+    }
+    class_1.prototype.itemsChanged = function () {
+        this.calcCells();
+        this.updateVirtualScroll();
+    };
+    class_1.prototype.connectedCallback = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a;
-            var _this = this;
+            var contentEl, _a;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
                 switch (_b.label) {
                     case 0:
+                        contentEl = this.el.closest('ion-content');
+                        if (!contentEl) {
+                            console.error('<ion-virtual-scroll> must be used inside an <ion-content>');
+                            return [2 /*return*/];
+                        }
                         _a = this;
-                        return [4 /*yield*/, __webpack_require__.e(/*! import() | index-8421816f-js */ 1).then(__webpack_require__.bind(null, /*! ./index-8421816f.js */ "./node_modules/@ionic/core/dist/esm-es5/index-8421816f.js"))];
+                        return [4 /*yield*/, contentEl.getScrollElement()];
                     case 1:
-                        _a.gesture = (_b.sent()).createGesture({
-                            el: this.el,
-                            gestureName: 'toggle',
-                            gesturePriority: 100,
-                            threshold: 5,
-                            passive: false,
-                            onStart: function () { return _this.onStart(); },
-                            onMove: function (ev) { return _this.onMove(ev); },
-                            onEnd: function (ev) { return _this.onEnd(ev); },
-                        });
-                        this.disabledChanged();
+                        _a.scrollEl = _b.sent();
+                        this.contentEl = contentEl;
+                        this.calcCells();
+                        this.updateState();
                         return [2 /*return*/];
                 }
             });
         });
     };
-    Toggle.prototype.componentDidUnload = function () {
-        if (this.gesture) {
-            this.gesture.destroy();
-            this.gesture = undefined;
-        }
+    class_1.prototype.componentDidUpdate = function () {
+        this.updateState();
     };
-    Toggle.prototype.emitStyle = function () {
-        this.ionStyle.emit({
-            'interactive-disabled': this.disabled,
+    class_1.prototype.disconnectedCallback = function () {
+        this.scrollEl = undefined;
+    };
+    class_1.prototype.onResize = function () {
+        this.calcCells();
+        this.updateVirtualScroll();
+    };
+    /**
+     * Returns the position of the virtual item at the given index.
+     */
+    class_1.prototype.positionForItem = function (index) {
+        return Promise.resolve(positionForIndex(index, this.cells, this.getHeightIndex()));
+    };
+    /**
+     * This method marks a subset of items as dirty, so they can be re-rendered. Items should be marked as
+     * dirty any time the content or their style changes.
+     *
+     * The subset of items to be updated can are specifing by an offset and a length.
+     */
+    class_1.prototype.checkRange = function (offset, len) {
+        if (len === void 0) { len = -1; }
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var length, cellIndex, cells;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                // TODO: kind of hacky how we do in-place updated of the cells
+                // array. this part needs a complete refactor
+                if (!this.items) {
+                    return [2 /*return*/];
+                }
+                length = (len === -1)
+                    ? this.items.length - offset
+                    : len;
+                cellIndex = findCellIndex(this.cells, offset);
+                cells = calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, cellIndex, offset, length);
+                this.cells = inplaceUpdate(this.cells, cells, cellIndex);
+                this.lastItemLen = this.items.length;
+                this.indexDirty = Math.max(offset - 1, 0);
+                this.scheduleUpdate();
+                return [2 /*return*/];
+            });
         });
     };
-    Toggle.prototype.onStart = function () {
-        this.activated = true;
-        // touch-action does not work in iOS
-        this.setFocus();
+    /**
+     * This method marks the tail the items array as dirty, so they can be re-rendered.
+     *
+     * It's equivalent to calling:
+     *
+     * ```js
+     * virtualScroll.checkRange(lastItemLen);
+     * ```
+     */
+    class_1.prototype.checkEnd = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                if (this.items) {
+                    this.checkRange(this.lastItemLen);
+                }
+                return [2 /*return*/];
+            });
+        });
     };
-    Toggle.prototype.onMove = function (detail) {
-        if (shouldToggle(document, this.checked, detail.deltaX, -10)) {
-            this.checked = !this.checked;
-            Object(_chunk_4e92c885_js__WEBPACK_IMPORTED_MODULE_4__["h"])();
+    class_1.prototype.updateVirtualScroll = function () {
+        // do nothing if virtual-scroll is disabled
+        if (!this.isEnabled || !this.scrollEl) {
+            return;
+        }
+        // unschedule future updates
+        if (this.timerUpdate) {
+            clearTimeout(this.timerUpdate);
+            this.timerUpdate = undefined;
+        }
+        // schedule DOM operations into the stencil queue
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["f"])(this.readVS.bind(this));
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["w"])(this.writeVS.bind(this));
+    };
+    class_1.prototype.readVS = function () {
+        var _a = this, contentEl = _a.contentEl, scrollEl = _a.scrollEl, el = _a.el;
+        var topOffset = 0;
+        var node = el;
+        while (node && node !== contentEl) {
+            topOffset += node.offsetTop;
+            node = node.parentElement;
+        }
+        this.viewportOffset = topOffset;
+        if (scrollEl) {
+            this.viewportHeight = scrollEl.offsetHeight;
+            this.currentScrollTop = scrollEl.scrollTop;
         }
     };
-    Toggle.prototype.onEnd = function (ev) {
-        this.activated = false;
-        this.lastDrag = Date.now();
-        ev.event.preventDefault();
-        ev.event.stopImmediatePropagation();
-    };
-    Toggle.prototype.getValue = function () {
-        return this.value || '';
-    };
-    Toggle.prototype.setFocus = function () {
-        if (this.buttonEl) {
-            this.buttonEl.focus();
+    class_1.prototype.writeVS = function () {
+        var dirtyIndex = this.indexDirty;
+        // get visible viewport
+        var scrollTop = this.currentScrollTop - this.viewportOffset;
+        var viewport = getViewport(scrollTop, this.viewportHeight, 100);
+        // compute lazily the height index
+        var heightIndex = this.getHeightIndex();
+        // get array bounds of visible cells base in the viewport
+        var range = getRange(heightIndex, viewport, 2);
+        // fast path, do nothing
+        var shouldUpdate = getShouldUpdate(dirtyIndex, this.range, range);
+        if (!shouldUpdate) {
+            return;
+        }
+        this.range = range;
+        // in place mutation of the virtual DOM
+        updateVDom(this.virtualDom, heightIndex, this.cells, range);
+        // Write DOM
+        // Different code paths taken depending of the render API used
+        if (this.nodeRender) {
+            doRender(this.el, this.nodeRender, this.virtualDom, this.updateCellHeight.bind(this));
+        }
+        else if (this.domRender) {
+            this.domRender(this.virtualDom);
+        }
+        else if (this.renderItem) {
+            this.el.forceUpdate();
         }
     };
-    Toggle.prototype.render = function () {
-        var _a;
+    class_1.prototype.updateCellHeight = function (cell, node) {
         var _this = this;
-        var _b = this, inputId = _b.inputId, disabled = _b.disabled, checked = _b.checked, activated = _b.activated, color = _b.color, el = _b.el;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        var labelId = inputId + '-lbl';
-        var label = Object(_chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(el);
-        var value = this.getValue();
-        if (label) {
-            label.id = labelId;
+        var update = function () {
+            if (node['$ionCell'] === cell) {
+                var style = window.getComputedStyle(node);
+                var height = node.offsetHeight + parseFloat(style.getPropertyValue('margin-bottom'));
+                _this.setCellHeight(cell, height);
+            }
+        };
+        if (node && node.componentOnReady) {
+            node.componentOnReady().then(update);
         }
-        Object(_chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["r"])(true, el, this.name, (checked ? value : ''), disabled);
-        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "checkbox", "aria-disabled": disabled ? 'true' : null, "aria-checked": "" + checked, "aria-labelledby": labelId, class: Object.assign({}, Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_3__["c"])(color), (_a = {}, _a[mode] = true, _a['in-item'] = Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el), _a['toggle-activated'] = activated, _a['toggle-checked'] = checked, _a['toggle-disabled'] = disabled, _a['interactive'] = true, _a)) }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toggle-icon" }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toggle-inner" })), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled, ref: function (btnEl) { return _this.buttonEl = btnEl; } })));
+        else {
+            update();
+        }
     };
-    Object.defineProperty(Toggle.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    class_1.prototype.setCellHeight = function (cell, height) {
+        var index = cell.i;
+        // the cell might changed since the height update was scheduled
+        if (cell !== this.cells[index]) {
+            return;
+        }
+        if (cell.height !== height || cell.visible !== true) {
+            cell.visible = true;
+            cell.height = height;
+            this.indexDirty = Math.min(this.indexDirty, index);
+            this.scheduleUpdate();
+        }
+    };
+    class_1.prototype.scheduleUpdate = function () {
+        var _this = this;
+        clearTimeout(this.timerUpdate);
+        this.timerUpdate = setTimeout(function () { return _this.updateVirtualScroll(); }, 100);
+    };
+    class_1.prototype.updateState = function () {
+        var shouldEnable = !!(this.scrollEl &&
+            this.cells);
+        if (shouldEnable !== this.isEnabled) {
+            this.enableScrollEvents(shouldEnable);
+            if (shouldEnable) {
+                this.updateVirtualScroll();
+            }
+        }
+    };
+    class_1.prototype.calcCells = function () {
+        if (!this.items) {
+            return;
+        }
+        this.lastItemLen = this.items.length;
+        this.cells = calcCells(this.items, this.itemHeight, this.headerHeight, this.footerHeight, this.headerFn, this.footerFn, this.approxHeaderHeight, this.approxFooterHeight, this.approxItemHeight, 0, 0, this.lastItemLen);
+        this.indexDirty = 0;
+    };
+    class_1.prototype.getHeightIndex = function () {
+        if (this.indexDirty !== Infinity) {
+            this.calcHeightIndex(this.indexDirty);
+        }
+        return this.heightIndex;
+    };
+    class_1.prototype.calcHeightIndex = function (index) {
+        if (index === void 0) { index = 0; }
+        // TODO: optimize, we don't need to calculate all the cells
+        this.heightIndex = resizeBuffer(this.heightIndex, this.cells.length);
+        this.totalHeight = calcHeightIndex(this.heightIndex, this.cells, index);
+        this.indexDirty = Infinity;
+    };
+    class_1.prototype.enableScrollEvents = function (shouldListen) {
+        var _this = this;
+        if (this.rmEvent) {
+            this.rmEvent();
+            this.rmEvent = undefined;
+        }
+        var scrollEl = this.scrollEl;
+        if (scrollEl) {
+            this.isEnabled = shouldListen;
+            scrollEl.addEventListener('scroll', this.onScroll);
+            this.rmEvent = function () {
+                scrollEl.removeEventListener('scroll', _this.onScroll);
+            };
+        }
+    };
+    class_1.prototype.renderVirtualNode = function (node) {
+        var _a = node.cell, type = _a.type, value = _a.value, index = _a.index;
+        switch (type) {
+            case CELL_TYPE_ITEM: return this.renderItem(value, index);
+            case CELL_TYPE_HEADER: return this.renderHeader(value, index);
+            case CELL_TYPE_FOOTER: return this.renderFooter(value, index);
+        }
+    };
+    class_1.prototype.render = function () {
+        var _this = this;
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { style: {
+                height: this.totalHeight + "px"
+            } }, this.renderItem && (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(VirtualProxy, { dom: this.virtualDom }, this.virtualDom.map(function (node) { return _this.renderVirtualNode(node); })))));
+    };
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Toggle, "watchers", {
+    Object.defineProperty(class_1, "watchers", {
         get: function () {
             return {
-                "checked": ["checkedChanged"],
-                "disabled": ["disabledChanged"]
+                "itemHeight": ["itemsChanged"],
+                "headerHeight": ["itemsChanged"],
+                "footerHeight": ["itemsChanged"],
+                "items": ["itemsChanged"]
             };
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Toggle, "style", {
-        get: function () { return ":host{-webkit-box-sizing:content-box!important;box-sizing:content-box!important;display:inline-block;outline:none;contain:content;cursor:pointer;-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.ion-focused) input{border:2px solid #5e9ed6}:host(.toggle-disabled){pointer-events:none}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}:host{--background:rgba(var(--ion-text-color-rgb,0,0,0),0.3);--background-checked:rgba(var(--ion-color-primary-rgb,56,128,255),0.5);--handle-background:#fff;--handle-background-checked:var(--ion-color-primary,#3880ff);padding-left:12px;padding-right:12px;padding-top:12px;padding-bottom:12px;-webkit-box-sizing:content-box;box-sizing:content-box;position:relative;width:36px;height:14px;contain:strict}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:12px;padding-inline-start:12px;-webkit-padding-end:12px;padding-inline-end:12px}}:host(.ion-color.toggle-checked) .toggle-icon{background:rgba(var(--ion-color-base-rgb),.5)}:host(.ion-color.toggle-checked) .toggle-inner{background:var(--ion-color-base)}.toggle-icon{border-radius:14px;display:block;position:relative;width:100%;height:100%;-webkit-transition:background-color .16s;transition:background-color .16s;background:var(--background);pointer-events:none}.toggle-inner{left:0;top:-3px;border-radius:50%;position:absolute;width:20px;height:20px;-webkit-transition-duration:.16s;transition-duration:.16s;-webkit-transition-property:background-color,-webkit-transform;transition-property:background-color,-webkit-transform;transition-property:transform,background-color;transition-property:transform,background-color,-webkit-transform;-webkit-transition-timing-function:cubic-bezier(.4,0,.2,1);transition-timing-function:cubic-bezier(.4,0,.2,1);background:var(--handle-background);-webkit-box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);will-change:transform,background-color;contain:strict}:host-context([dir=rtl]) .toggle-inner,[dir=rtl] .toggle-inner{left:unset;right:unset;right:0}:host(.toggle-checked) .toggle-icon{background:var(--background-checked)}:host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(16px,0,0);transform:translate3d(16px,0,0);background:var(--handle-background-checked)}:host-context([dir=rtl]).toggle-checked .toggle-inner,:host-context([dir=rtl]):host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(calc(-1 * 16px),0,0);transform:translate3d(calc(-1 * 16px),0,0)}:host(.toggle-disabled){opacity:.3}:host(.in-item[slot]){margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:16px;padding-right:0;padding-top:12px;padding-bottom:12px;cursor:pointer}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot]){padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:0;padding-inline-end:0}}:host(.in-item[slot=start]){padding-left:2px;padding-right:18px;padding-top:12px;padding-bottom:12px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot=start]){padding-left:unset;padding-right:unset;-webkit-padding-start:2px;padding-inline-start:2px;-webkit-padding-end:18px;padding-inline-end:18px}}"; },
+    Object.defineProperty(class_1, "style", {
+        get: function () { return "ion-virtual-scroll{display:block;position:relative;width:100%;contain:strict;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}ion-virtual-scroll>.virtual-loading{opacity:0}ion-virtual-scroll>.virtual-item{position:absolute!important;top:0!important;right:0!important;left:0!important;-webkit-transition-duration:0ms;transition-duration:0ms;will-change:transform}"; },
         enumerable: true,
         configurable: true
     });
-    return Toggle;
+    return class_1;
 }());
-var shouldToggle = function (doc, checked, deltaX, margin) {
-    var isRTL = doc.dir === 'rtl';
-    if (checked) {
-        return (!isRTL && (margin > deltaX)) ||
-            (isRTL && (-margin < deltaX));
-    }
-    else {
-        return (!isRTL && (-margin < deltaX)) ||
-            (isRTL && (margin > deltaX));
-    }
+var VirtualProxy = function (_a, children, utils) {
+    var dom = _a.dom;
+    return utils.map(children, function (child, i) {
+        var node = dom[i];
+        var vattrs = child.vattrs || {};
+        var classes = vattrs.class || '';
+        classes += 'virtual-item ';
+        if (!node.visible) {
+            classes += 'virtual-loading';
+        }
+        return Object.assign({}, child, { vattrs: Object.assign({}, vattrs, { class: classes, style: Object.assign({}, vattrs.style, { transform: "translate3d(0," + node.top + "px,0)" }) }) });
+    });
 };
-var toggleIds = 0;
 
 
 

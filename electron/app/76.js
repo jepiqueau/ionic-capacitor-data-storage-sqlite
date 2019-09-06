@@ -1,340 +1,195 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[76],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-toast-md.entry.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-toast-md.entry.js ***!
-  \*********************************************************************/
-/*! exports provided: ion_toast */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-toggle-ios.entry.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-toggle-ios.entry.js ***!
+  \***********************************************************************/
+/*! exports provided: ion_toggle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_toast", function() { return Toast; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_toggle", function() { return Toggle; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
-/* harmony import */ var _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chunk-d83bfeae.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-d83bfeae.js");
-/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
-/* harmony import */ var _chunk_cae2ca23_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chunk-cae2ca23.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-cae2ca23.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
+/* harmony import */ var _theme_353a032e_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-353a032e.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-353a032e.js");
+/* harmony import */ var _haptic_4e92c885_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./haptic-4e92c885.js */ "./node_modules/@ionic/core/dist/esm-es5/haptic-4e92c885.js");
+/* harmony import */ var _helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-c90aaa66.js");
 
 
 
 
 
 
-/**
- * iOS Toast Enter Animation
- */
-var iosEnterAnimation = function (AnimationC, baseEl, position) {
-    var baseAnimation = new AnimationC();
-    var wrapperAnimation = new AnimationC();
-    var hostEl = baseEl.host || baseEl;
-    var wrapperEl = baseEl.querySelector('.toast-wrapper');
-    wrapperAnimation.addElement(wrapperEl);
-    var bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
-    var top = "calc(10px + var(--ion-safe-area-top, 0px))";
-    switch (position) {
-        case 'top':
-            wrapperAnimation.fromTo('translateY', '-100%', top);
-            break;
-        case 'middle':
-            var topPosition = Math.floor(hostEl.clientHeight / 2 - wrapperEl.clientHeight / 2);
-            wrapperEl.style.top = topPosition + "px";
-            wrapperAnimation.fromTo('opacity', 0.01, 1);
-            break;
-        default:
-            wrapperAnimation.fromTo('translateY', '100%', bottom);
-            break;
+var Toggle = /** @class */ (function () {
+    function class_1(hostRef) {
+        var _this = this;
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        this.inputId = "ion-tg-" + toggleIds++;
+        this.lastDrag = 0;
+        this.activated = false;
+        /**
+         * The name of the control, which is submitted with the form data.
+         */
+        this.name = this.inputId;
+        /**
+         * If `true`, the toggle is selected.
+         */
+        this.checked = false;
+        /**
+         * If `true`, the user cannot interact with the toggle.
+         */
+        this.disabled = false;
+        /**
+         * The value of the toggle does not mean if it's checked or not, use the `checked`
+         * property for that.
+         *
+         * The value of a toggle is analogous to the value of a `<input type="checkbox">`,
+         * it's only used when the toggle participates in a native `<form>`.
+         */
+        this.value = 'on';
+        this.onClick = function () {
+            if (_this.lastDrag + 300 < Date.now()) {
+                _this.checked = !_this.checked;
+            }
+        };
+        this.onFocus = function () {
+            _this.ionFocus.emit();
+        };
+        this.onBlur = function () {
+            _this.ionBlur.emit();
+        };
+        this.ionChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionChange", 7);
+        this.ionFocus = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
+        this.ionBlur = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
+        this.ionStyle = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionStyle", 7);
     }
-    return Promise.resolve(baseAnimation
-        .addElement(hostEl)
-        .easing('cubic-bezier(.155,1.105,.295,1.12)')
-        .duration(400)
-        .add(wrapperAnimation));
-};
-/**
- * iOS Toast Leave Animation
- */
-var iosLeaveAnimation = function (AnimationC, baseEl, position) {
-    var baseAnimation = new AnimationC();
-    var wrapperAnimation = new AnimationC();
-    var hostEl = baseEl.host || baseEl;
-    var wrapperEl = baseEl.querySelector('.toast-wrapper');
-    wrapperAnimation.addElement(wrapperEl);
-    var bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
-    var top = "calc(10px + var(--ion-safe-area-top, 0px))";
-    switch (position) {
-        case 'top':
-            wrapperAnimation.fromTo('translateY', top, '-100%');
-            break;
-        case 'middle':
-            wrapperAnimation.fromTo('opacity', 0.99, 0);
-            break;
-        default:
-            wrapperAnimation.fromTo('translateY', bottom, '100%');
-            break;
-    }
-    return Promise.resolve(baseAnimation
-        .addElement(hostEl)
-        .easing('cubic-bezier(.36,.66,.04,1)')
-        .duration(300)
-        .add(wrapperAnimation));
-};
-/**
- * MD Toast Enter Animation
- */
-var mdEnterAnimation = function (AnimationC, baseEl, position) {
-    var baseAnimation = new AnimationC();
-    var wrapperAnimation = new AnimationC();
-    var hostEl = baseEl.host || baseEl;
-    var wrapperEl = baseEl.querySelector('.toast-wrapper');
-    wrapperAnimation.addElement(wrapperEl);
-    var bottom = "calc(8px + var(--ion-safe-area-bottom, 0px))";
-    var top = "calc(8px + var(--ion-safe-area-top, 0px))";
-    switch (position) {
-        case 'top':
-            wrapperEl.style.top = top;
-            wrapperAnimation.fromTo('opacity', 0.01, 1);
-            break;
-        case 'middle':
-            var topPosition = Math.floor(hostEl.clientHeight / 2 - wrapperEl.clientHeight / 2);
-            wrapperEl.style.top = topPosition + "px";
-            wrapperAnimation.fromTo('opacity', 0.01, 1);
-            break;
-        default:
-            wrapperEl.style.bottom = bottom;
-            wrapperAnimation.fromTo('opacity', 0.01, 1);
-            break;
-    }
-    return Promise.resolve(baseAnimation
-        .addElement(hostEl)
-        .easing('cubic-bezier(.36,.66,.04,1)')
-        .duration(400)
-        .add(wrapperAnimation));
-};
-/**
- * md Toast Leave Animation
- */
-var mdLeaveAnimation = function (AnimationC, baseEl) {
-    var baseAnimation = new AnimationC();
-    var wrapperAnimation = new AnimationC();
-    var hostEl = baseEl.host || baseEl;
-    var wrapperEl = baseEl.querySelector('.toast-wrapper');
-    wrapperAnimation.addElement(wrapperEl);
-    wrapperAnimation.fromTo('opacity', 0.99, 0);
-    return Promise.resolve(baseAnimation
-        .addElement(hostEl)
-        .easing('cubic-bezier(.36,.66,.04,1)')
-        .duration(300)
-        .add(wrapperAnimation));
-};
-/**
- * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
- */
-var Toast = /** @class */ (function () {
-    function Toast(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.presented = false;
-        this.mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        /**
-         * How many milliseconds to wait before hiding the toast. By default, it will show
-         * until `dismiss()` is called.
-         */
-        this.duration = 0;
-        /**
-         * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
-         */
-        this.keyboardClose = false;
-        /**
-         * The position of the toast on the screen.
-         */
-        this.position = 'bottom';
-        /**
-         * If `true`, the close button will be displayed.
-         */
-        this.showCloseButton = false;
-        /**
-         * If `true`, the toast will be translucent.
-         * Only applies when the mode is `"ios"` and the device supports
-         * [`backdrop-filter`](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility).
-         */
-        this.translucent = false;
-        /**
-         * If `true`, the toast will animate.
-         */
-        this.animated = true;
-        this.didPresent = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidPresent", 7);
-        this.willPresent = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillPresent", 7);
-        this.willDismiss = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillDismiss", 7);
-        this.didDismiss = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidDismiss", 7);
-    }
-    /**
-     * Present the toast overlay after it has been created.
-     */
-    Toast.prototype.present = function () {
+    class_1.prototype.checkedChanged = function (isChecked) {
+        this.ionChange.emit({
+            checked: isChecked,
+            value: this.value
+        });
+    };
+    class_1.prototype.disabledChanged = function () {
+        this.emitStyle();
+        if (this.gesture) {
+            this.gesture.setDisabled(this.disabled);
+        }
+    };
+    class_1.prototype.connectedCallback = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a;
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["d"])(this, 'toastEnter', iosEnterAnimation, mdEnterAnimation, this.position)];
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, Promise.resolve(/*! import() */).then(__webpack_require__.bind(null, /*! ./index-2c4a5477.js */ "./node_modules/@ionic/core/dist/esm-es5/index-2c4a5477.js"))];
                     case 1:
-                        _a.sent();
-                        if (this.duration > 0) {
-                            this.durationTimeout = setTimeout(function () { return _this.dismiss(undefined, 'timeout'); }, this.duration);
-                        }
+                        _a.gesture = (_b.sent()).createGesture({
+                            el: this.el,
+                            gestureName: 'toggle',
+                            gesturePriority: 100,
+                            threshold: 5,
+                            passive: false,
+                            onStart: function () { return _this.onStart(); },
+                            onMove: function (ev) { return _this.onMove(ev); },
+                            onEnd: function (ev) { return _this.onEnd(ev); },
+                        });
+                        this.disabledChanged();
                         return [2 /*return*/];
                 }
             });
         });
     };
-    /**
-     * Dismiss the toast overlay after it has been presented.
-     *
-     * @param data Any data to emit in the dismiss events.
-     * @param role The role of the element that is dismissing the toast.
-     * This can be useful in a button handler for determining which button was
-     * clicked to dismiss the toast.
-     * Some examples include: ``"cancel"`, `"destructive"`, "selected"`, and `"backdrop"`.
-     */
-    Toast.prototype.dismiss = function (data, role) {
-        if (this.durationTimeout) {
-            clearTimeout(this.durationTimeout);
+    class_1.prototype.disconnectedCallback = function () {
+        if (this.gesture) {
+            this.gesture.destroy();
+            this.gesture = undefined;
         }
-        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this, data, role, 'toastLeave', iosLeaveAnimation, mdLeaveAnimation, this.position);
     };
-    /**
-     * Returns a promise that resolves when the toast did dismiss.
-     */
-    Toast.prototype.onDidDismiss = function () {
-        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this.el, 'ionToastDidDismiss');
+    class_1.prototype.componentWillLoad = function () {
+        this.emitStyle();
     };
-    /**
-     * Returns a promise that resolves when the toast will dismiss.
-     */
-    Toast.prototype.onWillDismiss = function () {
-        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["f"])(this.el, 'ionToastWillDismiss');
-    };
-    Toast.prototype.getButtons = function () {
-        var _this = this;
-        var buttons = this.buttons
-            ? this.buttons.map(function (b) {
-                return (typeof b === 'string')
-                    ? { text: b }
-                    : b;
-            })
-            : [];
-        if (this.showCloseButton) {
-            buttons.push({
-                text: this.closeButtonText || 'Close',
-                handler: function () { return _this.dismiss(undefined, 'cancel'); }
-            });
-        }
-        return buttons;
-    };
-    Toast.prototype.buttonClick = function (button) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var role, shouldDismiss;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        role = button.role;
-                        if (Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["i"])(role)) {
-                            return [2 /*return*/, this.dismiss(undefined, role)];
-                        }
-                        return [4 /*yield*/, this.callButtonHandler(button)];
-                    case 1:
-                        shouldDismiss = _a.sent();
-                        if (shouldDismiss) {
-                            return [2 /*return*/, this.dismiss(undefined, button.role)];
-                        }
-                        return [2 /*return*/, Promise.resolve()];
-                }
-            });
+    class_1.prototype.emitStyle = function () {
+        this.ionStyle.emit({
+            'interactive-disabled': this.disabled,
         });
     };
-    Toast.prototype.callButtonHandler = function (button) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var rtn, e_1;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (!(button && button.handler)) return [3 /*break*/, 4];
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["s"])(button.handler)];
-                    case 2:
-                        rtn = _a.sent();
-                        if (rtn === false) {
-                            // if the return value of the handler is false then do not dismiss
-                            return [2 /*return*/, false];
-                        }
-                        return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _a.sent();
-                        console.error(e_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/, true];
-                }
-            });
-        });
+    class_1.prototype.onStart = function () {
+        this.activated = true;
+        // touch-action does not work in iOS
+        this.setFocus();
     };
-    Toast.prototype.hostData = function () {
-        var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        return {
-            style: {
-                zIndex: 60000 + this.overlayIndex,
-            },
-            class: Object.assign((_a = {}, _a[mode] = true, _a), Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__["c"])(this.color), Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__["g"])(this.cssClass), { 'toast-translucent': this.translucent })
-        };
+    class_1.prototype.onMove = function (detail) {
+        if (shouldToggle(document, this.checked, detail.deltaX, -10)) {
+            this.checked = !this.checked;
+            Object(_haptic_4e92c885_js__WEBPACK_IMPORTED_MODULE_4__["h"])();
+        }
     };
-    Toast.prototype.renderButtons = function (buttons, side) {
+    class_1.prototype.onEnd = function (ev) {
+        this.activated = false;
+        this.lastDrag = Date.now();
+        ev.event.preventDefault();
+        ev.event.stopImmediatePropagation();
+    };
+    class_1.prototype.getValue = function () {
+        return this.value || '';
+    };
+    class_1.prototype.setFocus = function () {
+        if (this.buttonEl) {
+            this.buttonEl.focus();
+        }
+    };
+    class_1.prototype.render = function () {
         var _a;
         var _this = this;
-        if (buttons.length === 0) {
-            return;
+        var _b = this, inputId = _b.inputId, disabled = _b.disabled, checked = _b.checked, activated = _b.activated, color = _b.color, el = _b.el;
+        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var labelId = inputId + '-lbl';
+        var label = Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(el);
+        var value = this.getValue();
+        if (label) {
+            label.id = labelId;
         }
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        var buttonGroupsClasses = (_a = {
-                'toast-button-group': true
-            },
-            _a["toast-button-group-" + side] = true,
-            _a);
-        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: buttonGroupsClasses }, buttons.map(function (b) { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", class: buttonClass(b), tabIndex: 0, onClick: function () { return _this.buttonClick(b); } }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-button-inner" }, b.icon &&
-            Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-icon", { name: b.icon, slot: b.text === undefined ? 'icon-only' : undefined, class: "toast-icon" }), b.text), mode === 'md' && Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-ripple-effect", { type: b.icon !== undefined && b.text === undefined ? 'unbounded' : 'bounded' })); })));
+        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["r"])(true, el, this.name, (checked ? value : ''), disabled);
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "checkbox", "aria-disabled": disabled ? 'true' : null, "aria-checked": "" + checked, "aria-labelledby": labelId, class: Object.assign({}, Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_3__["c"])(color), (_a = {}, _a[mode] = true, _a['in-item'] = Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el), _a['toggle-activated'] = activated, _a['toggle-checked'] = checked, _a['toggle-disabled'] = disabled, _a['interactive'] = true, _a)) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toggle-icon" }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toggle-inner" })), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled, ref: function (btnEl) { return _this.buttonEl = btnEl; } })));
     };
-    Toast.prototype.__stencil_render = function () {
-        var _a;
-        var allButtons = this.getButtons();
-        var startButtons = allButtons.filter(function (b) { return b.side === 'start'; });
-        var endButtons = allButtons.filter(function (b) { return b.side !== 'start'; });
-        var wrapperClass = (_a = {
-                'toast-wrapper': true
-            },
-            _a["toast-" + this.position] = true,
-            _a);
-        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: wrapperClass }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-container" }, this.renderButtons(startButtons, 'start'), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-content" }, this.header !== undefined &&
-            Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-header" }, this.header), this.message !== undefined &&
-            Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-message", innerHTML: Object(_chunk_cae2ca23_js__WEBPACK_IMPORTED_MODULE_5__["s"])(this.message) })), this.renderButtons(endButtons, 'end'))));
-    };
-    Object.defineProperty(Toast.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Toast.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["H"], this.hostData(), this.__stencil_render()); };
-    Object.defineProperty(Toast, "style", {
-        get: function () { return ":host{--border-width:0;--border-style:none;--border-color:initial;--box-shadow:none;--min-width:auto;--width:auto;--min-height:auto;--height:auto;--max-height:auto;left:0;top:0;display:block;position:absolute;width:100%;height:100%;color:var(--color);font-family:var(--ion-font-family,inherit);contain:strict;z-index:1000;pointer-events:none}:host-context([dir=rtl]){left:unset;right:unset;right:0}:host(.overlay-hidden){display:none}:host(.ion-color){--button-color:inherit;color:var(--ion-color-contrast)}:host(.ion-color) .toast-wrapper{background:var(--ion-color-base)}.toast-wrapper{border-radius:var(--border-radius);left:var(--start);right:var(--end);width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);border-width:var(--border-width);border-style:var(--border-style);border-color:var(--border-color);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow)}:host-context([dir=rtl]) .toast-wrapper,[dir=rtl] .toast-wrapper{left:unset;right:unset;left:var(--end);right:var(--start)}.toast-container{-ms-flex-align:center;align-items:center;pointer-events:auto;contain:content}.toast-container,.toast-content{display:-ms-flexbox;display:flex}.toast-content{-ms-flex:1;flex:1;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center}.toast-message{-ms-flex:1;flex:1;white-space:pre-wrap}.toast-button-group{display:-ms-flexbox;display:flex}.toast-button{border:0;outline:none;color:var(--button-color);z-index:0}.toast-icon{font-size:1.4em}.toast-button-inner{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}\@media (any-hover:hover){.toast-button:hover{cursor:pointer}}:host{--background:var(--ion-color-step-800,#333);--border-radius:4px;--box-shadow:0 3px 5px -1px rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12);--button-color:var(--ion-color-primary,#3880ff);--color:var(--ion-color-step-50,#f2f2f2);--max-width:700px;--start:8px;--end:8px;font-size:14px}.toast-wrapper{margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;display:block;position:absolute;opacity:.01;z-index:10}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-wrapper{margin-left:unset;margin-right:unset;-webkit-margin-start:auto;margin-inline-start:auto;-webkit-margin-end:auto;margin-inline-end:auto}}.toast-content{padding-left:16px;padding-right:16px;padding-top:14px;padding-bottom:14px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-content{padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:16px;padding-inline-end:16px}}.toast-header{margin-bottom:2px;font-weight:500}.toast-header,.toast-message{line-height:20px}.toast-button-group-start{margin-left:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-group-start{margin-left:unset;-webkit-margin-start:8px;margin-inline-start:8px}}.toast-button-group-end{margin-right:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-group-end{margin-right:unset;-webkit-margin-end:8px;margin-inline-end:8px}}.toast-button{padding-left:15px;padding-right:15px;padding-top:10px;padding-bottom:10px;position:relative;background-color:transparent;font-family:var(--ion-font-family);font-size:14px;font-weight:500;letter-spacing:.84px;text-transform:uppercase;overflow:hidden}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button{padding-left:unset;padding-right:unset;-webkit-padding-start:15px;padding-inline-start:15px;-webkit-padding-end:15px;padding-inline-end:15px}}.toast-button-cancel{color:var(--ion-color-step-100,#e6e6e6)}.toast-button-icon-only{border-radius:50%;padding-left:9px;padding-right:9px;padding-top:9px;padding-bottom:9px;width:36px;height:36px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.toast-button-icon-only{padding-left:unset;padding-right:unset;-webkit-padding-start:9px;padding-inline-start:9px;-webkit-padding-end:9px;padding-inline-end:9px}}\@media (any-hover:hover){.toast-button:hover{background-color:rgba(var(--ion-color-primary-rgb,56,128,255),.08)}.toast-button-cancel:hover{background-color:rgba(var(--ion-background-color-rgb,255,255,255),.08)}}"; },
+    Object.defineProperty(class_1, "watchers", {
+        get: function () {
+            return {
+                "checked": ["checkedChanged"],
+                "disabled": ["disabledChanged"]
+            };
+        },
         enumerable: true,
         configurable: true
     });
-    return Toast;
+    Object.defineProperty(class_1, "style", {
+        get: function () { return ":host{-webkit-box-sizing:content-box!important;box-sizing:content-box!important;display:inline-block;outline:none;contain:content;cursor:pointer;-ms-touch-action:none;touch-action:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.ion-focused) input{border:2px solid #5e9ed6}:host(.toggle-disabled){pointer-events:none}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}:host{--background:rgba(var(--ion-text-color-rgb,0,0,0),0.088);--background-checked:var(--ion-color-primary,#3880ff);--handle-background:#fff;--handle-background-checked:#fff;-webkit-box-sizing:content-box;box-sizing:content-box;position:relative;width:51px;height:32px;contain:strict}:host(.ion-color.toggle-checked) .toggle-icon{background:var(--ion-color-base)}.toggle-icon{border-radius:16px;display:block;position:relative;width:100%;height:100%;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-transition:background-color .3s;transition:background-color .3s;background:var(--background);overflow:hidden;pointer-events:none}.toggle-inner{left:2px;top:2px;border-radius:14px;position:absolute;width:28px;height:28px;-webkit-transition:width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms,-webkit-transform .3s;transition:width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms,-webkit-transform .3s;transition:transform .3s,width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms;transition:transform .3s,width .12s ease-in-out 80ms,left .11s ease-in-out 80ms,right .11s ease-in-out 80ms,-webkit-transform .3s;background:var(--handle-background);-webkit-box-shadow:0 3px 12px rgba(0,0,0,.16),0 3px 1px rgba(0,0,0,.1);box-shadow:0 3px 12px rgba(0,0,0,.16),0 3px 1px rgba(0,0,0,.1);will-change:transform;contain:strict}:host-context([dir=rtl]) .toggle-inner,[dir=rtl] .toggle-inner{left:unset;right:unset;right:2px}:host(.toggle-checked) .toggle-icon{background:var(--background-checked)}:host(.toggle-activated) .toggle-icon:before,:host(.toggle-checked) .toggle-icon:before{-webkit-transform:scale3d(0,0,0);transform:scale3d(0,0,0)}:host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(19px,0,0);transform:translate3d(19px,0,0);background:var(--handle-background-checked)}:host-context([dir=rtl]).toggle-checked .toggle-inner,:host-context([dir=rtl]):host(.toggle-checked) .toggle-inner{-webkit-transform:translate3d(calc(-1 * 19px),0,0);transform:translate3d(calc(-1 * 19px),0,0)}:host(.toggle-activated.toggle-checked) .toggle-inner:before{-webkit-transform:scale3d(0,0,0);transform:scale3d(0,0,0)}:host(.toggle-activated) .toggle-inner{width:34px}:host(.toggle-activated.toggle-checked) .toggle-inner{left:-4px}:host-context([dir=rtl]).toggle-activated.toggle-checked .toggle-inner,:host-context([dir=rtl]):host(.toggle-activated.toggle-checked) .toggle-inner{left:unset;right:unset;right:-4px}:host(.toggle-disabled){opacity:.3}:host(.in-item[slot]){margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;padding-left:16px;padding-right:8px;padding-top:6px;padding-bottom:5px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot]){padding-left:unset;padding-right:unset;-webkit-padding-start:16px;padding-inline-start:16px;-webkit-padding-end:8px;padding-inline-end:8px}}:host(.in-item[slot=start]){padding-left:0;padding-right:16px;padding-top:6px;padding-bottom:5px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot=start]){padding-left:unset;padding-right:unset;-webkit-padding-start:0;padding-inline-start:0;-webkit-padding-end:16px;padding-inline-end:16px}}"; },
+        enumerable: true,
+        configurable: true
+    });
+    return class_1;
 }());
-var buttonClass = function (button) {
-    var _a;
-    return Object.assign((_a = { 'toast-button': true, 'toast-button-icon-only': button.icon !== undefined && button.text === undefined }, _a["toast-button-" + button.role] = button.role !== undefined, _a['ion-focusable'] = true, _a['ion-activatable'] = true, _a), Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__["g"])(button.cssClass));
+var shouldToggle = function (doc, checked, deltaX, margin) {
+    var isRTL = doc.dir === 'rtl';
+    if (checked) {
+        return (!isRTL && (margin > deltaX)) ||
+            (isRTL && (-margin < deltaX));
+    }
+    else {
+        return (!isRTL && (-margin < deltaX)) ||
+            (isRTL && (margin > deltaX));
+    }
 };
+var toggleIds = 0;
 
 
 

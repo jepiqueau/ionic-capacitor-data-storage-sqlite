@@ -4,9 +4,9 @@ import android.os.Bundle;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
-import com.jeep.plugin.capacitor.CapacitorDataStorageSqlite;
 
 import java.util.ArrayList;
+import com.jeep.plugin.capacitor.capacitordatastoragesqlite.CapacitorDataStorageSqlite;
 
 public class MainActivity extends BridgeActivity {
   @Override

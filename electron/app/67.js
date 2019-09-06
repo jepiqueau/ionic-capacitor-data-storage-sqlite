@@ -1,170 +1,169 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[67],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-spinner.entry.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-spinner.entry.js ***!
-  \********************************************************************/
-/*! exports provided: ion_spinner */
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-split-pane-ios.entry.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-split-pane-ios.entry.js ***!
+  \***************************************************************************/
+/*! exports provided: ion_split_pane */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_spinner", function() { return Spinner; });
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
-/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_split_pane", function() { return SplitPane; });
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
 
 
-
-var spinners = {
-    'lines': {
-        dur: 1000,
-        lines: 12,
-        fn: function (dur, index, total) {
-            var transform = "rotate(" + (30 * index + (index < 6 ? 180 : -180)) + "deg)";
-            var animationDelay = (dur * index / total) - dur + "ms";
-            return {
-                y1: 17,
-                y2: 29,
-                style: {
-                    'transform': transform,
-                    'animation-delay': animationDelay,
-                }
-            };
-        }
-    },
-    'lines-small': {
-        dur: 1000,
-        lines: 12,
-        fn: function (dur, index, total) {
-            var transform = "rotate(" + (30 * index + (index < 6 ? 180 : -180)) + "deg)";
-            var animationDelay = (dur * index / total) - dur + "ms";
-            return {
-                y1: 12,
-                y2: 20,
-                style: {
-                    'transform': transform,
-                    'animation-delay': animationDelay,
-                }
-            };
-        }
-    },
-    'bubbles': {
-        dur: 1000,
-        circles: 9,
-        fn: function (dur, index, total) {
-            var animationDelay = (dur * index / total) - dur + "ms";
-            var angle = 2 * Math.PI * index / total;
-            return {
-                r: 5,
-                style: {
-                    'top': 9 * Math.sin(angle) + "px",
-                    'left': 9 * Math.cos(angle) + "px",
-                    'animation-delay': animationDelay,
-                }
-            };
-        }
-    },
-    'circles': {
-        dur: 1000,
-        circles: 8,
-        fn: function (dur, index, total) {
-            var step = index / total;
-            var animationDelay = (dur * step) - dur + "ms";
-            var angle = 2 * Math.PI * step;
-            return {
-                r: 5,
-                style: {
-                    'top': 9 * Math.sin(angle) + "px",
-                    'left': 9 * Math.cos(angle) + "px",
-                    'animation-delay': animationDelay,
-                }
-            };
-        }
-    },
-    'crescent': {
-        dur: 750,
-        circles: 1,
-        fn: function () {
-            return {
-                r: 26,
-                style: {}
-            };
-        }
-    },
-    'dots': {
-        dur: 750,
-        circles: 3,
-        fn: function (_, index) {
-            var animationDelay = -(110 * index) + 'ms';
-            return {
-                r: 6,
-                style: {
-                    'left': 9 - (9 * index) + "px",
-                    'animation-delay': animationDelay,
-                }
-            };
-        }
-    }
+var SPLIT_PANE_MAIN = 'split-pane-main';
+var SPLIT_PANE_SIDE = 'split-pane-side';
+var QUERY = {
+    'xs': '(min-width: 0px)',
+    'sm': '(min-width: 576px)',
+    'md': '(min-width: 768px)',
+    'lg': '(min-width: 992px)',
+    'xl': '(min-width: 1200px)',
+    'never': ''
 };
-var SPINNERS = spinners;
-var Spinner = /** @class */ (function () {
-    function Spinner(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+var SplitPane = /** @class */ (function () {
+    function class_1(hostRef) {
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        this.visible = false;
         /**
-         * If `true`, the spinner's animation will be paused.
+         * If `true`, the split pane will be hidden.
          */
-        this.paused = false;
+        this.disabled = false;
+        /**
+         * When the split-pane should be shown.
+         * Can be a CSS media query expression, or a shortcut expression.
+         * Can also be a boolean expression.
+         */
+        this.when = QUERY['lg'];
+        this.ionSplitPaneVisible = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionSplitPaneVisible", 7);
     }
-    Spinner.prototype.getName = function () {
-        var name = this.name || _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_1__["b"].get('spinner');
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        if (name) {
-            return name;
-        }
-        return (mode === 'ios') ? 'lines' : 'crescent';
+    class_1.prototype.visibleChanged = function (visible) {
+        var detail = { visible: visible, isPane: this.isPane.bind(this) };
+        this.ionSplitPaneVisible.emit(detail);
     };
-    Spinner.prototype.hostData = function () {
+    class_1.prototype.connectedCallback = function () {
+        this.styleChildren();
+        this.updateState();
+    };
+    class_1.prototype.disconnectedCallback = function () {
+        if (this.rmL) {
+            this.rmL();
+            this.rmL = undefined;
+        }
+    };
+    class_1.prototype.updateState = function () {
+        var _this = this;
+        if (this.rmL) {
+            this.rmL();
+            this.rmL = undefined;
+        }
+        // Check if the split-pane is disabled
+        if (this.disabled) {
+            this.visible = false;
+            return;
+        }
+        // When query is a boolean
+        var query = this.when;
+        if (typeof query === 'boolean') {
+            this.visible = query;
+            return;
+        }
+        // When query is a string, let's find first if it is a shortcut
+        var mediaQuery = QUERY[query] || query;
+        // Media query is empty or null, we hide it
+        if (mediaQuery.length === 0) {
+            this.visible = false;
+            return;
+        }
+        if (window.matchMedia) {
+            // Listen on media query
+            var callback_1 = function (q) {
+                _this.visible = q.matches;
+            };
+            var mediaList_1 = window.matchMedia(mediaQuery);
+            mediaList_1.addListener(callback_1);
+            this.rmL = function () { return mediaList_1.removeListener(callback_1); };
+            this.visible = mediaList_1.matches;
+        }
+    };
+    class_1.prototype.isPane = function (element) {
+        if (!this.visible) {
+            return false;
+        }
+        return element.parentElement === this.el
+            && element.classList.contains(SPLIT_PANE_SIDE);
+    };
+    class_1.prototype.styleChildren = function () {
+        var contentId = this.contentId;
+        var children = this.el.children;
+        var nu = this.el.childElementCount;
+        var foundMain = false;
+        for (var i = 0; i < nu; i++) {
+            var child = children[i];
+            var isMain = contentId !== undefined ? child.id === contentId : child.hasAttribute('main');
+            if (isMain) {
+                if (foundMain) {
+                    console.warn('split pane cannot have more than one main node');
+                    return;
+                }
+                foundMain = true;
+            }
+            setPaneClass(child, isMain);
+        }
+        if (!foundMain) {
+            console.warn('split pane does not have a specified main node');
+        }
+    };
+    class_1.prototype.render = function () {
         var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        return {
-            class: Object.assign({}, Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_2__["c"])(this.color), (_a = {}, _a[mode] = true, _a["spinner-" + this.getName()] = true, _a['spinner-paused'] = !!this.paused || _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_1__["b"].getBoolean('_testing'), _a))
-        };
+        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: (_a = {},
+                _a[mode] = true,
+                // Used internally for styling
+                _a["split-pane-" + mode] = true,
+                _a['split-pane-visible'] = this.visible,
+                _a) }));
     };
-    Spinner.prototype.__stencil_render = function () {
-        var name = this.getName();
-        var spinner = SPINNERS[name] || SPINNERS['lines'];
-        var duration = (typeof this.duration === 'number' && this.duration > 10 ? this.duration : spinner.dur);
-        var svgs = [];
-        if (spinner.circles !== undefined) {
-            for (var i = 0; i < spinner.circles; i++) {
-                svgs.push(buildCircle(spinner, duration, i, spinner.circles));
-            }
-        }
-        else if (spinner.lines !== undefined) {
-            for (var i = 0; i < spinner.lines; i++) {
-                svgs.push(buildLine(spinner, duration, i, spinner.lines));
-            }
-        }
-        return svgs;
-    };
-    Spinner.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["H"], this.hostData(), this.__stencil_render()); };
-    Object.defineProperty(Spinner, "style", {
-        get: function () { return ":host{display:inline-block;position:relative;width:28px;height:28px;color:var(--color);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}:host(.ion-color){color:var(--ion-color-base)}svg{left:0;top:0;-webkit-transform-origin:center;transform-origin:center;position:absolute;width:100%;height:100%;-webkit-transform:translateZ(0);transform:translateZ(0)}:host-context([dir=rtl]) svg,[dir=rtl] svg{left:unset;right:unset;right:0;-webkit-transform-origin:calc(100% - center);transform-origin:calc(100% - center)}:host(.spinner-lines) line,:host(.spinner-lines-small) line{stroke-width:4px;stroke-linecap:round;stroke:currentColor}:host(.spinner-lines) svg,:host(.spinner-lines-small) svg{-webkit-animation:spinner-fade-out 1s linear infinite;animation:spinner-fade-out 1s linear infinite}:host(.spinner-bubbles) svg{-webkit-animation:spinner-scale-out 1s linear infinite;animation:spinner-scale-out 1s linear infinite;fill:currentColor}:host(.spinner-circles) svg{-webkit-animation:spinner-fade-out 1s linear infinite;animation:spinner-fade-out 1s linear infinite;fill:currentColor}:host(.spinner-crescent) circle{fill:transparent;stroke-width:4px;stroke-dasharray:128px;stroke-dashoffset:82px;stroke:currentColor}:host(.spinner-crescent) svg{-webkit-animation:spinner-rotate 1s linear infinite;animation:spinner-rotate 1s linear infinite}:host(.spinner-dots) circle{stroke-width:0;fill:currentColor}:host(.spinner-dots) svg{-webkit-animation:spinner-dots 1s linear infinite;animation:spinner-dots 1s linear infinite}:host(.spinner-paused) svg{-webkit-animation-play-state:paused;animation-play-state:paused}\@-webkit-keyframes spinner-fade-out{0%{opacity:1}to{opacity:0}}\@keyframes spinner-fade-out{0%{opacity:1}to{opacity:0}}\@-webkit-keyframes spinner-scale-out{0%{-webkit-transform:scale(1);transform:scale(1)}to{-webkit-transform:scale(0);transform:scale(0)}}\@keyframes spinner-scale-out{0%{-webkit-transform:scale(1);transform:scale(1)}to{-webkit-transform:scale(0);transform:scale(0)}}\@-webkit-keyframes spinner-rotate{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}\@keyframes spinner-rotate{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}\@-webkit-keyframes spinner-dots{0%{-webkit-transform:scale(1);transform:scale(1);opacity:.9}50%{-webkit-transform:scale(.4);transform:scale(.4);opacity:.3}to{-webkit-transform:scale(1);transform:scale(1);opacity:.9}}\@keyframes spinner-dots{0%{-webkit-transform:scale(1);transform:scale(1);opacity:.9}50%{-webkit-transform:scale(.4);transform:scale(.4);opacity:.3}to{-webkit-transform:scale(1);transform:scale(1);opacity:.9}}"; },
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    return Spinner;
+    Object.defineProperty(class_1, "watchers", {
+        get: function () {
+            return {
+                "visible": ["visibleChanged"],
+                "disabled": ["updateState"],
+                "when": ["updateState"]
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(class_1, "style", {
+        get: function () { return "ion-split-pane{left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;contain:strict}.split-pane-visible>.split-pane-main,.split-pane-visible>.split-pane-side{left:0;right:0;top:0;bottom:0;position:relative;-ms-flex:1;flex:1;-webkit-box-shadow:none!important;box-shadow:none!important;z-index:0}.split-pane-visible>.split-pane-side:not(ion-menu),.split-pane-visible>ion-menu.split-pane-side.menu-enabled{display:-ms-flexbox;display:flex;-ms-flex-negative:0;flex-shrink:0}.split-pane-side:not(ion-menu){display:none}.split-pane-visible>.split-pane-side{-ms-flex-order:-1;order:-1}.split-pane-visible>.split-pane-side[side=end]{-ms-flex-order:1;order:1}.split-pane-ios{--border:0.55px solid var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-250,#c8c7cc)))}.split-pane-ios.split-pane-visible>.split-pane-side{min-width:270px;max-width:28%;border-right:var(--border);border-left:0}.split-pane-ios.split-pane-visible>.split-pane-side[side=end]{min-width:270px;max-width:28%;border-right:0;border-left:var(--border)}"; },
+        enumerable: true,
+        configurable: true
+    });
+    return class_1;
 }());
-var buildCircle = function (spinner, duration, index, total) {
-    var data = spinner.fn(duration, index, total);
-    data.style['animation-duration'] = duration + "ms";
-    return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("svg", { viewBox: "0 0 64 64", style: data.style }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("circle", { transform: "translate(32,32)", r: data.r })));
-};
-var buildLine = function (spinner, duration, index, total) {
-    var data = spinner.fn(duration, index, total);
-    data.style['animation-duration'] = duration + "ms";
-    return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("svg", { viewBox: "0 0 64 64", style: data.style }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("line", { transform: "translate(32,32)", y1: data.y1, y2: data.y2 })));
+var setPaneClass = function (el, isMain) {
+    var toAdd;
+    var toRemove;
+    if (isMain) {
+        toAdd = SPLIT_PANE_MAIN;
+        toRemove = SPLIT_PANE_SIDE;
+    }
+    else {
+        toAdd = SPLIT_PANE_SIDE;
+        toRemove = SPLIT_PANE_MAIN;
+    }
+    var classList = el.classList;
+    classList.add(toAdd);
+    classList.remove(toRemove);
 };
 
 

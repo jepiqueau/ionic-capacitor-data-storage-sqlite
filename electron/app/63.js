@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[63],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-select_3-ios.entry.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-select_3-ios.entry.js ***!
-  \*************************************************************************/
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-select_3-md.entry.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-select_3-md.entry.js ***!
+  \************************************************************************/
 /*! exports provided: ion_select, ion_select_option, ion_select_popover */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -13,25 +13,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_select_option", function() { return SelectOption; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_select_popover", function() { return SelectPopover; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
-/* harmony import */ var _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chunk-d83bfeae.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-d83bfeae.js");
-/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
-/* harmony import */ var _chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chunk-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-c90aaa66.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
+/* harmony import */ var _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./overlays-6ea64c21.js */ "./node_modules/@ionic/core/dist/esm-es5/overlays-6ea64c21.js");
+/* harmony import */ var _theme_353a032e_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./theme-353a032e.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-353a032e.js");
+/* harmony import */ var _helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-c90aaa66.js");
+/* harmony import */ var _watch_options_56e2e31f_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./watch-options-56e2e31f.js */ "./node_modules/@ionic/core/dist/esm-es5/watch-options-56e2e31f.js");
 
 
 
 
 
 
-/**
- * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
- */
+
 var Select = /** @class */ (function () {
-    function Select(hostRef) {
+    function class_1(hostRef) {
         var _this = this;
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
-        this.childOpts = [];
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.inputId = "ion-sel-" + selectIds++;
         this.didInit = false;
         this.isExpanded = false;
@@ -77,79 +75,63 @@ var Select = /** @class */ (function () {
         this.onBlur = function () {
             _this.ionBlur.emit();
         };
-        this.ionChange = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionChange", 7);
-        this.ionCancel = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionCancel", 7);
-        this.ionFocus = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
-        this.ionStyle = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionStyle", 7);
+        this.ionChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionChange", 7);
+        this.ionCancel = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionCancel", 7);
+        this.ionFocus = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
+        this.ionBlur = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
+        this.ionStyle = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionStyle", 7);
     }
-    Select.prototype.disabledChanged = function () {
+    class_1.prototype.disabledChanged = function () {
         this.emitStyle();
     };
-    Select.prototype.valueChanged = function () {
+    class_1.prototype.valueChanged = function () {
+        this.updateOptions();
+        this.emitStyle();
         if (this.didInit) {
-            this.updateOptions();
             this.ionChange.emit({
                 value: this.value,
             });
-            this.emitStyle();
         }
     };
-    Select.prototype.selectOptionChanged = function () {
+    class_1.prototype.connectedCallback = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var checked, checked;
+            var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadOptions()];
-                    case 1:
-                        _a.sent();
-                        if (this.didInit) {
-                            this.updateOptions();
-                            this.updateOverlayOptions();
-                            this.emitStyle();
-                            /**
-                             * In the event that options
-                             * are not loaded at component load
-                             * this ensures that any value that is
-                             * set is properly rendered once
-                             * options have been loaded
-                             */
-                            if (this.value !== undefined) {
-                                this.el.forceUpdate();
-                            }
+                if (this.value === undefined) {
+                    if (this.multiple) {
+                        checked = this.childOpts.filter(function (o) { return o.selected; });
+                        this.value = checked.map(function (o) { return getOptionValue(o); });
+                    }
+                    else {
+                        checked = this.childOpts.find(function (o) { return o.selected; });
+                        if (checked) {
+                            this.value = getOptionValue(checked);
                         }
-                        return [2 /*return*/];
+                    }
                 }
+                this.updateOptions();
+                this.updateOverlayOptions();
+                this.emitStyle();
+                this.mutationO = Object(_watch_options_56e2e31f_js__WEBPACK_IMPORTED_MODULE_6__["w"])(this.el, 'ion-select-option', function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                        this.updateOptions();
+                        this.updateOverlayOptions();
+                        return [2 /*return*/];
+                    });
+                }); });
+                return [2 /*return*/];
             });
         });
     };
-    Select.prototype.componentDidLoad = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var checked, checked;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadOptions()];
-                    case 1:
-                        _a.sent();
-                        if (this.value === undefined) {
-                            if (this.multiple) {
-                                checked = this.childOpts.filter(function (o) { return o.selected; });
-                                this.value = checked.map(function (o) { return o.value; });
-                            }
-                            else {
-                                checked = this.childOpts.find(function (o) { return o.selected; });
-                                if (checked) {
-                                    this.value = checked.value;
-                                }
-                            }
-                        }
-                        this.updateOptions();
-                        this.emitStyle();
-                        this.el.forceUpdate();
-                        this.didInit = true;
-                        return [2 /*return*/];
-                }
-            });
-        });
+    class_1.prototype.disconnectedCallback = function () {
+        if (this.mutationO) {
+            this.mutationO.disconnect();
+            this.mutationO = undefined;
+        }
+    };
+    class_1.prototype.componentDidLoad = function () {
+        this.didInit = true;
     };
     /**
      * Open the select overlay. The overlay is either an alert, action sheet, or popover,
@@ -157,7 +139,7 @@ var Select = /** @class */ (function () {
      *
      * @param event The user interface event that called the open.
      */
-    Select.prototype.open = function (event) {
+    class_1.prototype.open = function (event) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var overlay, _a;
             var _this = this;
@@ -185,7 +167,7 @@ var Select = /** @class */ (function () {
             });
         });
     };
-    Select.prototype.createOverlay = function (ev) {
+    class_1.prototype.createOverlay = function (ev) {
         var selectInterface = this.interface;
         if ((selectInterface === 'action-sheet' || selectInterface === 'popover') && this.multiple) {
             console.warn("Select interface cannot be \"" + selectInterface + "\" with a multi-value select. Using the \"alert\" interface instead.");
@@ -203,35 +185,36 @@ var Select = /** @class */ (function () {
         }
         return this.openAlert();
     };
-    Select.prototype.updateOverlayOptions = function () {
-        if (!this.overlay) {
+    class_1.prototype.updateOverlayOptions = function () {
+        var overlay = this.overlay;
+        if (!overlay) {
             return;
         }
-        var overlay = this.overlay;
+        var childOpts = this.childOpts;
         switch (this.interface) {
             case 'action-sheet':
-                overlay.buttons = this.createActionSheetButtons(this.childOpts);
+                overlay.buttons = this.createActionSheetButtons(childOpts);
                 break;
             case 'popover':
                 var popover = overlay.querySelector('ion-select-popover');
                 if (popover) {
-                    popover.options = this.createPopoverOptions(this.childOpts);
+                    popover.options = this.createPopoverOptions(childOpts);
                 }
                 break;
-            default:
+            case 'alert':
                 var inputType = (this.multiple ? 'checkbox' : 'radio');
-                overlay.inputs = this.createAlertInputs(this.childOpts, inputType);
+                overlay.inputs = this.createAlertInputs(childOpts, inputType);
                 break;
         }
     };
-    Select.prototype.createActionSheetButtons = function (data) {
+    class_1.prototype.createActionSheetButtons = function (data) {
         var _this = this;
         var actionSheetButtons = data.map(function (option) {
             return {
                 role: (option.selected ? 'selected' : ''),
                 text: option.textContent,
                 handler: function () {
-                    _this.value = option.value;
+                    _this.value = getOptionValue(option);
                 }
             };
         });
@@ -245,38 +228,39 @@ var Select = /** @class */ (function () {
         });
         return actionSheetButtons;
     };
-    Select.prototype.createAlertInputs = function (data, inputType) {
+    class_1.prototype.createAlertInputs = function (data, inputType) {
         return data.map(function (o) {
             return {
                 type: inputType,
                 label: o.textContent,
-                value: o.value,
+                value: getOptionValue(o),
                 checked: o.selected,
                 disabled: o.disabled
             };
         });
     };
-    Select.prototype.createPopoverOptions = function (data) {
+    class_1.prototype.createPopoverOptions = function (data) {
         var _this = this;
         return data.map(function (o) {
+            var value = getOptionValue(o);
             return {
                 text: o.textContent,
-                value: o.value,
+                value: value,
                 checked: o.selected,
                 disabled: o.disabled,
                 handler: function () {
-                    _this.value = o.value;
+                    _this.value = value;
                     _this.close();
                 }
             };
         });
     };
-    Select.prototype.openPopover = function (ev) {
+    class_1.prototype.openPopover = function (ev) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var interfaceOptions, mode, popoverOpts;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 interfaceOptions = this.interfaceOptions;
-                mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+                mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
                 popoverOpts = Object.assign({ mode: mode }, interfaceOptions, { component: 'ion-select-popover', cssClass: ['select-popover', interfaceOptions.cssClass], event: ev, componentProps: {
                         header: interfaceOptions.header,
                         subHeader: interfaceOptions.subHeader,
@@ -284,22 +268,22 @@ var Select = /** @class */ (function () {
                         value: this.value,
                         options: this.createPopoverOptions(this.childOpts)
                     } });
-                return [2 /*return*/, _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["c"].create(popoverOpts)];
+                return [2 /*return*/, _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["c"].create(popoverOpts)];
             });
         });
     };
-    Select.prototype.openActionSheet = function () {
+    class_1.prototype.openActionSheet = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var mode, interfaceOptions, actionSheetOpts;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+                mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
                 interfaceOptions = this.interfaceOptions;
                 actionSheetOpts = Object.assign({ mode: mode }, interfaceOptions, { buttons: this.createActionSheetButtons(this.childOpts), cssClass: ['select-action-sheet', interfaceOptions.cssClass] });
-                return [2 /*return*/, _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["b"].create(actionSheetOpts)];
+                return [2 /*return*/, _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["b"].create(actionSheetOpts)];
             });
         });
     };
-    Select.prototype.openAlert = function () {
+    class_1.prototype.openAlert = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var label, labelText, interfaceOptions, inputType, mode, alertOpts;
             var _this = this;
@@ -308,7 +292,7 @@ var Select = /** @class */ (function () {
                 labelText = (label) ? label.textContent : null;
                 interfaceOptions = this.interfaceOptions;
                 inputType = (this.multiple ? 'checkbox' : 'radio');
-                mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+                mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
                 alertOpts = Object.assign({ mode: mode }, interfaceOptions, { header: interfaceOptions.header ? interfaceOptions.header : labelText, inputs: this.createAlertInputs(this.childOpts, inputType), buttons: [
                         {
                             text: this.cancelText,
@@ -325,68 +309,62 @@ var Select = /** @class */ (function () {
                         }
                     ], cssClass: ['select-alert', interfaceOptions.cssClass,
                         (this.multiple ? 'multiple-select-alert' : 'single-select-alert')] });
-                return [2 /*return*/, _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["a"].create(alertOpts)];
+                return [2 /*return*/, _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["a"].create(alertOpts)];
             });
         });
     };
     /**
      * Close the select interface.
      */
-    Select.prototype.close = function () {
+    class_1.prototype.close = function () {
         // TODO check !this.overlay || !this.isFocus()
         if (!this.overlay) {
             return Promise.resolve(false);
         }
         return this.overlay.dismiss();
     };
-    Select.prototype.loadOptions = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, Promise.all(Array.from(this.el.querySelectorAll('ion-select-option')).map(function (o) { return o.componentOnReady(); }))];
-                    case 1:
-                        _a.childOpts = _b.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Select.prototype.updateOptions = function () {
+    class_1.prototype.updateOptions = function () {
         // iterate all options, updating the selected prop
         var canSelect = true;
-        for (var _i = 0, _a = this.childOpts; _i < _a.length; _i++) {
-            var selectOption = _a[_i];
-            var selected = canSelect && isOptionSelected(this.value, selectOption.value, this.compareWith);
+        var _a = this, value = _a.value, childOpts = _a.childOpts, compareWith = _a.compareWith, multiple = _a.multiple;
+        for (var _i = 0, childOpts_1 = childOpts; _i < childOpts_1.length; _i++) {
+            var selectOption = childOpts_1[_i];
+            var optValue = getOptionValue(selectOption);
+            var selected = canSelect && isOptionSelected(value, optValue, compareWith);
             selectOption.selected = selected;
             // if current option is selected and select is single-option, we can't select
             // any option more
-            if (selected && !this.multiple) {
+            if (selected && !multiple) {
                 canSelect = false;
             }
         }
     };
-    Select.prototype.getLabel = function () {
-        return Object(_chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this.el);
+    class_1.prototype.getLabel = function () {
+        return Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this.el);
     };
-    Select.prototype.hasValue = function () {
+    class_1.prototype.hasValue = function () {
         return this.getText() !== '';
     };
-    Select.prototype.getText = function () {
+    Object.defineProperty(class_1.prototype, "childOpts", {
+        get: function () {
+            return Array.from(this.el.querySelectorAll('ion-select-option'));
+        },
+        enumerable: true,
+        configurable: true
+    });
+    class_1.prototype.getText = function () {
         var selectedText = this.selectedText;
         if (selectedText != null && selectedText !== '') {
             return selectedText;
         }
         return generateText(this.childOpts, this.value, this.compareWith);
     };
-    Select.prototype.setFocus = function () {
+    class_1.prototype.setFocus = function () {
         if (this.buttonEl) {
             this.buttonEl.focus();
         }
     };
-    Select.prototype.emitStyle = function () {
+    class_1.prototype.emitStyle = function () {
         this.ionStyle.emit({
             'interactive': true,
             'select': true,
@@ -396,13 +374,13 @@ var Select = /** @class */ (function () {
             'select-disabled': this.disabled
         });
     };
-    Select.prototype.render = function () {
+    class_1.prototype.render = function () {
         var _a;
         var _this = this;
         var _b = this, placeholder = _b.placeholder, name = _b.name, disabled = _b.disabled, isExpanded = _b.isExpanded, value = _b.value, el = _b.el;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         var labelId = this.inputId + '-lbl';
-        var label = Object(_chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(el);
+        var label = Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["f"])(el);
         if (label) {
             label.id = labelId;
         }
@@ -412,39 +390,46 @@ var Select = /** @class */ (function () {
             selectText = placeholder;
             addPlaceholderClass = true;
         }
-        Object(_chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["r"])(true, el, name, parseValue(value), disabled);
+        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_5__["r"])(true, el, name, parseValue(value), disabled);
         var selectTextClasses = {
             'select-text': true,
             'select-placeholder': addPlaceholderClass
         };
-        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "combobox", "aria-haspopup": "dialog", "aria-disabled": disabled ? 'true' : null, "aria-expanded": "" + isExpanded, "aria-labelledby": labelId, class: (_a = {},
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "combobox", "aria-haspopup": "dialog", "aria-disabled": disabled ? 'true' : null, "aria-expanded": "" + isExpanded, "aria-labelledby": labelId, class: (_a = {},
                 _a[mode] = true,
-                _a['in-item'] = Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_4__["h"])('ion-item', el),
+                _a['in-item'] = Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_4__["h"])('ion-item', el),
                 _a['select-disabled'] = disabled,
-                _a) }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: selectTextClasses }, selectText), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "select-icon", role: "presentation" }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "select-icon-inner" })), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled, ref: (function (btnEl) { return _this.buttonEl = btnEl; }) })));
+                _a) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: selectTextClasses }, selectText), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "select-icon", role: "presentation" }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "select-icon-inner" })), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled, ref: (function (btnEl) { return _this.buttonEl = btnEl; }) })));
     };
-    Object.defineProperty(Select.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Select, "watchers", {
+    Object.defineProperty(class_1, "watchers", {
         get: function () {
             return {
                 "disabled": ["disabledChanged"],
+                "placeholder": ["disabledChanged"],
                 "value": ["valueChanged"]
             };
         },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Select, "style", {
-        get: function () { return ":host{padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;font-family:var(--ion-font-family,inherit);overflow:hidden;z-index:2}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}:host(.in-item){position:static;max-width:45%}:host(.select-disabled){opacity:.4;pointer-events:none}:host(.ion-focused) button{border:2px solid #5e9ed6}.select-placeholder{color:currentColor;opacity:.33}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.select-icon{position:relative}.select-text{-ms-flex:1;flex:1;min-width:16px;font-size:inherit;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.select-icon-inner{left:5px;top:50%;margin-top:-3px;position:absolute;width:0;height:0;border-top:5px solid;border-right:5px solid transparent;border-left:5px solid transparent;color:currentColor;opacity:.33;pointer-events:none}:host-context([dir=rtl]) .select-icon-inner,[dir=rtl] .select-icon-inner{left:unset;right:unset;right:5px}:host{--padding-top:10px;--padding-end:8px;--padding-bottom:10px;--padding-start:16px}.select-icon{width:12px;height:18px}"; },
+    Object.defineProperty(class_1, "style", {
+        get: function () { return ":host{padding-left:var(--padding-start);padding-right:var(--padding-end);padding-top:var(--padding-top);padding-bottom:var(--padding-bottom);display:-ms-flexbox;display:flex;position:relative;font-family:var(--ion-font-family,inherit);overflow:hidden;z-index:2}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host{padding-left:unset;padding-right:unset;-webkit-padding-start:var(--padding-start);padding-inline-start:var(--padding-start);-webkit-padding-end:var(--padding-end);padding-inline-end:var(--padding-end)}}:host(.in-item){position:static;max-width:45%}:host(.select-disabled){opacity:.4;pointer-events:none}:host(.ion-focused) button{border:2px solid #5e9ed6}.select-placeholder{color:currentColor;opacity:.33}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;width:100%;height:100%;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.select-icon{position:relative}.select-text{-ms-flex:1;flex:1;min-width:16px;font-size:inherit;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}.select-icon-inner{left:5px;top:50%;margin-top:-3px;position:absolute;width:0;height:0;border-top:5px solid;border-right:5px solid transparent;border-left:5px solid transparent;color:currentColor;opacity:.33;pointer-events:none}:host-context([dir=rtl]) .select-icon-inner,[dir=rtl] .select-icon-inner{left:unset;right:unset;right:5px}:host{--padding-top:10px;--padding-end:0;--padding-bottom:11px;--padding-start:16px}.select-icon{width:19px;height:19px}"; },
         enumerable: true,
         configurable: true
     });
-    return Select;
+    return class_1;
 }());
+var getOptionValue = function (el) {
+    var value = el.value;
+    return (value === undefined)
+        ? el.textContent || ''
+        : value;
+};
 var parseValue = function (value) {
     if (value == null) {
         return undefined;
@@ -492,7 +477,7 @@ var generateText = function (opts, value, compareWith) {
 };
 var textForValue = function (opts, value, compareWith) {
     var selectOpt = opts.find(function (opt) {
-        return compareOptions(opt.value, value, compareWith);
+        return compareOptions(getOptionValue(opt), value, compareWith);
     });
     return selectOpt
         ? selectOpt.textContent
@@ -500,8 +485,8 @@ var textForValue = function (opts, value, compareWith) {
 };
 var selectIds = 0;
 var SelectOption = /** @class */ (function () {
-    function SelectOption(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    function class_2(hostRef) {
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.inputId = "ion-selopt-" + selectOptionIds++;
         /**
          * If `true`, the user cannot interact with the select option.
@@ -511,80 +496,45 @@ var SelectOption = /** @class */ (function () {
          * If `true`, the element is selected.
          */
         this.selected = false;
-        this.ionSelectOptionDidLoad = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionSelectOptionDidLoad", 7);
-        this.ionSelectOptionDidUnload = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionSelectOptionDidUnload", 7);
     }
-    SelectOption.prototype.componentWillLoad = function () {
-        if (this.value === undefined) {
-            this.value = this.el.textContent || '';
-        }
+    class_2.prototype.render = function () {
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { role: "option", id: this.inputId, class: Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this) }));
     };
-    SelectOption.prototype.componentDidLoad = function () {
-        this.ionSelectOptionDidLoad.emit();
-    };
-    SelectOption.prototype.componentDidUnload = function () {
-        this.ionSelectOptionDidUnload.emit();
-    };
-    SelectOption.prototype.hostData = function () {
-        var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        return {
-            'role': 'option',
-            'id': this.inputId,
-            class: (_a = {},
-                _a[mode] = true,
-                _a)
-        };
-    };
-    Object.defineProperty(SelectOption.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(class_2.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    SelectOption.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["H"], this.hostData()); };
-    Object.defineProperty(SelectOption, "style", {
+    Object.defineProperty(class_2, "style", {
         get: function () { return ":host{display:none}"; },
         enumerable: true,
         configurable: true
     });
-    return SelectOption;
+    return class_2;
 }());
 var selectOptionIds = 0;
-/**
- * @internal
- */
 var SelectPopover = /** @class */ (function () {
-    function SelectPopover(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    function class_3(hostRef) {
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         /** Array of options for the popover */
         this.options = [];
     }
-    SelectPopover.prototype.onSelect = function (ev) {
+    class_3.prototype.onSelect = function (ev) {
         var option = this.options.find(function (o) { return o.value === ev.target.value; });
         if (option) {
-            Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_3__["s"])(option.handler);
+            Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_3__["s"])(option.handler);
         }
     };
-    SelectPopover.prototype.hostData = function () {
-        var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        return {
-            class: (_a = {},
-                _a[mode] = true,
-                _a)
-        };
+    class_3.prototype.render = function () {
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { class: Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-list", null, this.header !== undefined && Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-list-header", null, this.header), (this.subHeader !== undefined || this.message !== undefined) &&
+            Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-item", null, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-label", { class: "ion-text-wrap" }, this.subHeader !== undefined && Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("h3", null, this.subHeader), this.message !== undefined && Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("p", null, this.message))), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-radio-group", null, this.options.map(function (option) { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-item", null, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-label", null, option.text), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-radio", { checked: option.checked, value: option.value, disabled: option.disabled })); })))));
     };
-    SelectPopover.prototype.__stencil_render = function () {
-        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-list", null, this.header !== undefined && Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-list-header", null, this.header), (this.subHeader !== undefined || this.message !== undefined) &&
-            Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-item", null, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-label", { "text-wrap": true }, this.subHeader !== undefined && Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("h3", null, this.subHeader), this.message !== undefined && Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("p", null, this.message))), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-radio-group", null, this.options.map(function (option) { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-item", null, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-label", null, option.text), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-radio", { checked: option.checked, value: option.value, disabled: option.disabled })); }))));
-    };
-    SelectPopover.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["H"], this.hostData(), this.__stencil_render()); };
-    Object.defineProperty(SelectPopover, "style", {
+    Object.defineProperty(class_3, "style", {
         get: function () { return ".sc-ion-select-popover-h ion-list.sc-ion-select-popover{margin-left:0;margin-right:0;margin-top:-1px;margin-bottom:-1px}.sc-ion-select-popover-h ion-label.sc-ion-select-popover, .sc-ion-select-popover-h ion-list-header.sc-ion-select-popover{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0}"; },
         enumerable: true,
         configurable: true
     });
-    return SelectPopover;
+    return class_3;
 }());
 
 

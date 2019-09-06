@@ -1,17 +1,17 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[68],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-split-pane-ios.entry.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-split-pane-ios.entry.js ***!
-  \***************************************************************************/
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-split-pane-md.entry.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-split-pane-md.entry.js ***!
+  \**************************************************************************/
 /*! exports provided: ion_split_pane */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_split_pane", function() { return SplitPane; });
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
 
 
 var SPLIT_PANE_MAIN = 'split-pane-main';
@@ -25,8 +25,8 @@ var QUERY = {
     'never': ''
 };
 var SplitPane = /** @class */ (function () {
-    function SplitPane(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+    function class_1(hostRef) {
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
         this.visible = false;
         /**
          * If `true`, the split pane will be hidden.
@@ -38,23 +38,23 @@ var SplitPane = /** @class */ (function () {
          * Can also be a boolean expression.
          */
         this.when = QUERY['lg'];
-        this.ionSplitPaneVisible = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionSplitPaneVisible", 7);
+        this.ionSplitPaneVisible = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionSplitPaneVisible", 7);
     }
-    SplitPane.prototype.visibleChanged = function (visible) {
+    class_1.prototype.visibleChanged = function (visible) {
         var detail = { visible: visible, isPane: this.isPane.bind(this) };
         this.ionSplitPaneVisible.emit(detail);
     };
-    SplitPane.prototype.componentDidLoad = function () {
+    class_1.prototype.connectedCallback = function () {
         this.styleChildren();
         this.updateState();
     };
-    SplitPane.prototype.componentDidUnload = function () {
+    class_1.prototype.disconnectedCallback = function () {
         if (this.rmL) {
             this.rmL();
             this.rmL = undefined;
         }
     };
-    SplitPane.prototype.updateState = function () {
+    class_1.prototype.updateState = function () {
         var _this = this;
         if (this.rmL) {
             this.rmL();
@@ -89,14 +89,14 @@ var SplitPane = /** @class */ (function () {
             this.visible = mediaList_1.matches;
         }
     };
-    SplitPane.prototype.isPane = function (element) {
+    class_1.prototype.isPane = function (element) {
         if (!this.visible) {
             return false;
         }
         return element.parentElement === this.el
             && element.classList.contains(SPLIT_PANE_SIDE);
     };
-    SplitPane.prototype.styleChildren = function () {
+    class_1.prototype.styleChildren = function () {
         var contentId = this.contentId;
         var children = this.el.children;
         var nu = this.el.childElementCount;
@@ -117,24 +117,22 @@ var SplitPane = /** @class */ (function () {
             console.warn('split pane does not have a specified main node');
         }
     };
-    SplitPane.prototype.hostData = function () {
+    class_1.prototype.render = function () {
         var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        return {
-            class: (_a = {},
+        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["H"], { class: (_a = {},
                 _a[mode] = true,
                 // Used internally for styling
                 _a["split-pane-" + mode] = true,
                 _a['split-pane-visible'] = this.visible,
-                _a)
-        };
+                _a) }));
     };
-    Object.defineProperty(SplitPane.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); },
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(SplitPane, "watchers", {
+    Object.defineProperty(class_1, "watchers", {
         get: function () {
             return {
                 "visible": ["visibleChanged"],
@@ -145,13 +143,12 @@ var SplitPane = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    SplitPane.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["H"], this.hostData()); };
-    Object.defineProperty(SplitPane, "style", {
-        get: function () { return "ion-split-pane{left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;contain:strict}.split-pane-visible>.split-pane-main,.split-pane-visible>.split-pane-side{left:0;right:0;top:0;bottom:0;position:relative;-ms-flex:1;flex:1;-webkit-box-shadow:none!important;box-shadow:none!important;z-index:0}.split-pane-visible>.split-pane-side:not(ion-menu),.split-pane-visible>ion-menu.split-pane-side.menu-enabled{display:-ms-flexbox;display:flex;-ms-flex-negative:0;flex-shrink:0}.split-pane-side:not(ion-menu){display:none}.split-pane-visible>.split-pane-side{-ms-flex-order:-1;order:-1}.split-pane-visible>.split-pane-side[side=end]{-ms-flex-order:1;order:1}.split-pane-ios{--border:0.55px solid var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-250,#c8c7cc)))}.split-pane-ios.split-pane-visible>.split-pane-side{min-width:270px;max-width:28%;border-right:var(--border);border-left:0}.split-pane-ios.split-pane-visible>.split-pane-side[side=end]{min-width:270px;max-width:28%;border-right:0;border-left:var(--border)}"; },
+    Object.defineProperty(class_1, "style", {
+        get: function () { return "ion-split-pane{left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;contain:strict}.split-pane-visible>.split-pane-main,.split-pane-visible>.split-pane-side{left:0;right:0;top:0;bottom:0;position:relative;-ms-flex:1;flex:1;-webkit-box-shadow:none!important;box-shadow:none!important;z-index:0}.split-pane-visible>.split-pane-side:not(ion-menu),.split-pane-visible>ion-menu.split-pane-side.menu-enabled{display:-ms-flexbox;display:flex;-ms-flex-negative:0;flex-shrink:0}.split-pane-side:not(ion-menu){display:none}.split-pane-visible>.split-pane-side{-ms-flex-order:-1;order:-1}.split-pane-visible>.split-pane-side[side=end]{-ms-flex-order:1;order:1}.split-pane-md{--border:1px solid var(--ion-item-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.13))))}.split-pane-md.split-pane-visible>.split-pane-side{min-width:270px;max-width:28%;border-right:var(--border);border-left:0}.split-pane-md.split-pane-visible>.split-pane-side[side=end]{min-width:270px;max-width:28%;border-right:0;border-left:var(--border)}"; },
         enumerable: true,
         configurable: true
     });
-    return SplitPane;
+    return class_1;
 }());
 var setPaneClass = function (el, isMain) {
     var toAdd;

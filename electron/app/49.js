@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[49],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-radio_2-ios.entry.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-radio_2-ios.entry.js ***!
-  \************************************************************************/
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-radio_2-md.entry.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-radio_2-md.entry.js ***!
+  \***********************************************************************/
 /*! exports provided: ion_radio, ion_radio_group */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11,21 +11,22 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio", function() { return Radio; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_radio_group", function() { return RadioGroup; });
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
-/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
-/* harmony import */ var _chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chunk-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-c90aaa66.js");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
+/* harmony import */ var _theme_353a032e_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./theme-353a032e.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-353a032e.js");
+/* harmony import */ var _helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-c90aaa66.js");
+/* harmony import */ var _watch_options_56e2e31f_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./watch-options-56e2e31f.js */ "./node_modules/@ionic/core/dist/esm-es5/watch-options-56e2e31f.js");
 
 
 
 
-/**
- * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
- */
+
+
 var Radio = /** @class */ (function () {
-    function Radio(hostRef) {
+    function class_1(hostRef) {
         var _this = this;
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.inputId = "ion-rb-" + radioButtonIds++;
         /**
          * The name of the control, which is submitted with the form data.
@@ -53,18 +54,16 @@ var Radio = /** @class */ (function () {
                 _this.checked = true;
             }
         };
-        this.ionRadioDidLoad = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRadioDidLoad", 7);
-        this.ionRadioDidUnload = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionRadioDidUnload", 7);
-        this.ionStyle = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionStyle", 7);
-        this.ionSelect = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionSelect", 7);
-        this.ionDeselect = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionDeselect", 7);
-        this.ionFocus = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionFocus", 7);
-        this.ionBlur = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionBlur", 7);
+        this.ionStyle = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionStyle", 7);
+        this.ionSelect = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionSelect", 7);
+        this.ionDeselect = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionDeselect", 7);
+        this.ionFocus = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionFocus", 7);
+        this.ionBlur = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionBlur", 7);
     }
-    Radio.prototype.colorChanged = function () {
+    class_1.prototype.colorChanged = function () {
         this.emitStyle();
     };
-    Radio.prototype.checkedChanged = function (isChecked) {
+    class_1.prototype.checkedChanged = function (isChecked) {
         if (isChecked) {
             this.ionSelect.emit({
                 checked: true,
@@ -73,44 +72,38 @@ var Radio = /** @class */ (function () {
         }
         this.emitStyle();
     };
-    Radio.prototype.disabledChanged = function () {
+    class_1.prototype.disabledChanged = function () {
         this.emitStyle();
     };
-    Radio.prototype.componentWillLoad = function () {
+    class_1.prototype.componentWillLoad = function () {
         if (this.value === undefined) {
             this.value = this.inputId;
         }
         this.emitStyle();
     };
-    Radio.prototype.componentDidLoad = function () {
-        this.ionRadioDidLoad.emit();
-    };
-    Radio.prototype.componentDidUnload = function () {
-        this.ionRadioDidUnload.emit();
-    };
-    Radio.prototype.emitStyle = function () {
+    class_1.prototype.emitStyle = function () {
         this.ionStyle.emit({
             'radio-checked': this.checked,
             'interactive-disabled': this.disabled,
         });
     };
-    Radio.prototype.render = function () {
+    class_1.prototype.render = function () {
         var _a;
         var _b = this, inputId = _b.inputId, disabled = _b.disabled, checked = _b.checked, color = _b.color, el = _b.el;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
+        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         var labelId = inputId + '-lbl';
-        var label = Object(_chunk_c90aaa66_js__WEBPACK_IMPORTED_MODULE_3__["f"])(el);
+        var label = Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["f"])(el);
         if (label) {
             label.id = labelId;
         }
-        return (Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["H"], { onClick: this.onClick, role: "radio", "aria-disabled": disabled ? 'true' : null, "aria-checked": "" + checked, "aria-labelledby": labelId, class: Object.assign({}, Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_2__["c"])(color), (_a = {}, _a[mode] = true, _a['in-item'] = Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_2__["h"])('ion-item', el), _a['interactive'] = true, _a['radio-checked'] = checked, _a['radio-disabled'] = disabled, _a)) }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-icon" }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("div", { class: "radio-inner" })), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled })));
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick, role: "radio", "aria-disabled": disabled ? 'true' : null, "aria-checked": "" + checked, "aria-labelledby": labelId, class: Object.assign({}, Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_3__["c"])(color), (_a = {}, _a[mode] = true, _a['in-item'] = Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_3__["h"])('ion-item', el), _a['interactive'] = true, _a['radio-checked'] = checked, _a['radio-disabled'] = disabled, _a)) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "radio-icon" }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "radio-inner" })), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", onFocus: this.onFocus, onBlur: this.onBlur, disabled: disabled })));
     };
-    Object.defineProperty(Radio.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); },
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Radio, "watchers", {
+    Object.defineProperty(class_1, "watchers", {
         get: function () {
             return {
                 "color": ["colorChanged"],
@@ -121,20 +114,20 @@ var Radio = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(Radio, "style", {
-        get: function () { return ":host{display:inline-block;position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.radio-disabled){pointer-events:none}.radio-icon{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;contain:layout size style}.radio-icon,button{width:100%;height:100%}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.radio-icon,.radio-inner{-webkit-box-sizing:border-box;box-sizing:border-box}:host{--color-checked:var(--ion-color-primary,#3880ff);width:15px;height:24px}:host(.ion-color.radio-checked) .radio-inner{border-color:var(--ion-color-base)}.item-radio.item-ios ion-label{margin-left:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.item-radio.item-ios ion-label{margin-left:unset;-webkit-margin-start:0;margin-inline-start:0}}.radio-inner{width:33%;height:50%}:host(.radio-checked) .radio-inner{-webkit-transform:rotate(45deg);transform:rotate(45deg);border-width:2px;border-top-width:0;border-left-width:0;border-style:solid;border-color:var(--color-checked)}:host(.radio-disabled){opacity:.3}:host(.ion-focused) .radio-icon:after{border-radius:50%;left:-9px;top:-8px;display:block;position:absolute;width:36px;height:36px;background:var(--ion-color-primary-tint,#4c8dff);content:\"\";opacity:.2}:host-context([dir=rtl]).ion-focused .radio-icon:after,:host-context([dir=rtl]):host(.ion-focused) .radio-icon:after{left:unset;right:unset;right:-9px}:host(.in-item){margin-left:8px;margin-right:11px;margin-top:8px;margin-bottom:8px;display:block;position:static}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item){margin-left:unset;margin-right:unset;-webkit-margin-start:8px;margin-inline-start:8px;-webkit-margin-end:11px;margin-inline-end:11px}}:host(.in-item[slot=start]){margin-left:3px;margin-right:21px;margin-top:8px;margin-bottom:8px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:3px;margin-inline-start:3px;-webkit-margin-end:21px;margin-inline-end:21px}}"; },
+    Object.defineProperty(class_1, "style", {
+        get: function () { return ":host{display:inline-block;position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:2}:host(.radio-disabled){pointer-events:none}.radio-icon{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;contain:layout size style}.radio-icon,button{width:100%;height:100%}button{left:0;top:0;margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;position:absolute;border:0;background:transparent;cursor:pointer;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none}:host-context([dir=rtl]) button,[dir=rtl] button{left:unset;right:unset;right:0}button::-moz-focus-inner{border:0}.radio-icon,.radio-inner{-webkit-box-sizing:border-box;box-sizing:border-box}:host{--color:var(--ion-color-step-400,#999);--color-checked:var(--ion-color-primary,#3880ff);--border-width:2px;--border-style:solid;width:20px;height:20px}:host(.ion-color) .radio-inner{background:var(--ion-color-base)}:host(.ion-color.radio-checked) .radio-icon{border-color:var(--ion-color-base)}.radio-icon{margin-left:0;margin-right:0;margin-top:0;margin-bottom:0;border-radius:50%;border-width:var(--border-width);border-style:var(--border-style);border-color:var(--color)}.radio-inner{border-radius:50%;width:calc(50% + var(--border-width));height:calc(50% + var(--border-width));-webkit-transform:scale3d(0,0,0);transform:scale3d(0,0,0);-webkit-transition:-webkit-transform .28s cubic-bezier(.4,0,.2,1);transition:-webkit-transform .28s cubic-bezier(.4,0,.2,1);transition:transform .28s cubic-bezier(.4,0,.2,1);transition:transform .28s cubic-bezier(.4,0,.2,1),-webkit-transform .28s cubic-bezier(.4,0,.2,1);background:var(--color-checked)}:host(.radio-checked) .radio-icon{border-color:var(--color-checked)}:host(.radio-checked) .radio-inner{-webkit-transform:scaleX(1);transform:scaleX(1)}:host(.radio-disabled){opacity:.3}:host(.ion-focused) .radio-icon:after{border-radius:50%;left:-12px;top:-12px;display:block;position:absolute;width:36px;height:36px;background:var(--ion-color-primary-tint,#4c8dff);content:\"\";opacity:.2}:host-context([dir=rtl]).ion-focused .radio-icon:after,:host-context([dir=rtl]):host(.ion-focused) .radio-icon:after{left:unset;right:unset;right:-12px}:host(.in-item){margin-left:0;margin-right:0;margin-top:9px;margin-bottom:9px;display:block;position:static}:host(.in-item[slot=start]){margin-left:4px;margin-right:36px;margin-top:11px;margin-bottom:10px}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){:host(.in-item[slot=start]){margin-left:unset;margin-right:unset;-webkit-margin-start:4px;margin-inline-start:4px;-webkit-margin-end:36px;margin-inline-end:36px}}"; },
         enumerable: true,
         configurable: true
     });
-    return Radio;
+    return class_1;
 }());
 var radioButtonIds = 0;
 var RadioGroup = /** @class */ (function () {
-    function RadioGroup(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["r"])(this, hostRef);
+    function class_2(hostRef) {
+        var _this = this;
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.inputId = "ion-rg-" + radioGroupIds++;
         this.labelId = this.inputId + "-lbl";
-        this.radios = [];
         /**
          * If `true`, the radios can be deselected.
          */
@@ -143,99 +136,123 @@ var RadioGroup = /** @class */ (function () {
          * The name of the control, which is submitted with the form data.
          */
         this.name = this.inputId;
-        this.ionChange = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["c"])(this, "ionChange", 7);
-    }
-    RadioGroup.prototype.valueChanged = function (value) {
-        this.updateRadios();
-        this.ionChange.emit({ value: value });
-    };
-    RadioGroup.prototype.onRadioDidLoad = function (ev) {
-        var radio = ev.target;
-        radio.name = this.name;
-        // add radio to internal list
-        this.radios.push(radio);
-        // this radio-group does not have a value
-        // but this radio is checked, so let's set the
-        // radio-group's value from the checked radio
-        if (this.value == null && radio.checked) {
-            this.value = radio.value;
-        }
-        else {
-            this.updateRadios();
-        }
-    };
-    RadioGroup.prototype.onRadioDidUnload = function (ev) {
-        var index = this.radios.indexOf(ev.target);
-        if (index > -1) {
-            this.radios.splice(index, 1);
-        }
-    };
-    RadioGroup.prototype.onRadioSelect = function (ev) {
-        var selectedRadio = ev.target;
-        if (selectedRadio) {
-            this.value = selectedRadio.value;
-        }
-    };
-    RadioGroup.prototype.onRadioDeselect = function (ev) {
-        if (this.allowEmptySelection) {
+        this.onSelect = function (ev) {
+            var selectedRadio = ev.target;
+            if (selectedRadio) {
+                _this.value = selectedRadio.value;
+            }
+        };
+        this.onDeselect = function (ev) {
             var selectedRadio = ev.target;
             if (selectedRadio) {
                 selectedRadio.checked = false;
-                this.value = undefined;
+                _this.value = undefined;
             }
-        }
-    };
-    RadioGroup.prototype.componentDidLoad = function () {
-        // Get the list header if it exists and set the id
-        // this is used to set aria-labelledby
-        var header = this.el.querySelector('ion-list-header');
-        if (!header) {
-            header = this.el.querySelector('ion-item-divider');
-        }
-        if (header) {
-            var label = header.querySelector('ion-label');
-            if (label) {
-                this.labelId = label.id = this.name + '-lbl';
-            }
-        }
-        this.updateRadios();
-    };
-    RadioGroup.prototype.updateRadios = function () {
-        var value = this.value;
-        var hasChecked = false;
-        for (var _i = 0, _a = this.radios; _i < _a.length; _i++) {
-            var radio = _a[_i];
-            if (!hasChecked && radio.value === value) {
-                // correct value for this radio
-                // but this radio isn't checked yet
-                // and we haven't found a checked yet
-                hasChecked = true;
-                radio.checked = true;
-            }
-            else {
-                // this radio doesn't have the correct value
-                // or the radio group has been already checked
-                radio.checked = false;
-            }
-        }
-    };
-    RadioGroup.prototype.hostData = function () {
-        var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["d"])(this);
-        return {
-            'role': 'radiogroup',
-            'aria-labelledby': this.labelId,
-            class: (_a = {},
-                _a[mode] = true,
-                _a)
         };
+        this.ionChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionChange", 7);
+    }
+    class_2.prototype.valueChanged = function (value) {
+        this.updateRadios();
+        this.ionChange.emit({ value: value });
     };
-    Object.defineProperty(RadioGroup.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["e"])(this); },
+    class_2.prototype.connectedCallback = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var el, header, label, radio;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        el = this.el;
+                        header = el.querySelector('ion-list-header') || el.querySelector('ion-item-divider');
+                        if (header) {
+                            label = header.querySelector('ion-label');
+                            if (label) {
+                                this.labelId = label.id = this.name + '-lbl';
+                            }
+                        }
+                        if (!(this.value === undefined)) return [3 /*break*/, 2];
+                        radio = Object(_watch_options_56e2e31f_js__WEBPACK_IMPORTED_MODULE_5__["f"])(el, 'ion-radio');
+                        if (!(radio !== undefined)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, radio.componentOnReady()];
+                    case 1:
+                        _a.sent();
+                        if (this.value === undefined) {
+                            this.value = radio.value;
+                        }
+                        _a.label = 2;
+                    case 2:
+                        this.mutationO = Object(_watch_options_56e2e31f_js__WEBPACK_IMPORTED_MODULE_5__["w"])(el, 'ion-radio', function (newOption) {
+                            if (newOption !== undefined) {
+                                newOption.componentOnReady().then(function () {
+                                    _this.value = newOption.value;
+                                });
+                            }
+                            else {
+                                _this.updateRadios();
+                            }
+                        });
+                        this.updateRadios();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    class_2.prototype.disconnectedCallback = function () {
+        if (this.mutationO) {
+            this.mutationO.disconnect();
+            this.mutationO = undefined;
+        }
+    };
+    class_2.prototype.updateRadios = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var value, radios, hasChecked, _i, radios_1, radio;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        value = this.value;
+                        return [4 /*yield*/, this.getRadios()];
+                    case 1:
+                        radios = _a.sent();
+                        hasChecked = false;
+                        // Walk the DOM in reverse order, since the last selected one wins!
+                        for (_i = 0, radios_1 = radios; _i < radios_1.length; _i++) {
+                            radio = radios_1[_i];
+                            if (!hasChecked && radio.value === value) {
+                                // correct value for this radio
+                                // but this radio isn't checked yet
+                                // and we haven't found a checked yet
+                                hasChecked = true;
+                                radio.checked = true;
+                            }
+                            else {
+                                // this radio doesn't have the correct value
+                                // or the radio group has been already checked
+                                radio.checked = false;
+                            }
+                        }
+                        // Reset value if
+                        if (!hasChecked) {
+                            this.value = undefined;
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    class_2.prototype.getRadios = function () {
+        return Promise.all(Array
+            .from(this.el.querySelectorAll('ion-radio'))
+            .map(function (r) { return r.componentOnReady(); }));
+    };
+    class_2.prototype.render = function () {
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { role: "radiogroup", "aria-labelledby": this.labelId, onIonSelect: this.onSelect, onIonDeselect: this.allowEmptySelection ? this.onDeselect : undefined, class: Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this) }));
+    };
+    Object.defineProperty(class_2.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Object.defineProperty(RadioGroup, "watchers", {
+    Object.defineProperty(class_2, "watchers", {
         get: function () {
             return {
                 "value": ["valueChanged"]
@@ -244,8 +261,7 @@ var RadioGroup = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
-    RadioGroup.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_0__["H"], this.hostData()); };
-    return RadioGroup;
+    return class_2;
 }());
 var radioGroupIds = 0;
 

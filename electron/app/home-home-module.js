@@ -4,7 +4,7 @@
 /*!**************************************************************************!*\
   !*** ./node_modules/@capacitor/core/dist/esm/core-plugin-definitions.js ***!
   \**************************************************************************/
-/*! exports provided: CameraSource, CameraDirection, CameraResultType, FilesystemDirectory, FilesystemEncoding, HapticsImpactStyle, HapticsNotificationType, ActionSheetOptionStyle, PhotosAlbumType, StatusBarStyle */
+/*! exports provided: CameraSource, CameraDirection, CameraResultType, FilesystemDirectory, FilesystemEncoding, HapticsImpactStyle, HapticsNotificationType, KeyboardStyle, KeyboardResize, ActionSheetOptionStyle, PermissionType, PhotosAlbumType, StatusBarStyle */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16,7 +16,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilesystemEncoding", function() { return FilesystemEncoding; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HapticsImpactStyle", function() { return HapticsImpactStyle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HapticsNotificationType", function() { return HapticsNotificationType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KeyboardStyle", function() { return KeyboardStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KeyboardResize", function() { return KeyboardResize; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionSheetOptionStyle", function() { return ActionSheetOptionStyle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PermissionType", function() { return PermissionType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PhotosAlbumType", function() { return PhotosAlbumType; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatusBarStyle", function() { return StatusBarStyle; });
 var CameraSource;
@@ -81,12 +84,34 @@ var HapticsNotificationType;
     HapticsNotificationType["WARNING"] = "WARNING";
     HapticsNotificationType["ERROR"] = "ERROR";
 })(HapticsNotificationType || (HapticsNotificationType = {}));
+var KeyboardStyle;
+(function (KeyboardStyle) {
+    KeyboardStyle["Dark"] = "DARK";
+    KeyboardStyle["Light"] = "LIGHT";
+})(KeyboardStyle || (KeyboardStyle = {}));
+var KeyboardResize;
+(function (KeyboardResize) {
+    KeyboardResize["Body"] = "body";
+    KeyboardResize["Ionic"] = "ionic";
+    KeyboardResize["Native"] = "native";
+    KeyboardResize["None"] = "none";
+})(KeyboardResize || (KeyboardResize = {}));
 var ActionSheetOptionStyle;
 (function (ActionSheetOptionStyle) {
     ActionSheetOptionStyle["Default"] = "DEFAULT";
     ActionSheetOptionStyle["Destructive"] = "DESTRUCTIVE";
     ActionSheetOptionStyle["Cancel"] = "CANCEL";
 })(ActionSheetOptionStyle || (ActionSheetOptionStyle = {}));
+//
+var PermissionType;
+(function (PermissionType) {
+    PermissionType["Camera"] = "camera";
+    PermissionType["Photos"] = "photos";
+    PermissionType["Geolocation"] = "geolocation";
+    PermissionType["Notifications"] = "notifications";
+    PermissionType["ClipboardRead"] = "clipboard-read";
+    PermissionType["ClipboardWrite"] = "clipboard-write";
+})(PermissionType || (PermissionType = {}));
 var PhotosAlbumType;
 (function (PhotosAlbumType) {
     /**
@@ -132,12 +157,15 @@ __webpack_require__.r(__webpack_exports__);
 
 // Create our default Capacitor instance, which will be
 // overridden on native platforms
-var Capacitor = new _web_runtime__WEBPACK_IMPORTED_MODULE_0__["CapacitorWeb"]();
-Capacitor = window.Capacitor || Capacitor;
-// Export window.Capacitor if not available already (ex: web)
-if (!window.Capacitor) {
-    window.Capacitor = Capacitor;
-}
+var Capacitor = (function (globalThis) {
+    // Create a new CapacitorWeb instance if one doesn't already exist on globalThis
+    // Ensure the global is assigned the same Capacitor instance,
+    // then export Capacitor so it can be imported in other modules
+    return globalThis.Capacitor = (globalThis.Capacitor || new _web_runtime__WEBPACK_IMPORTED_MODULE_0__["CapacitorWeb"]());
+})(
+// figure out the current globalThis, such as "window", "self" or "global"
+// ensure errors are not thrown in an node SSR environment or web worker
+typeof self !== 'undefined' ? self : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : {});
 var Plugins = Capacitor.Plugins;
 
 //# sourceMappingURL=global.js.map
@@ -148,7 +176,7 @@ var Plugins = Capacitor.Plugins;
 /*!********************************************************!*\
   !*** ./node_modules/@capacitor/core/dist/esm/index.js ***!
   \********************************************************/
-/*! exports provided: CameraSource, CameraDirection, CameraResultType, FilesystemDirectory, FilesystemEncoding, HapticsImpactStyle, HapticsNotificationType, ActionSheetOptionStyle, PhotosAlbumType, StatusBarStyle, Capacitor, Plugins, registerWebPlugin, WebPluginRegistry, WebPlugins, WebPlugin, mergeWebPlugins, mergeWebPlugin, AccessibilityPluginWeb, Accessibility, AppPluginWeb, App, BrowserPluginWeb, Browser, CameraPluginWeb, Camera, ClipboardPluginWeb, Clipboard, FilesystemPluginWeb, Filesystem, GeolocationPluginWeb, Geolocation, DevicePluginWeb, Device, LocalNotificationsPluginWeb, LocalNotifications, SharePluginWeb, Share, ModalsPluginWeb, Modals, MotionPluginWeb, Motion, NetworkPluginWeb, Network, SplashScreenPluginWeb, SplashScreen, StoragePluginWeb, Storage, ToastPluginWeb, Toast */
+/*! exports provided: CameraSource, CameraDirection, CameraResultType, FilesystemDirectory, FilesystemEncoding, HapticsImpactStyle, HapticsNotificationType, KeyboardStyle, KeyboardResize, ActionSheetOptionStyle, PermissionType, PhotosAlbumType, StatusBarStyle, Capacitor, Plugins, registerWebPlugin, WebPluginRegistry, WebPlugins, WebPlugin, mergeWebPlugins, mergeWebPlugin, AccessibilityPluginWeb, Accessibility, AppPluginWeb, App, BrowserPluginWeb, Browser, CameraPluginWeb, Camera, ClipboardPluginWeb, Clipboard, FilesystemPluginWeb, Filesystem, GeolocationPluginWeb, Geolocation, DevicePluginWeb, Device, LocalNotificationsPluginWeb, LocalNotifications, SharePluginWeb, Share, ModalsPluginWeb, Modals, MotionPluginWeb, Motion, NetworkPluginWeb, Network, PermissionsPluginWeb, Permissions, SplashScreenPluginWeb, SplashScreen, StoragePluginWeb, Storage, ToastPluginWeb, Toast */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -168,7 +196,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HapticsNotificationType", function() { return _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_0__["HapticsNotificationType"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "KeyboardStyle", function() { return _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_0__["KeyboardStyle"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "KeyboardResize", function() { return _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_0__["KeyboardResize"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ActionSheetOptionStyle", function() { return _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_0__["ActionSheetOptionStyle"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PermissionType", function() { return _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_0__["PermissionType"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PhotosAlbumType", function() { return _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_0__["PhotosAlbumType"]; });
 
@@ -233,6 +267,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NetworkPluginWeb", function() { return _web_plugins__WEBPACK_IMPORTED_MODULE_2__["NetworkPluginWeb"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Network", function() { return _web_plugins__WEBPACK_IMPORTED_MODULE_2__["Network"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PermissionsPluginWeb", function() { return _web_plugins__WEBPACK_IMPORTED_MODULE_2__["PermissionsPluginWeb"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Permissions", function() { return _web_plugins__WEBPACK_IMPORTED_MODULE_2__["Permissions"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SplashScreenPluginWeb", function() { return _web_plugins__WEBPACK_IMPORTED_MODULE_2__["SplashScreenPluginWeb"]; });
 
@@ -306,7 +344,7 @@ var uuid4 = function () {
 /*!**************************************************************!*\
   !*** ./node_modules/@capacitor/core/dist/esm/web-plugins.js ***!
   \**************************************************************/
-/*! exports provided: registerWebPlugin, AccessibilityPluginWeb, Accessibility, AppPluginWeb, App, BrowserPluginWeb, Browser, CameraPluginWeb, Camera, ClipboardPluginWeb, Clipboard, FilesystemPluginWeb, Filesystem, GeolocationPluginWeb, Geolocation, DevicePluginWeb, Device, LocalNotificationsPluginWeb, LocalNotifications, SharePluginWeb, Share, ModalsPluginWeb, Modals, MotionPluginWeb, Motion, NetworkPluginWeb, Network, SplashScreenPluginWeb, SplashScreen, StoragePluginWeb, Storage, ToastPluginWeb, Toast */
+/*! exports provided: registerWebPlugin, AccessibilityPluginWeb, Accessibility, AppPluginWeb, App, BrowserPluginWeb, Browser, CameraPluginWeb, Camera, ClipboardPluginWeb, Clipboard, FilesystemPluginWeb, Filesystem, GeolocationPluginWeb, Geolocation, DevicePluginWeb, Device, LocalNotificationsPluginWeb, LocalNotifications, SharePluginWeb, Share, ModalsPluginWeb, Modals, MotionPluginWeb, Motion, NetworkPluginWeb, Network, PermissionsPluginWeb, Permissions, SplashScreenPluginWeb, SplashScreen, StoragePluginWeb, Storage, ToastPluginWeb, Toast */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -379,20 +417,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Network", function() { return _web_network__WEBPACK_IMPORTED_MODULE_14__["Network"]; });
 
-/* harmony import */ var _web_splash_screen__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./web/splash-screen */ "./node_modules/@capacitor/core/dist/esm/web/splash-screen.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SplashScreenPluginWeb", function() { return _web_splash_screen__WEBPACK_IMPORTED_MODULE_15__["SplashScreenPluginWeb"]; });
+/* harmony import */ var _web_permissions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./web/permissions */ "./node_modules/@capacitor/core/dist/esm/web/permissions.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PermissionsPluginWeb", function() { return _web_permissions__WEBPACK_IMPORTED_MODULE_15__["PermissionsPluginWeb"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SplashScreen", function() { return _web_splash_screen__WEBPACK_IMPORTED_MODULE_15__["SplashScreen"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Permissions", function() { return _web_permissions__WEBPACK_IMPORTED_MODULE_15__["Permissions"]; });
 
-/* harmony import */ var _web_storage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./web/storage */ "./node_modules/@capacitor/core/dist/esm/web/storage.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "StoragePluginWeb", function() { return _web_storage__WEBPACK_IMPORTED_MODULE_16__["StoragePluginWeb"]; });
+/* harmony import */ var _web_splash_screen__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./web/splash-screen */ "./node_modules/@capacitor/core/dist/esm/web/splash-screen.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SplashScreenPluginWeb", function() { return _web_splash_screen__WEBPACK_IMPORTED_MODULE_16__["SplashScreenPluginWeb"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Storage", function() { return _web_storage__WEBPACK_IMPORTED_MODULE_16__["Storage"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SplashScreen", function() { return _web_splash_screen__WEBPACK_IMPORTED_MODULE_16__["SplashScreen"]; });
 
-/* harmony import */ var _web_toast__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./web/toast */ "./node_modules/@capacitor/core/dist/esm/web/toast.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ToastPluginWeb", function() { return _web_toast__WEBPACK_IMPORTED_MODULE_17__["ToastPluginWeb"]; });
+/* harmony import */ var _web_storage__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./web/storage */ "./node_modules/@capacitor/core/dist/esm/web/storage.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "StoragePluginWeb", function() { return _web_storage__WEBPACK_IMPORTED_MODULE_17__["StoragePluginWeb"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Toast", function() { return _web_toast__WEBPACK_IMPORTED_MODULE_17__["Toast"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Storage", function() { return _web_storage__WEBPACK_IMPORTED_MODULE_17__["Storage"]; });
+
+/* harmony import */ var _web_toast__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./web/toast */ "./node_modules/@capacitor/core/dist/esm/web/toast.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ToastPluginWeb", function() { return _web_toast__WEBPACK_IMPORTED_MODULE_18__["ToastPluginWeb"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Toast", function() { return _web_toast__WEBPACK_IMPORTED_MODULE_18__["Toast"]; });
+
 
 
 
@@ -551,7 +595,9 @@ var AppPluginWeb = /** @class */ (function (_super) {
             name: 'App',
             platforms: ['web']
         }) || this;
-        document.addEventListener('visibilitychange', _this.handleVisibilityChange.bind(_this), false);
+        if (typeof document !== 'undefined') {
+            document.addEventListener('visibilitychange', _this.handleVisibilityChange.bind(_this), false);
+        }
         return _this;
     }
     AppPluginWeb.prototype.exitApp = function () {
@@ -1063,7 +1109,10 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
     FilesystemPluginWeb.prototype.getPath = function (directory, uriPath) {
         directory = directory || this.DEFAULT_DIRECTORY;
         var cleanedUriPath = uriPath !== undefined ? uriPath.replace(/^[/]+|[/]+$/g, '') : '';
-        return '/' + directory + '/' + cleanedUriPath;
+        var fsPath = '/' + directory;
+        if (uriPath !== '')
+            fsPath += '/' + cleanedUriPath;
+        return fsPath;
     };
     FilesystemPluginWeb.prototype.clear = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -1110,25 +1159,30 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
      */
     FilesystemPluginWeb.prototype.writeFile = function (options) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var path, data, parentPath, parentEntry, subDirIndex, parentArgPath, now, pathObj;
+            var path, data, occupiedEntry, parentPath, parentEntry, subDirIndex, parentArgPath, now, pathObj;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         path = this.getPath(options.directory, options.path);
                         data = options.data;
+                        return [4 /*yield*/, this.dbRequest('get', [path])];
+                    case 1:
+                        occupiedEntry = _a.sent();
+                        if (occupiedEntry && occupiedEntry.type === 'directory')
+                            throw ('The supplied path is a directory.');
                         parentPath = path.substr(0, path.lastIndexOf('/'));
                         return [4 /*yield*/, this.dbRequest('get', [parentPath])];
-                    case 1:
+                    case 2:
                         parentEntry = _a.sent();
-                        if (!(parentEntry === undefined)) return [3 /*break*/, 3];
+                        if (!(parentEntry === undefined)) return [3 /*break*/, 4];
                         subDirIndex = parentPath.indexOf('/', 1);
-                        if (!(subDirIndex !== -1)) return [3 /*break*/, 3];
+                        if (!(subDirIndex !== -1)) return [3 /*break*/, 4];
                         parentArgPath = parentPath.substr(subDirIndex);
                         return [4 /*yield*/, this.mkdir({ path: parentArgPath, directory: options.directory, createIntermediateDirectories: true })];
-                    case 2:
-                        _a.sent();
-                        _a.label = 3;
                     case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4:
                         now = Date.now();
                         pathObj = {
                             path: path,
@@ -1140,7 +1194,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                             content: data
                         };
                         return [4 /*yield*/, this.dbRequest('put', [pathObj])];
-                    case 4:
+                    case 5:
                         _a.sent();
                         return [2 /*return*/, {}];
                 }
@@ -1154,7 +1208,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
      */
     FilesystemPluginWeb.prototype.appendFile = function (options) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var path, data, parentPath, now, ctime, parentEntry, parentArgPath, occupiedEntry, pathObj;
+            var path, data, parentPath, now, ctime, occupiedEntry, parentEntry, parentArgPath, pathObj;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -1163,18 +1217,21 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         parentPath = path.substr(0, path.lastIndexOf('/'));
                         now = Date.now();
                         ctime = now;
-                        return [4 /*yield*/, this.dbRequest('get', [parentPath])];
+                        return [4 /*yield*/, this.dbRequest('get', [path])];
                     case 1:
+                        occupiedEntry = _a.sent();
+                        if (occupiedEntry && occupiedEntry.type === 'directory')
+                            throw ('The supplied path is a directory.');
+                        return [4 /*yield*/, this.dbRequest('get', [parentPath])];
+                    case 2:
                         parentEntry = _a.sent();
-                        if (!(parentEntry === undefined)) return [3 /*break*/, 3];
+                        if (!(parentEntry === undefined)) return [3 /*break*/, 4];
                         parentArgPath = parentPath.substr(parentPath.indexOf('/', 1));
                         return [4 /*yield*/, this.mkdir({ path: parentArgPath, directory: options.directory, createIntermediateDirectories: true })];
-                    case 2:
+                    case 3:
                         _a.sent();
-                        _a.label = 3;
-                    case 3: return [4 /*yield*/, this.dbRequest('get', [path])];
+                        _a.label = 4;
                     case 4:
-                        occupiedEntry = _a.sent();
                         if (occupiedEntry !== undefined) {
                             data = occupiedEntry.content + data;
                             ctime = occupiedEntry.ctime;
@@ -1280,24 +1337,48 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
      */
     FilesystemPluginWeb.prototype.rmdir = function (options) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var path, entry, entries;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
+            var path, directory, recursive, fullPath, entry, readDirResult, _i, _a, entry_1, entryPath, entryObj;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        path = this.getPath(options.directory, options.path);
-                        return [4 /*yield*/, this.dbRequest('get', [path])];
+                        path = options.path, directory = options.directory, recursive = options.recursive;
+                        fullPath = this.getPath(directory, path);
+                        return [4 /*yield*/, this.dbRequest('get', [fullPath])];
                     case 1:
-                        entry = _a.sent();
+                        entry = _b.sent();
                         if (entry === undefined)
                             throw Error('Folder does not exist.');
-                        return [4 /*yield*/, this.dbIndexRequest('by_folder', 'getAllKeys', [IDBKeyRange.only(path)])];
+                        if (entry.type !== 'directory')
+                            throw Error('Requested path is not a directory');
+                        return [4 /*yield*/, this.readdir({ path: path, directory: directory })];
                     case 2:
-                        entries = _a.sent();
-                        if (entries.length !== 0)
-                            throw Error('Folder is not empty.');
-                        return [4 /*yield*/, this.dbRequest('delete', [path])];
+                        readDirResult = _b.sent();
+                        if (readDirResult.files.length !== 0 && !recursive)
+                            throw Error('Folder is not empty');
+                        _i = 0, _a = readDirResult.files;
+                        _b.label = 3;
                     case 3:
-                        _a.sent();
+                        if (!(_i < _a.length)) return [3 /*break*/, 9];
+                        entry_1 = _a[_i];
+                        entryPath = path + "/" + entry_1;
+                        return [4 /*yield*/, this.stat({ path: entryPath, directory: directory })];
+                    case 4:
+                        entryObj = _b.sent();
+                        if (!(entryObj.type === 'file')) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.deleteFile({ path: entryPath, directory: directory })];
+                    case 5:
+                        _b.sent();
+                        return [3 /*break*/, 8];
+                    case 6: return [4 /*yield*/, this.rmdir({ path: entryPath, directory: directory, recursive: recursive })];
+                    case 7:
+                        _b.sent();
+                        _b.label = 8;
+                    case 8:
+                        _i++;
+                        return [3 /*break*/, 3];
+                    case 9: return [4 /*yield*/, this.dbRequest('delete', [fullPath])];
+                    case 10:
+                        _b.sent();
                         return [2 /*return*/, {}];
                 }
             });
@@ -1318,13 +1399,13 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.dbRequest('get', [path])];
                     case 1:
                         entry = _a.sent();
-                        if (entry === undefined)
+                        if (options.path !== '' && entry === undefined)
                             throw Error('Folder does not exist.');
                         return [4 /*yield*/, this.dbIndexRequest('by_folder', 'getAllKeys', [IDBKeyRange.only(path)])];
                     case 2:
                         entries = _a.sent();
                         names = entries.map(function (e) {
-                            return e.substring(entry.path.length + 1);
+                            return e.substring(path.length + 1);
                         });
                         return [2 /*return*/, { files: names }];
                 }
@@ -1402,20 +1483,52 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
      */
     FilesystemPluginWeb.prototype.rename = function (options) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var to, from, directory, toObj, e_1, toPathComponents, toPath, toParentDirectory, fromObj, updateTime, _a, file, e_2, contents, _i, contents_1, filename;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, this._copy(options, true)];
+            });
+        });
+    };
+    /**
+     * Copy a file or directory
+     * @param options the options for the copy operation
+     * @return a promise that resolves with the copy result
+     */
+    FilesystemPluginWeb.prototype.copy = function (options) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                return [2 /*return*/, this._copy(options, false)];
+            });
+        });
+    };
+    /**
+     * Function that can perform a copy or a rename
+     * @param options the options for the rename operation
+     * @param doRename whether to perform a rename or copy operation
+     * @return a promise that resolves with the result
+     */
+    FilesystemPluginWeb.prototype._copy = function (options, doRename) {
+        if (doRename === void 0) { doRename = false; }
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var to, from, fromDirectory, toDirectory, fromPath, toPath, toObj, e_1, toPathComponents, toPath_1, toParentDirectory, fromObj, updateTime, _a, file, e_2, contents, _i, contents_1, filename;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        to = options.to, from = options.from, directory = options.directory;
+                        to = options.to, from = options.from, fromDirectory = options.directory, toDirectory = options.toDirectory;
                         if (!to || !from) {
                             throw Error('Both to and from must be provided');
                         }
+                        // If no "to" directory is provided, use the "from" directory
+                        if (!toDirectory) {
+                            toDirectory = fromDirectory;
+                        }
+                        fromPath = this.getPath(fromDirectory, from);
+                        toPath = this.getPath(toDirectory, to);
                         // Test that the "to" and "from" locations are different
-                        if (from === to) {
+                        if (fromPath === toPath) {
                             return [2 /*return*/, {}];
                         }
-                        if (to.startsWith(from)) {
+                        if (toPath.startsWith(fromPath)) {
                             throw Error('To path cannot contain the from path');
                         }
                         _b.label = 1;
@@ -1423,7 +1536,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         _b.trys.push([1, 3, , 6]);
                         return [4 /*yield*/, this.stat({
                                 path: to,
-                                directory: directory
+                                directory: toDirectory
                             })];
                     case 2:
                         toObj = _b.sent();
@@ -1432,11 +1545,11 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         e_1 = _b.sent();
                         toPathComponents = to.split('/');
                         toPathComponents.pop();
-                        toPath = toPathComponents.join('/');
+                        toPath_1 = toPathComponents.join('/');
                         if (!(toPathComponents.length > 0)) return [3 /*break*/, 5];
                         return [4 /*yield*/, this.stat({
-                                path: toPath,
-                                directory: directory,
+                                path: toPath_1,
+                                directory: toDirectory,
                             })];
                     case 4:
                         toParentDirectory = _b.sent();
@@ -1452,7 +1565,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         }
                         return [4 /*yield*/, this.stat({
                                 path: from,
-                                directory: directory
+                                directory: fromDirectory,
                             })];
                     case 7:
                         fromObj = _b.sent();
@@ -1461,7 +1574,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
-                                        fullPath = this.getPath(directory, path);
+                                        fullPath = this.getPath(toDirectory, path);
                                         return [4 /*yield*/, this.dbRequest('get', [fullPath])];
                                     case 1:
                                         entry = _a.sent();
@@ -1477,99 +1590,101 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         _a = fromObj.type;
                         switch (_a) {
                             case 'file': return [3 /*break*/, 8];
-                            case 'directory': return [3 /*break*/, 13];
+                            case 'directory': return [3 /*break*/, 15];
                         }
-                        return [3 /*break*/, 25];
+                        return [3 /*break*/, 28];
                     case 8: return [4 /*yield*/, this.readFile({
                             path: from,
-                            directory: directory
+                            directory: fromDirectory
                         })];
                     case 9:
                         file = _b.sent();
-                        // Remove the file
+                        if (!doRename) return [3 /*break*/, 11];
                         return [4 /*yield*/, this.deleteFile({
                                 path: from,
-                                directory: directory
+                                directory: fromDirectory
                             })];
                     case 10:
-                        // Remove the file
                         _b.sent();
-                        // Write the file to the new location
-                        return [4 /*yield*/, this.writeFile({
-                                path: to,
-                                directory: directory,
-                                data: file.data
-                            })];
-                    case 11:
-                        // Write the file to the new location
-                        _b.sent();
-                        // Copy the mtime/ctime of the original file
-                        return [4 /*yield*/, updateTime(to, fromObj.ctime, fromObj.mtime)];
+                        _b.label = 11;
+                    case 11: 
+                    // Write the file to the new location
+                    return [4 /*yield*/, this.writeFile({
+                            path: to,
+                            directory: toDirectory,
+                            data: file.data
+                        })];
                     case 12:
-                        // Copy the mtime/ctime of the original file
+                        // Write the file to the new location
                         _b.sent();
-                        // Resolve promise
-                        return [2 /*return*/, {}];
+                        if (!doRename) return [3 /*break*/, 14];
+                        return [4 /*yield*/, updateTime(to, fromObj.ctime, fromObj.mtime)];
                     case 13:
+                        _b.sent();
+                        _b.label = 14;
+                    case 14: 
+                    // Resolve promise
+                    return [2 /*return*/, {}];
+                    case 15:
                         if (toObj) {
                             throw Error('Cannot move a directory over an existing object');
                         }
-                        _b.label = 14;
-                    case 14:
-                        _b.trys.push([14, 17, , 18]);
+                        _b.label = 16;
+                    case 16:
+                        _b.trys.push([16, 20, , 21]);
                         // Create the to directory
                         return [4 /*yield*/, this.mkdir({
                                 path: to,
-                                directory: directory,
+                                directory: toDirectory,
                                 createIntermediateDirectories: false,
                             })];
-                    case 15:
+                    case 17:
                         // Create the to directory
                         _b.sent();
-                        // Copy the mtime/ctime of the original directory
+                        if (!doRename) return [3 /*break*/, 19];
                         return [4 /*yield*/, updateTime(to, fromObj.ctime, fromObj.mtime)];
-                    case 16:
-                        // Copy the mtime/ctime of the original directory
+                    case 18:
                         _b.sent();
-                        return [3 /*break*/, 18];
-                    case 17:
+                        _b.label = 19;
+                    case 19: return [3 /*break*/, 21];
+                    case 20:
                         e_2 = _b.sent();
-                        return [3 /*break*/, 18];
-                    case 18: return [4 /*yield*/, this.readdir({
+                        return [3 /*break*/, 21];
+                    case 21: return [4 /*yield*/, this.readdir({
                             path: from,
-                            directory: directory
+                            directory: fromDirectory,
                         })];
-                    case 19:
+                    case 22:
                         contents = (_b.sent()).files;
                         _i = 0, contents_1 = contents;
-                        _b.label = 20;
-                    case 20:
-                        if (!(_i < contents_1.length)) return [3 /*break*/, 23];
+                        _b.label = 23;
+                    case 23:
+                        if (!(_i < contents_1.length)) return [3 /*break*/, 26];
                         filename = contents_1[_i];
                         // Move item from the from directory to the to directory
-                        return [4 /*yield*/, this.rename({
+                        return [4 /*yield*/, this._copy({
                                 from: from + "/" + filename,
                                 to: to + "/" + filename,
-                                directory: directory,
-                            })];
-                    case 21:
+                                directory: fromDirectory,
+                                toDirectory: toDirectory,
+                            }, doRename)];
+                    case 24:
                         // Move item from the from directory to the to directory
                         _b.sent();
-                        _b.label = 22;
-                    case 22:
-                        _i++;
-                        return [3 /*break*/, 20];
-                    case 23: 
-                    // Remove the original from directory
-                    return [4 /*yield*/, this.rmdir({
-                            path: from,
-                            directory: directory
-                        })];
-                    case 24:
-                        // Remove the original from directory
-                        _b.sent();
                         _b.label = 25;
-                    case 25: return [2 /*return*/, {}];
+                    case 25:
+                        _i++;
+                        return [3 /*break*/, 23];
+                    case 26:
+                        if (!doRename) return [3 /*break*/, 28];
+                        return [4 /*yield*/, this.rmdir({
+                                path: from,
+                                directory: fromDirectory
+                            })];
+                    case 27:
+                        _b.sent();
+                        _b.label = 28;
+                    case 28: return [2 /*return*/, {}];
                 }
             });
         });
@@ -2135,6 +2250,60 @@ var Network = new NetworkPluginWeb();
 
 /***/ }),
 
+/***/ "./node_modules/@capacitor/core/dist/esm/web/permissions.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@capacitor/core/dist/esm/web/permissions.js ***!
+  \******************************************************************/
+/*! exports provided: PermissionsPluginWeb, Permissions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PermissionsPluginWeb", function() { return PermissionsPluginWeb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Permissions", function() { return Permissions; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index */ "./node_modules/@capacitor/core/dist/esm/web/index.js");
+/* harmony import */ var _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core-plugin-definitions */ "./node_modules/@capacitor/core/dist/esm/core-plugin-definitions.js");
+
+
+
+var PermissionsPluginWeb = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](PermissionsPluginWeb, _super);
+    function PermissionsPluginWeb() {
+        return _super.call(this, {
+            name: 'Permissions'
+        }) || this;
+    }
+    PermissionsPluginWeb.prototype.query = function (options) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var navigator, name, ret;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        navigator = window.navigator;
+                        if (!navigator.permissions) {
+                            return [2 /*return*/, Promise.reject('This browser does not support the Permissions API')];
+                        }
+                        name = options.name === _core_plugin_definitions__WEBPACK_IMPORTED_MODULE_2__["PermissionType"].Photos ? 'camera' : options.name;
+                        return [4 /*yield*/, navigator.permissions.query({ name: name })];
+                    case 1:
+                        ret = _a.sent();
+                        return [2 /*return*/, {
+                                state: ret.state
+                            }];
+                }
+            });
+        });
+    };
+    return PermissionsPluginWeb;
+}(_index__WEBPACK_IMPORTED_MODULE_1__["WebPlugin"]));
+
+var Permissions = new PermissionsPluginWeb();
+
+//# sourceMappingURL=permissions.js.map
+
+/***/ }),
+
 /***/ "./node_modules/@capacitor/core/dist/esm/web/share.js":
 /*!************************************************************!*\
   !*** ./node_modules/@capacitor/core/dist/esm/web/share.js ***!
@@ -2349,13 +2518,13 @@ var Toast = new ToastPluginWeb();
 /*!**********************************************************************!*\
   !*** ./node_modules/capacitor-data-storage-sqlite/dist/esm/index.js ***!
   \**********************************************************************/
-/*! exports provided: CapacitorDataStorageSqlitePluginWeb, CapacitorDataStorageSqlite */
+/*! exports provided: CapacitorDataStorageSqliteWeb, CapacitorDataStorageSqlite */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _web__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./web */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/web.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CapacitorDataStorageSqlitePluginWeb", function() { return _web__WEBPACK_IMPORTED_MODULE_0__["CapacitorDataStorageSqlitePluginWeb"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CapacitorDataStorageSqliteWeb", function() { return _web__WEBPACK_IMPORTED_MODULE_0__["CapacitorDataStorageSqliteWeb"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "CapacitorDataStorageSqlite", function() { return _web__WEBPACK_IMPORTED_MODULE_0__["CapacitorDataStorageSqlite"]; });
 
@@ -2505,28 +2674,29 @@ class StorageDatabaseHelper {
 /*!********************************************************************!*\
   !*** ./node_modules/capacitor-data-storage-sqlite/dist/esm/web.js ***!
   \********************************************************************/
-/*! exports provided: CapacitorDataStorageSqlitePluginWeb, CapacitorDataStorageSqlite */
+/*! exports provided: CapacitorDataStorageSqliteWeb, CapacitorDataStorageSqlite */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CapacitorDataStorageSqlitePluginWeb", function() { return CapacitorDataStorageSqlitePluginWeb; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CapacitorDataStorageSqliteWeb", function() { return CapacitorDataStorageSqliteWeb; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CapacitorDataStorageSqlite", function() { return CapacitorDataStorageSqlite; });
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 /* harmony import */ var _web_utils_StorageDatabaseHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./web-utils/StorageDatabaseHelper */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/web-utils/StorageDatabaseHelper.js");
 /* harmony import */ var _web_utils_Data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./web-utils/Data */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/web-utils/Data.js");
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
 
 
 
-class CapacitorDataStorageSqlitePluginWeb extends _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["WebPlugin"] {
+class CapacitorDataStorageSqliteWeb extends _capacitor_core__WEBPACK_IMPORTED_MODULE_0__["WebPlugin"] {
     constructor() {
         super({
             name: 'CapacitorDataStorageSqlite',
@@ -2620,7 +2790,7 @@ class CapacitorDataStorageSqlitePluginWeb extends _capacitor_core__WEBPACK_IMPOR
         });
     }
 }
-const CapacitorDataStorageSqlite = new CapacitorDataStorageSqlitePluginWeb();
+const CapacitorDataStorageSqlite = new CapacitorDataStorageSqliteWeb();
 
 
 Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerWebPlugin"])(CapacitorDataStorageSqlite);

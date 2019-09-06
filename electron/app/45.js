@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[45],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-popover-ios.entry.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-popover-ios.entry.js ***!
-  \************************************************************************/
+/***/ "./node_modules/@ionic/core/dist/esm-es5/ion-popover-md.entry.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@ionic/core/dist/esm-es5/ion-popover-md.entry.js ***!
+  \***********************************************************************/
 /*! exports provided: ion_popover */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11,13 +11,15 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_popover", function() { return Popover; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chunk-84f6bf13.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-84f6bf13.js");
-/* harmony import */ var _chunk_1074393c_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chunk-1074393c.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-1074393c.js");
-/* harmony import */ var _chunk_94c4865f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chunk-94c4865f.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-94c4865f.js");
-/* harmony import */ var _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chunk-d83bfeae.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-d83bfeae.js");
-/* harmony import */ var _chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chunk-ba834eff.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-ba834eff.js");
-/* harmony import */ var _chunk_00265c49_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./chunk-00265c49.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-00265c49.js");
-/* harmony import */ var _chunk_7507b2b9_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./chunk-7507b2b9.js */ "./node_modules/@ionic/core/dist/esm-es5/chunk-7507b2b9.js");
+/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
+/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
+/* harmony import */ var _animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation-d0becaea.js */ "./node_modules/@ionic/core/dist/esm-es5/animation-d0becaea.js");
+/* harmony import */ var _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants-94c4865f.js */ "./node_modules/@ionic/core/dist/esm-es5/constants-94c4865f.js");
+/* harmony import */ var _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./overlays-6ea64c21.js */ "./node_modules/@ionic/core/dist/esm-es5/overlays-6ea64c21.js");
+/* harmony import */ var _theme_353a032e_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./theme-353a032e.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-353a032e.js");
+/* harmony import */ var _framework_delegate_00265c49_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./framework-delegate-00265c49.js */ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-00265c49.js");
+/* harmony import */ var _index_84f27767_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./index-84f27767.js */ "./node_modules/@ionic/core/dist/esm-es5/index-84f27767.js");
+
 
 
 
@@ -29,7 +31,7 @@ __webpack_require__.r(__webpack_exports__);
 /**
  * iOS Popover Enter Animation
  */
-var iosEnterAnimation = function (AnimationC, baseEl, ev) {
+var iosEnterAnimation = function (baseEl, ev) {
     var originY = 'top';
     var originX = 'left';
     var contentEl = baseEl.querySelector('.popover-content');
@@ -104,43 +106,46 @@ var iosEnterAnimation = function (AnimationC, baseEl, ev) {
         contentEl.style.left = "calc(" + popoverCSS.left + "px - var(--ion-safe-area-right, 0px))";
     }
     contentEl.style.transformOrigin = originY + ' ' + originX;
-    var baseAnimation = new AnimationC();
-    var backdropAnimation = new AnimationC();
-    backdropAnimation.addElement(baseEl.querySelector('ion-backdrop'));
-    backdropAnimation.fromTo('opacity', 0.01, 0.08);
-    var wrapperAnimation = new AnimationC();
-    wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper'));
-    wrapperAnimation.fromTo('opacity', 0.01, 1);
-    return Promise.resolve(baseAnimation
+    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var backdropAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.01, 0.08);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.01, 1);
+    return baseAnimation
         .addElement(baseEl)
         .easing('ease')
         .duration(100)
-        .add(backdropAnimation)
-        .add(wrapperAnimation));
+        .addAnimation([backdropAnimation, wrapperAnimation]);
 };
 var POPOVER_IOS_BODY_PADDING = 5;
 /**
  * iOS Popover Leave Animation
  */
-var iosLeaveAnimation = function (AnimationC, baseEl) {
-    var baseAnimation = new AnimationC();
-    var backdropAnimation = new AnimationC();
-    backdropAnimation.addElement(baseEl.querySelector('ion-backdrop'));
-    var wrapperAnimation = new AnimationC();
-    wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper'));
-    wrapperAnimation.fromTo('opacity', 0.99, 0);
-    backdropAnimation.fromTo('opacity', 0.08, 0);
-    return Promise.resolve(baseAnimation
+var iosLeaveAnimation = function (baseEl) {
+    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var backdropAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.08, 0);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.99, 0);
+    return baseAnimation
         .addElement(baseEl)
         .easing('ease')
         .duration(500)
-        .add(backdropAnimation)
-        .add(wrapperAnimation));
+        .addAnimation([backdropAnimation, wrapperAnimation]);
 };
 /**
  * Md Popover Enter Animation
  */
-var mdEnterAnimation = function (AnimationC, baseEl, ev) {
+var mdEnterAnimation = function (baseEl, ev) {
+    var POPOVER_MD_BODY_PADDING = 12;
     var doc = baseEl.ownerDocument;
     var isRTL = doc.dir === 'rtl';
     var originY = 'top';
@@ -195,58 +200,59 @@ var mdEnterAnimation = function (AnimationC, baseEl, ev) {
     else if (targetTop + targetHeight + contentHeight > bodyHeight) {
         contentEl.style.bottom = POPOVER_MD_BODY_PADDING + 'px';
     }
-    contentEl.style.top = popoverCSS.top + 'px';
-    contentEl.style.left = popoverCSS.left + 'px';
-    contentEl.style.transformOrigin = originY + ' ' + originX;
-    var baseAnimation = new AnimationC();
-    var backdropAnimation = new AnimationC();
-    backdropAnimation.addElement(baseEl.querySelector('ion-backdrop'));
-    backdropAnimation.fromTo('opacity', 0.01, 0.32);
-    var wrapperAnimation = new AnimationC();
-    wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper'));
-    wrapperAnimation.fromTo('opacity', 0.01, 1);
-    var contentAnimation = new AnimationC();
-    contentAnimation.addElement(baseEl.querySelector('.popover-content'));
-    contentAnimation.fromTo('scale', 0.001, 1);
-    var viewportAnimation = new AnimationC();
-    viewportAnimation.addElement(baseEl.querySelector('.popover-viewport'));
-    viewportAnimation.fromTo('opacity', 0.01, 1);
-    return Promise.resolve(baseAnimation
+    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var backdropAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var contentAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var viewportAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.01, 0.32);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.01, 1);
+    contentAnimation
+        .addElement(contentEl)
+        .beforeStyles({
+        'top': popoverCSS.top + "px",
+        'left': popoverCSS.left + "px",
+        'transform-origin': originY + " " + originX
+    })
+        .fromTo('transform', 'scale(0.001)', 'scale(1)');
+    viewportAnimation
+        .addElement(baseEl.querySelector('.popover-viewport'))
+        .fromTo('opacity', 0.01, 1);
+    return baseAnimation
         .addElement(baseEl)
         .easing('cubic-bezier(0.36,0.66,0.04,1)')
         .duration(300)
-        .add(backdropAnimation)
-        .add(wrapperAnimation)
-        .add(contentAnimation)
-        .add(viewportAnimation));
+        .addAnimation([backdropAnimation, wrapperAnimation, contentAnimation, viewportAnimation]);
 };
-var POPOVER_MD_BODY_PADDING = 12;
 /**
  * Md Popover Leave Animation
  */
-var mdLeaveAnimation = function (AnimationC, baseEl) {
-    var baseAnimation = new AnimationC();
-    var backdropAnimation = new AnimationC();
-    backdropAnimation.addElement(baseEl.querySelector('ion-backdrop'));
-    var wrapperAnimation = new AnimationC();
-    wrapperAnimation.addElement(baseEl.querySelector('.popover-wrapper'));
-    wrapperAnimation.fromTo('opacity', 0.99, 0);
-    backdropAnimation.fromTo('opacity', 0.32, 0);
-    return Promise.resolve(baseAnimation
+var mdLeaveAnimation = function (baseEl) {
+    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var backdropAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    backdropAnimation
+        .addElement(baseEl.querySelector('ion-backdrop'))
+        .fromTo('opacity', 0.32, 0);
+    wrapperAnimation
+        .addElement(baseEl.querySelector('.popover-wrapper'))
+        .fromTo('opacity', 0.99, 0);
+    return baseAnimation
         .addElement(baseEl)
         .easing('ease')
         .duration(500)
-        .add(backdropAnimation)
-        .add(wrapperAnimation));
+        .addAnimation([backdropAnimation, wrapperAnimation]);
 };
-/**
- * @virtualProp {"ios" | "md"} mode - The mode determines which platform styles to use.
- */
 var Popover = /** @class */ (function () {
-    function Popover(hostRef) {
-        Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    function class_1(hostRef) {
+        var _this = this;
+        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.presented = false;
-        this.mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        this.mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         /**
          * If `true`, the keyboard will be automatically dismissed when the overlay is presented.
          */
@@ -269,35 +275,36 @@ var Popover = /** @class */ (function () {
          * If `true`, the popover will animate.
          */
         this.animated = true;
-        this.didPresent = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverDidPresent", 7);
-        this.willPresent = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverWillPresent", 7);
-        this.willDismiss = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverWillDismiss", 7);
-        this.didDismiss = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverDidDismiss", 7);
+        this.onDismiss = function (ev) {
+            ev.stopPropagation();
+            ev.preventDefault();
+            _this.dismiss();
+        };
+        this.onBackdropTap = function () {
+            _this.dismiss(undefined, _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_5__["B"]);
+        };
+        this.onLifecycle = function (modalEvent) {
+            var el = _this.usersElement;
+            var name = LIFECYCLE_MAP[modalEvent.type];
+            if (el && name) {
+                var event = new CustomEvent(name, {
+                    bubbles: false,
+                    cancelable: false,
+                    detail: modalEvent.detail
+                });
+                el.dispatchEvent(event);
+            }
+        };
+        Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this.el);
+        this.didPresent = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverDidPresent", 7);
+        this.willPresent = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverWillPresent", 7);
+        this.willDismiss = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverWillDismiss", 7);
+        this.didDismiss = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionPopoverDidDismiss", 7);
     }
-    Popover.prototype.onDismiss = function (ev) {
-        ev.stopPropagation();
-        ev.preventDefault();
-        this.dismiss();
-    };
-    Popover.prototype.onBackdropTap = function () {
-        this.dismiss(undefined, _chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_4__["B"]);
-    };
-    Popover.prototype.lifecycle = function (modalEvent) {
-        var el = this.usersElement;
-        var name = LIFECYCLE_MAP[modalEvent.type];
-        if (el && name) {
-            var event = new CustomEvent(name, {
-                bubbles: false,
-                cancelable: false,
-                detail: modalEvent.detail
-            });
-            el.dispatchEvent(event);
-        }
-    };
     /**
      * Present the popover overlay after it has been created.
      */
-    Popover.prototype.present = function () {
+    class_1.prototype.present = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var container, data, _a;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
@@ -312,13 +319,13 @@ var Popover = /** @class */ (function () {
                         }
                         data = Object.assign({}, this.componentProps, { popover: this.el });
                         _a = this;
-                        return [4 /*yield*/, Object(_chunk_00265c49_js__WEBPACK_IMPORTED_MODULE_6__["a"])(this.delegate, container, this.component, ['popover-viewport', this.el['s-sc']], data)];
+                        return [4 /*yield*/, Object(_framework_delegate_00265c49_js__WEBPACK_IMPORTED_MODULE_7__["a"])(this.delegate, container, this.component, ['popover-viewport', this.el['s-sc']], data)];
                     case 1:
                         _a.usersElement = _b.sent();
-                        return [4 /*yield*/, Object(_chunk_7507b2b9_js__WEBPACK_IMPORTED_MODULE_7__["d"])(this.usersElement)];
+                        return [4 /*yield*/, Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_8__["d"])(this.usersElement)];
                     case 2:
                         _b.sent();
-                        return [2 /*return*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_4__["d"])(this, 'popoverEnter', iosEnterAnimation, mdEnterAnimation, this.event)];
+                        return [2 /*return*/, Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'popoverEnter', iosEnterAnimation, mdEnterAnimation, this.event)];
                 }
             });
         });
@@ -329,16 +336,16 @@ var Popover = /** @class */ (function () {
      * @param data Any data to emit in the dismiss events.
      * @param role The role of the element that is dismissing the popover. For example, 'cancel' or 'backdrop'.
      */
-    Popover.prototype.dismiss = function (data, role) {
+    class_1.prototype.dismiss = function (data, role) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var shouldDismiss;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this, data, role, 'popoverLeave', iosLeaveAnimation, mdLeaveAnimation, this.event)];
+                    case 0: return [4 /*yield*/, Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'popoverLeave', iosLeaveAnimation, mdLeaveAnimation, this.event)];
                     case 1:
                         shouldDismiss = _a.sent();
                         if (!shouldDismiss) return [3 /*break*/, 3];
-                        return [4 /*yield*/, Object(_chunk_00265c49_js__WEBPACK_IMPORTED_MODULE_6__["d"])(this.delegate, this.usersElement)];
+                        return [4 /*yield*/, Object(_framework_delegate_00265c49_js__WEBPACK_IMPORTED_MODULE_7__["d"])(this.delegate, this.usersElement)];
                     case 2:
                         _a.sent();
                         _a.label = 3;
@@ -350,45 +357,34 @@ var Popover = /** @class */ (function () {
     /**
      * Returns a promise that resolves when the popover did dismiss.
      */
-    Popover.prototype.onDidDismiss = function () {
-        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_4__["f"])(this.el, 'ionPopoverDidDismiss');
+    class_1.prototype.onDidDismiss = function () {
+        return Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPopoverDidDismiss');
     };
     /**
      * Returns a promise that resolves when the popover will dismiss.
      */
-    Popover.prototype.onWillDismiss = function () {
-        return Object(_chunk_d83bfeae_js__WEBPACK_IMPORTED_MODULE_4__["f"])(this.el, 'ionPopoverWillDismiss');
+    class_1.prototype.onWillDismiss = function () {
+        return Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionPopoverWillDismiss');
     };
-    Popover.prototype.hostData = function () {
+    class_1.prototype.render = function () {
         var _a;
-        var mode = Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        return {
-            'aria-modal': 'true',
-            'no-router': true,
-            style: {
-                zIndex: 20000 + this.overlayIndex,
-            },
-            class: Object.assign({}, Object(_chunk_ba834eff_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.cssClass), (_a = {}, _a[mode] = true, _a['popover-translucent'] = this.translucent, _a))
-        };
+        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var onLifecycle = this.onLifecycle;
+        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { "aria-modal": "true", "no-router": true, style: {
+                zIndex: "" + (20000 + this.overlayIndex),
+            }, class: Object.assign({}, Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass), (_a = {}, _a[mode] = true, _a['popover-translucent'] = this.translucent, _a)), onIonPopoverDidPresent: onLifecycle, onIonPopoverWillPresent: onLifecycle, onIonPopoverWillDismiss: onLifecycle, onIonPopoverDidDismiss: onLifecycle, onIonDismiss: this.onDismiss, onIonBackdropTap: this.onBackdropTap }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-backdrop", { tappable: this.backdropDismiss, visible: this.showBackdrop }), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "popover-wrapper" }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "popover-arrow" }), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "popover-content" }))));
     };
-    Popover.prototype.__stencil_render = function () {
-        return [
-            Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-backdrop", { tappable: this.backdropDismiss, visible: this.showBackdrop }),
-            Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "popover-wrapper" }, Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "popover-arrow" }), Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "popover-content" }))
-        ];
-    };
-    Object.defineProperty(Popover.prototype, "el", {
-        get: function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(class_1.prototype, "el", {
+        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    Popover.prototype.render = function () { return Object(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_chunk_84f6bf13_js__WEBPACK_IMPORTED_MODULE_1__["H"], this.hostData(), this.__stencil_render()); };
-    Object.defineProperty(Popover, "style", {
-        get: function () { return ".sc-ion-popover-ios-h{--background:var(--ion-background-color,#fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;color:var(--ion-text-color,#000);z-index:1000}.overlay-hidden.sc-ion-popover-ios-h{display:none}.popover-wrapper.sc-ion-popover-ios{opacity:0;z-index:10}.popover-content.sc-ion-popover-ios{display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport.sc-ion-popover-ios{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px}.sc-ion-popover-ios-h{--width:200px;--max-height:90%;--box-shadow:none}.popover-content.sc-ion-popover-ios{border-radius:10px}.popover-arrow.sc-ion-popover-ios{display:block;position:absolute;width:20px;height:10px;overflow:hidden}.popover-arrow.sc-ion-popover-ios:after{left:3px;top:3px;border-radius:3px;position:absolute;width:14px;height:14px;-webkit-transform:rotate(45deg);transform:rotate(45deg);background:var(--background);content:\"\";z-index:10}[dir=rtl].sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios:after, [dir=rtl] .sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios:after, [dir=rtl].sc-ion-popover-ios .popover-arrow.sc-ion-popover-ios:after{left:unset;right:unset;right:3px}.popover-bottom.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios{top:auto;bottom:-10px}.popover-bottom.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios:after{top:-6px}\@supports ((-webkit-backdrop-filter:blur(0)) or (backdrop-filter:blur(0))){.popover-translucent.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios:after, .popover-translucent.sc-ion-popover-ios-h .popover-content.sc-ion-popover-ios{background:rgba(var(--ion-background-color-rgb,255,255,255),.8);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}}"; },
+    Object.defineProperty(class_1, "style", {
+        get: function () { return ".sc-ion-popover-md-h{--background:var(--ion-background-color,#fff);--min-width:0;--min-height:0;--max-width:auto;--height:auto;left:0;right:0;top:0;bottom:0;display:-ms-flexbox;display:flex;position:fixed;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;color:var(--ion-text-color,#000);z-index:1001}.overlay-hidden.sc-ion-popover-md-h{display:none}.popover-wrapper.sc-ion-popover-md{opacity:0;z-index:10}.popover-content.sc-ion-popover-md{display:-ms-flexbox;display:flex;position:absolute;-ms-flex-direction:column;flex-direction:column;width:var(--width);min-width:var(--min-width);max-width:var(--max-width);height:var(--height);min-height:var(--min-height);max-height:var(--max-height);background:var(--background);-webkit-box-shadow:var(--box-shadow);box-shadow:var(--box-shadow);overflow:auto;z-index:10}.popover-viewport.sc-ion-popover-md{--ion-safe-area-top:0px;--ion-safe-area-right:0px;--ion-safe-area-bottom:0px;--ion-safe-area-left:0px}.sc-ion-popover-md-h{--width:250px;--max-height:90%;--box-shadow:0 5px 5px -3px rgba(0,0,0,0.2),0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12)}.popover-content.sc-ion-popover-md{border-radius:4px;-webkit-transform-origin:left top;transform-origin:left top}[dir=rtl].sc-ion-popover-md-h .popover-content.sc-ion-popover-md, [dir=rtl] .sc-ion-popover-md-h .popover-content.sc-ion-popover-md, [dir=rtl].sc-ion-popover-md .popover-content.sc-ion-popover-md{-webkit-transform-origin:right top;transform-origin:right top}.popover-viewport.sc-ion-popover-md{-webkit-transition-delay:.1s;transition-delay:.1s}"; },
         enumerable: true,
         configurable: true
     });
-    return Popover;
+    return class_1;
 }());
 var LIFECYCLE_MAP = {
     'ionPopoverDidPresent': 'ionViewDidEnter',

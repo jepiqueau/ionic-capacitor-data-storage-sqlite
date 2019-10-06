@@ -11,12 +11,14 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_toast", function() { return Toast; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
-/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
-/* harmony import */ var _animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./animation-d0becaea.js */ "./node_modules/@ionic/core/dist/esm-es5/animation-d0becaea.js");
-/* harmony import */ var _overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./overlays-6ea64c21.js */ "./node_modules/@ionic/core/dist/esm-es5/overlays-6ea64c21.js");
-/* harmony import */ var _theme_353a032e_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./theme-353a032e.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-353a032e.js");
-/* harmony import */ var _index_064a03a9_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./index-064a03a9.js */ "./node_modules/@ionic/core/dist/esm-es5/index-064a03a9.js");
+/* harmony import */ var _core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-57385ee8.js */ "./node_modules/@ionic/core/dist/esm-es5/core-57385ee8.js");
+/* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
+/* harmony import */ var _helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers-e0fdb9d0.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-e0fdb9d0.js");
+/* harmony import */ var _animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./animation-86ecfd53.js */ "./node_modules/@ionic/core/dist/esm-es5/animation-86ecfd53.js");
+/* harmony import */ var _overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./overlays-12eacdf8.js */ "./node_modules/@ionic/core/dist/esm-es5/overlays-12eacdf8.js");
+/* harmony import */ var _theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./theme-18cbe2cc.js */ "./node_modules/@ionic/core/dist/esm-es5/theme-18cbe2cc.js");
+/* harmony import */ var _index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./index-3476b023.js */ "./node_modules/@ionic/core/dist/esm-es5/index-3476b023.js");
+
 
 
 
@@ -28,8 +30,8 @@ __webpack_require__.r(__webpack_exports__);
  * iOS Toast Enter Animation
  */
 var iosEnterAnimation = function (baseEl, position) {
-    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var baseAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
     var hostEl = baseEl.host || baseEl;
     var wrapperEl = baseEl.querySelector('.toast-wrapper');
     var bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
@@ -58,8 +60,8 @@ var iosEnterAnimation = function (baseEl, position) {
  * iOS Toast Leave Animation
  */
 var iosLeaveAnimation = function (baseEl, position) {
-    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var baseAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
     var hostEl = baseEl.host || baseEl;
     var wrapperEl = baseEl.querySelector('.toast-wrapper');
     var bottom = "calc(-10px - var(--ion-safe-area-bottom, 0px))";
@@ -86,8 +88,8 @@ var iosLeaveAnimation = function (baseEl, position) {
  * MD Toast Enter Animation
  */
 var mdEnterAnimation = function (baseEl, position) {
-    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var baseAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
     var hostEl = baseEl.host || baseEl;
     var wrapperEl = baseEl.querySelector('.toast-wrapper');
     var bottom = "calc(8px + var(--ion-safe-area-bottom, 0px))";
@@ -118,8 +120,8 @@ var mdEnterAnimation = function (baseEl, position) {
  * md Toast Leave Animation
  */
 var mdLeaveAnimation = function (baseEl) {
-    var baseAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
-    var wrapperAnimation = Object(_animation_d0becaea_js__WEBPACK_IMPORTED_MODULE_3__["c"])();
+    var baseAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
+    var wrapperAnimation = Object(_animation_86ecfd53_js__WEBPACK_IMPORTED_MODULE_4__["c"])();
     var hostEl = baseEl.host || baseEl;
     var wrapperEl = baseEl.querySelector('.toast-wrapper');
     wrapperAnimation
@@ -133,9 +135,9 @@ var mdLeaveAnimation = function (baseEl) {
 };
 var Toast = /** @class */ (function () {
     function class_1(hostRef) {
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.presented = false;
-        this.mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        this.mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         /**
          * How many milliseconds to wait before hiding the toast. By default, it will show
          * until `dismiss()` is called.
@@ -163,21 +165,21 @@ var Toast = /** @class */ (function () {
          * If `true`, the toast will animate.
          */
         this.animated = true;
-        Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__["d"])(this.el);
-        this.didPresent = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidPresent", 7);
-        this.willPresent = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillPresent", 7);
-        this.willDismiss = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillDismiss", 7);
-        this.didDismiss = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidDismiss", 7);
+        Object(_overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__["d"])(this.el);
+        this.didPresent = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidPresent", 7);
+        this.willPresent = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillPresent", 7);
+        this.willDismiss = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastWillDismiss", 7);
+        this.didDismiss = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionToastDidDismiss", 7);
     }
     /**
      * Present the toast overlay after it has been created.
      */
     class_1.prototype.present = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__["e"])(this, 'toastEnter', iosEnterAnimation, mdEnterAnimation, this.position)];
+                    case 0: return [4 /*yield*/, Object(_overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__["e"])(this, 'toastEnter', iosEnterAnimation, mdEnterAnimation, this.position)];
                     case 1:
                         _a.sent();
                         if (this.duration > 0) {
@@ -201,19 +203,19 @@ var Toast = /** @class */ (function () {
         if (this.durationTimeout) {
             clearTimeout(this.durationTimeout);
         }
-        return Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__["f"])(this, data, role, 'toastLeave', iosLeaveAnimation, mdLeaveAnimation, this.position);
+        return Object(_overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__["f"])(this, data, role, 'toastLeave', iosLeaveAnimation, mdLeaveAnimation, this.position);
     };
     /**
      * Returns a promise that resolves when the toast did dismiss.
      */
     class_1.prototype.onDidDismiss = function () {
-        return Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__["g"])(this.el, 'ionToastDidDismiss');
+        return Object(_overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionToastDidDismiss');
     };
     /**
      * Returns a promise that resolves when the toast will dismiss.
      */
     class_1.prototype.onWillDismiss = function () {
-        return Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__["g"])(this.el, 'ionToastWillDismiss');
+        return Object(_overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.el, 'ionToastWillDismiss');
     };
     class_1.prototype.getButtons = function () {
         var _this = this;
@@ -235,13 +237,13 @@ var Toast = /** @class */ (function () {
         return buttons;
     };
     class_1.prototype.buttonClick = function (button) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var role, shouldDismiss;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         role = button.role;
-                        if (Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__["i"])(role)) {
+                        if (Object(_overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__["i"])(role)) {
                             return [2 /*return*/, this.dismiss(undefined, role)];
                         }
                         return [4 /*yield*/, this.callButtonHandler(button)];
@@ -256,16 +258,16 @@ var Toast = /** @class */ (function () {
         });
     };
     class_1.prototype.callButtonHandler = function (button) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var rtn, e_1;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (!(button && button.handler)) return [3 /*break*/, 4];
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, Object(_overlays_6ea64c21_js__WEBPACK_IMPORTED_MODULE_4__["s"])(button.handler)];
+                        return [4 /*yield*/, Object(_overlays_12eacdf8_js__WEBPACK_IMPORTED_MODULE_5__["s"])(button.handler)];
                     case 2:
                         rtn = _a.sent();
                         if (rtn === false) {
@@ -288,34 +290,34 @@ var Toast = /** @class */ (function () {
         if (buttons.length === 0) {
             return;
         }
-        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         var buttonGroupsClasses = (_a = {
                 'toast-button-group': true
             },
             _a["toast-button-group-" + side] = true,
             _a);
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: buttonGroupsClasses }, buttons.map(function (b) { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", class: buttonClass(b), tabIndex: 0, onClick: function () { return _this.buttonClick(b); } }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-button-inner" }, b.icon &&
-            Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-icon", { icon: b.icon, slot: b.text === undefined ? 'icon-only' : undefined, class: "toast-icon" }), b.text), mode === 'md' && Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-ripple-effect", { type: b.icon !== undefined && b.text === undefined ? 'unbounded' : 'bounded' })); })));
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: buttonGroupsClasses }, buttons.map(function (b) { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("button", { type: "button", class: buttonClass(b), tabIndex: 0, onClick: function () { return _this.buttonClick(b); } }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-button-inner" }, b.icon &&
+            Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-icon", { icon: b.icon, slot: b.text === undefined ? 'icon-only' : undefined, class: "toast-icon" }), b.text), mode === 'md' && Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-ripple-effect", { type: b.icon !== undefined && b.text === undefined ? 'unbounded' : 'bounded' })); })));
     };
     class_1.prototype.render = function () {
         var _a, _b;
         var allButtons = this.getButtons();
         var startButtons = allButtons.filter(function (b) { return b.side === 'start'; });
         var endButtons = allButtons.filter(function (b) { return b.side !== 'start'; });
-        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         var wrapperClass = (_a = {
                 'toast-wrapper': true
             },
             _a["toast-" + this.position] = true,
             _a);
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { style: {
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { style: {
                 zIndex: "" + (60000 + this.overlayIndex),
-            }, class: Object.assign((_b = {}, _b[mode] = true, _b), Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_5__["c"])(this.color), Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_5__["g"])(this.cssClass), { 'toast-translucent': this.translucent }) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: wrapperClass }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-container" }, this.renderButtons(startButtons, 'start'), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-content" }, this.header !== undefined &&
-            Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-header" }, this.header), this.message !== undefined &&
-            Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-message", innerHTML: Object(_index_064a03a9_js__WEBPACK_IMPORTED_MODULE_6__["s"])(this.message) })), this.renderButtons(endButtons, 'end')))));
+            }, class: Object.assign(Object.assign(Object.assign((_b = {}, _b[mode] = true, _b), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["c"])(this.color)), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(this.cssClass)), { 'toast-translucent': this.translucent }) }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: wrapperClass }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-container" }, this.renderButtons(startButtons, 'start'), Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-content" }, this.header !== undefined &&
+            Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-header" }, this.header), this.message !== undefined &&
+            Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "toast-message", innerHTML: Object(_index_3476b023_js__WEBPACK_IMPORTED_MODULE_7__["s"])(this.message) })), this.renderButtons(endButtons, 'end')))));
     };
     Object.defineProperty(class_1.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
@@ -328,7 +330,7 @@ var Toast = /** @class */ (function () {
 }());
 var buttonClass = function (button) {
     var _a;
-    return Object.assign((_a = { 'toast-button': true, 'toast-button-icon-only': button.icon !== undefined && button.text === undefined }, _a["toast-button-" + button.role] = button.role !== undefined, _a['ion-focusable'] = true, _a['ion-activatable'] = true, _a), Object(_theme_353a032e_js__WEBPACK_IMPORTED_MODULE_5__["g"])(button.cssClass));
+    return Object.assign((_a = { 'toast-button': true, 'toast-button-icon-only': button.icon !== undefined && button.text === undefined }, _a["toast-button-" + button.role] = button.role !== undefined, _a['ion-focusable'] = true, _a['ion-activatable'] = true, _a), Object(_theme_18cbe2cc_js__WEBPACK_IMPORTED_MODULE_6__["g"])(button.cssClass));
 };
 
 

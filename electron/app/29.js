@@ -12,9 +12,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_infinite_scroll", function() { return InfiniteScroll; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_infinite_scroll_content", function() { return InfiniteScrollContent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
-/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
-/* harmony import */ var _index_064a03a9_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index-064a03a9.js */ "./node_modules/@ionic/core/dist/esm-es5/index-064a03a9.js");
+/* harmony import */ var _core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-57385ee8.js */ "./node_modules/@ionic/core/dist/esm-es5/core-57385ee8.js");
+/* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
+/* harmony import */ var _index_3476b023_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index-3476b023.js */ "./node_modules/@ionic/core/dist/esm-es5/index-3476b023.js");
 
 
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 var InfiniteScroll = /** @class */ (function () {
     function class_1(hostRef) {
         var _this = this;
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.thrPx = 0;
         this.thrPc = 0;
         this.didFire = false;
@@ -83,7 +83,7 @@ var InfiniteScroll = /** @class */ (function () {
             }
             return 4;
         };
-        this.ionInfinite = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionInfinite", 7);
+        this.ionInfinite = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionInfinite", 7);
     }
     class_1.prototype.thresholdChanged = function () {
         var val = this.threshold;
@@ -105,10 +105,10 @@ var InfiniteScroll = /** @class */ (function () {
         this.enableScrollEvents(!disabled);
     };
     class_1.prototype.connectedCallback = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var contentEl, _a;
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         contentEl = this.el.closest('ion-content');
@@ -123,7 +123,7 @@ var InfiniteScroll = /** @class */ (function () {
                         this.thresholdChanged();
                         this.disabledChanged();
                         if (this.position === 'top') {
-                            Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["w"])(function () {
+                            Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["w"])(function () {
                                 if (_this.scrollEl) {
                                     _this.scrollEl.scrollTop = _this.scrollEl.scrollHeight - _this.scrollEl.clientHeight;
                                 }
@@ -149,10 +149,10 @@ var InfiniteScroll = /** @class */ (function () {
      * to `enabled`.
      */
     class_1.prototype.complete = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var scrollEl, prev_1;
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 scrollEl = this.scrollEl;
                 if (!this.isLoading || !scrollEl) {
                     return [2 /*return*/];
@@ -182,14 +182,14 @@ var InfiniteScroll = /** @class */ (function () {
                     prev_1 = scrollEl.scrollHeight - scrollEl.scrollTop;
                     // ******** DOM READ ****************
                     requestAnimationFrame(function () {
-                        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["f"])(function () {
+                        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["f"])(function () {
                             // UI has updated, save the new content dimensions
                             var scrollHeight = scrollEl.scrollHeight;
                             // New content was added on top, so the scroll position should be changed immediately to prevent it from jumping around
                             var newScrollTop = scrollHeight - prev_1;
                             // ******** DOM WRITE ****************
                             requestAnimationFrame(function () {
-                                Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["w"])(function () {
+                                Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["w"])(function () {
                                     scrollEl.scrollTop = newScrollTop;
                                     _this.isBusy = false;
                                 });
@@ -219,16 +219,16 @@ var InfiniteScroll = /** @class */ (function () {
     };
     class_1.prototype.render = function () {
         var _a;
-        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        var mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
         var disabled = this.disabled;
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { class: (_a = {},
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { class: (_a = {},
                 _a[mode] = true,
                 _a['infinite-scroll-loading'] = this.isLoading,
                 _a['infinite-scroll-enabled'] = !disabled,
                 _a) }));
     };
     Object.defineProperty(class_1.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
@@ -250,30 +250,30 @@ var InfiniteScroll = /** @class */ (function () {
     return class_1;
 }());
 var InfiniteScrollContent = /** @class */ (function () {
-    function class_2(hostRef) {
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+    function InfiniteScrollContent(hostRef) {
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
     }
-    class_2.prototype.componentDidLoad = function () {
+    InfiniteScrollContent.prototype.componentDidLoad = function () {
         if (this.loadingSpinner === undefined) {
-            var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-            this.loadingSpinner = _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('infiniteLoadingSpinner', _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('spinner', mode === 'ios' ? 'lines' : 'crescent'));
+            var mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+            this.loadingSpinner = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('infiniteLoadingSpinner', _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('spinner', mode === 'ios' ? 'lines' : 'crescent'));
         }
     };
-    class_2.prototype.render = function () {
+    InfiniteScrollContent.prototype.render = function () {
         var _a;
-        var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { class: (_a = {},
+        var mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { class: (_a = {},
                 _a[mode] = true,
                 // Used internally for styling
                 _a["infinite-scroll-content-" + mode] = true,
-                _a) }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "infinite-loading" }, this.loadingSpinner && (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "infinite-loading-spinner" }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-spinner", { name: this.loadingSpinner }))), this.loadingText && (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "infinite-loading-text", innerHTML: Object(_index_064a03a9_js__WEBPACK_IMPORTED_MODULE_3__["s"])(this.loadingText) })))));
+                _a) }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "infinite-loading" }, this.loadingSpinner && (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "infinite-loading-spinner" }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("ion-spinner", { name: this.loadingSpinner }))), this.loadingText && (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "infinite-loading-text", innerHTML: Object(_index_3476b023_js__WEBPACK_IMPORTED_MODULE_3__["s"])(this.loadingText) })))));
     };
-    Object.defineProperty(class_2, "style", {
+    Object.defineProperty(InfiniteScrollContent, "style", {
         get: function () { return "ion-infinite-scroll-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-pack:center;justify-content:center;min-height:84px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.infinite-loading{margin-left:0;margin-right:0;margin-top:0;margin-bottom:32px;display:none;width:100%}.infinite-loading-text{margin-left:32px;margin-right:32px;margin-top:4px;margin-bottom:0}\@supports ((-webkit-margin-start:0) or (margin-inline-start:0)) or (-webkit-margin-start:0){.infinite-loading-text{margin-left:unset;margin-right:unset;-webkit-margin-start:32px;margin-inline-start:32px;-webkit-margin-end:32px;margin-inline-end:32px}}.infinite-scroll-loading ion-infinite-scroll-content>.infinite-loading{display:block}.infinite-scroll-content-ios .infinite-loading-text{color:var(--ion-color-step-600,#666)}.infinite-scroll-content-ios .infinite-loading-spinner .spinner-crescent circle,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-lines-ios line,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-lines-small-ios line{stroke:var(--ion-color-step-600,#666)}.infinite-scroll-content-ios .infinite-loading-spinner .spinner-bubbles circle,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-circles circle,.infinite-scroll-content-ios .infinite-loading-spinner .spinner-dots circle{fill:var(--ion-color-step-600,#666)}"; },
         enumerable: true,
         configurable: true
     });
-    return class_2;
+    return InfiniteScrollContent;
 }());
 
 

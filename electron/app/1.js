@@ -1,8 +1,8 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[1],{
 
-/***/ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-00265c49.js":
+/***/ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-c2e2e1f4.js":
 /*!******************************************************************************!*\
-  !*** ./node_modules/@ionic/core/dist/esm-es5/framework-delegate-00265c49.js ***!
+  !*** ./node_modules/@ionic/core/dist/esm-es5/framework-delegate-c2e2e1f4.js ***!
   \******************************************************************************/
 /*! exports provided: a, d */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -12,11 +12,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return attachComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return detachComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-var _this = undefined;
 
-var attachComponent = function (delegate, container, component, cssClasses, componentProps) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+var attachComponent = function (delegate, container, component, cssClasses, componentProps) { return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(void 0, void 0, void 0, function () {
     var el;
-    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
         switch (_a.label) {
             case 0:
                 if (delegate) {
@@ -71,16 +70,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_tab", function() { return Tab; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_tabs", function() { return Tabs; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
-/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
-/* harmony import */ var _framework_delegate_00265c49_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./framework-delegate-00265c49.js */ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-00265c49.js");
+/* harmony import */ var _core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-57385ee8.js */ "./node_modules/@ionic/core/dist/esm-es5/core-57385ee8.js");
+/* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
+/* harmony import */ var _framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./framework-delegate-c2e2e1f4.js */ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-c2e2e1f4.js");
 
 
 
 
 var Tab = /** @class */ (function () {
     function class_1(hostRef) {
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.loaded = false;
         /** @internal */
         this.active = false;
@@ -89,8 +88,8 @@ var Tab = /** @class */ (function () {
     };
     /** Set the active component for the tab */
     class_1.prototype.setActive = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.prepareLazyLoaded()];
                     case 1:
@@ -102,30 +101,26 @@ var Tab = /** @class */ (function () {
         });
     };
     class_1.prototype.prepareLazyLoaded = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                if (!this.loaded && this.component != null) {
-                    this.loaded = true;
-                    try {
-                        return [2 /*return*/, Object(_framework_delegate_00265c49_js__WEBPACK_IMPORTED_MODULE_3__["a"])(this.delegate, this.el, this.component, ['ion-page'])];
-                    }
-                    catch (e) {
-                        console.error(e);
-                    }
-                }
-                return [2 /*return*/, undefined];
-            });
-        });
+        if (!this.loaded && this.component != null) {
+            this.loaded = true;
+            try {
+                return Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_3__["a"])(this.delegate, this.el, this.component, ['ion-page']);
+            }
+            catch (e) {
+                console.error(e);
+            }
+        }
+        return Promise.resolve(undefined);
     };
     class_1.prototype.render = function () {
         var _a = this, tab = _a.tab, active = _a.active, component = _a.component;
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { role: "tabpanel", "aria-hidden": !active ? 'true' : null, "aria-labelledby": "tab-button-" + tab, class: {
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { role: "tabpanel", "aria-hidden": !active ? 'true' : null, "aria-labelledby": "tab-button-" + tab, class: {
                 'ion-page': component === undefined,
                 'tab-hidden': !active
-            } }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null)));
+            } }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null)));
     };
     Object.defineProperty(class_1.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
@@ -139,7 +134,7 @@ var Tab = /** @class */ (function () {
 var Tabs = /** @class */ (function () {
     function class_2(hostRef) {
         var _this = this;
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.transitioning = false;
         /** @internal */
         this.useRouter = false;
@@ -155,14 +150,14 @@ var Tabs = /** @class */ (function () {
                 _this.select(tab);
             }
         };
-        this.ionNavWillLoad = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillLoad", 7);
-        this.ionTabsWillChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionTabsWillChange", 3);
-        this.ionTabsDidChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionTabsDidChange", 3);
+        this.ionNavWillLoad = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillLoad", 7);
+        this.ionTabsWillChange = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionTabsWillChange", 3);
+        this.ionTabsDidChange = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionTabsDidChange", 3);
     }
     class_2.prototype.componentWillLoad = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var tabs;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (!this.useRouter) {
@@ -194,21 +189,20 @@ var Tabs = /** @class */ (function () {
      * @param tab The tab instance to select. If passed a string, it should be the value of the tab's `tab` property.
      */
     class_2.prototype.select = function (tab) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var selectedTab;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTab(tab)];
-                    case 1:
-                        selectedTab = _a.sent();
+                    case 0:
+                        selectedTab = getTab(this.tabs, tab);
                         if (!this.shouldSwitch(selectedTab)) {
                             return [2 /*return*/, false];
                         }
                         return [4 /*yield*/, this.setActive(selectedTab)];
-                    case 2:
+                    case 1:
                         _a.sent();
                         return [4 /*yield*/, this.notifyRouter()];
-                    case 3:
+                    case 2:
                         _a.sent();
                         this.tabSwitch();
                         return [2 /*return*/, true];
@@ -222,16 +216,9 @@ var Tabs = /** @class */ (function () {
      * @param tab The tab instance to select. If passed a string, it should be the value of the tab's `tab` property.
      */
     class_2.prototype.getTab = function (tab) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var tabEl;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                tabEl = (typeof tab === 'string')
-                    ? this.tabs.find(function (t) { return t.tab === tab; })
-                    : tab;
-                if (!tabEl) {
-                    console.error("tab with id: \"" + tabEl + "\" does not exist");
-                }
-                return [2 /*return*/, tabEl];
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
+                return [2 /*return*/, getTab(this.tabs, tab)];
             });
         });
     };
@@ -243,19 +230,18 @@ var Tabs = /** @class */ (function () {
     };
     /** @internal */
     class_2.prototype.setRouteId = function (id) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var selectedTab;
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getTab(id)];
-                    case 1:
-                        selectedTab = _a.sent();
+                    case 0:
+                        selectedTab = getTab(this.tabs, id);
                         if (!this.shouldSwitch(selectedTab)) {
                             return [2 /*return*/, { changed: false, element: this.selectedTab }];
                         }
                         return [4 /*yield*/, this.setActive(selectedTab)];
-                    case 2:
+                    case 1:
                         _a.sent();
                         return [2 /*return*/, {
                                 changed: true,
@@ -268,9 +254,9 @@ var Tabs = /** @class */ (function () {
     };
     /** @internal */
     class_2.prototype.getRouteId = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var tabId;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 tabId = this.selectedTab && this.selectedTab.tab;
                 return [2 /*return*/, tabId !== undefined ? { id: tabId, element: this.selectedTab } : undefined];
             });
@@ -322,10 +308,10 @@ var Tabs = /** @class */ (function () {
         configurable: true
     });
     class_2.prototype.render = function () {
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onIonTabButtonClick: this.onTabClicked }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", { name: "top" }), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "tabs-inner" }, Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null)), Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", { name: "bottom" })));
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onIonTabButtonClick: this.onTabClicked }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", { name: "top" }), Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("div", { class: "tabs-inner" }, Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null)), Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", { name: "bottom" })));
     };
     Object.defineProperty(class_2.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
@@ -336,6 +322,15 @@ var Tabs = /** @class */ (function () {
     });
     return class_2;
 }());
+var getTab = function (tabs, tab) {
+    var tabEl = (typeof tab === 'string')
+        ? tabs.find(function (t) { return t.tab === tab; })
+        : tab;
+    if (!tabEl) {
+        console.error("tab with id: \"" + tabEl + "\" does not exist");
+    }
+    return tabEl;
+};
 
 
 

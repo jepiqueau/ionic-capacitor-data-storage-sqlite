@@ -1,8 +1,8 @@
 PODS:
-  - Capacitor (1.2.0):
-    - CapacitorCordova (= 1.2.0)
-  - CapacitorCordova (1.2.0)
-  - CapacitorDataStorageSqlite (1.2.1):
+  - Capacitor (1.2.1):
+    - CapacitorCordova (= 1.2.1)
+  - CapacitorCordova (1.2.1)
+  - CapacitorDataStorageSqlite (1.2.1-4):
     - Capacitor
     - SQLite.swift
   - SQLite.swift (0.12.2):
@@ -27,9 +27,9 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/capacitor-data-storage-sqlite"
 
 SPEC CHECKSUMS:
-  Capacitor: 38bbe536b1b9e717a82106e4bb189250ce736b75
-  CapacitorCordova: 983c22b1eae96dbce614416ab902693755a09d0f
-  CapacitorDataStorageSqlite: df13e737ea5db78efb0ea4786acf9ffdeafa16e3
+  Capacitor: e89d041bf912bccbbccab2e07d0f32aa4ca0f11a
+  CapacitorCordova: 806e405d02de22c10a9b20a2ee4fb3f097cfb8a5
+  CapacitorDataStorageSqlite: e422f42dcc105888cd07a2bf9ae95ae13865987c
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
 
 PODFILE CHECKSUM: 1debc503171eabe60ebc8a5e8102b9b760845a75

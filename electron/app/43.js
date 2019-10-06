@@ -15,13 +15,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav_push", function() { return NavPush; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ion_nav_set_root", function() { return NavSetRoot; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-5ba38749.js */ "./node_modules/@ionic/core/dist/esm-es5/core-5ba38749.js");
-/* harmony import */ var _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-6ccf652f.js */ "./node_modules/@ionic/core/dist/esm-es5/config-6ccf652f.js");
-/* harmony import */ var _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./constants-94c4865f.js */ "./node_modules/@ionic/core/dist/esm-es5/constants-94c4865f.js");
-/* harmony import */ var _helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers-c90aaa66.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-c90aaa66.js");
-/* harmony import */ var _framework_delegate_00265c49_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./framework-delegate-00265c49.js */ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-00265c49.js");
-/* harmony import */ var _index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./index-84f27767.js */ "./node_modules/@ionic/core/dist/esm-es5/index-84f27767.js");
-/* harmony import */ var _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cubic-bezier-90d0df24.js */ "./node_modules/@ionic/core/dist/esm-es5/cubic-bezier-90d0df24.js");
+/* harmony import */ var _core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./core-57385ee8.js */ "./node_modules/@ionic/core/dist/esm-es5/core-57385ee8.js");
+/* harmony import */ var _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./config-3c7f3790.js */ "./node_modules/@ionic/core/dist/esm-es5/config-3c7f3790.js");
+/* harmony import */ var _helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers-e0fdb9d0.js */ "./node_modules/@ionic/core/dist/esm-es5/helpers-e0fdb9d0.js");
+/* harmony import */ var _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./constants-3c3e1099.js */ "./node_modules/@ionic/core/dist/esm-es5/constants-3c3e1099.js");
+/* harmony import */ var _framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./framework-delegate-c2e2e1f4.js */ "./node_modules/@ionic/core/dist/esm-es5/framework-delegate-c2e2e1f4.js");
+/* harmony import */ var _index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./index-cd19f367.js */ "./node_modules/@ionic/core/dist/esm-es5/index-cd19f367.js");
+/* harmony import */ var _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./cubic-bezier-fc4a068b.js */ "./node_modules/@ionic/core/dist/esm-es5/cubic-bezier-fc4a068b.js");
 
 
 
@@ -40,16 +40,16 @@ var ViewController = /** @class */ (function () {
         this.state = VIEW_STATE_NEW;
     }
     ViewController.prototype.init = function (container) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var component, _a;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         this.state = VIEW_STATE_ATTACHED;
                         if (!!this.element) return [3 /*break*/, 2];
                         component = this.component;
                         _a = this;
-                        return [4 /*yield*/, Object(_framework_delegate_00265c49_js__WEBPACK_IMPORTED_MODULE_5__["a"])(this.delegate, container, component, ['ion-page', 'ion-page-invisible'], this.params)];
+                        return [4 /*yield*/, Object(_framework_delegate_c2e2e1f4_js__WEBPACK_IMPORTED_MODULE_5__["a"])(this.delegate, container, component, ['ion-page', 'ion-page-invisible'], this.params)];
                     case 1:
                         _a.element = _b.sent();
                         _b.label = 2;
@@ -62,7 +62,7 @@ var ViewController = /** @class */ (function () {
      * DOM WRITE
      */
     ViewController.prototype._destroy = function () {
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(this.state !== VIEW_STATE_DESTROYED, 'view state must be ATTACHED');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(this.state !== VIEW_STATE_DESTROYED, 'view state must be ATTACHED');
         var element = this.element;
         if (element) {
             if (this.delegate) {
@@ -130,7 +130,7 @@ var convertToViews = function (pages) {
 };
 var Nav = /** @class */ (function () {
     function class_1(hostRef) {
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.transInstr = [];
         this.animationEnabled = true;
         this.useRouter = false;
@@ -141,9 +141,9 @@ var Nav = /** @class */ (function () {
          * If `true`, the nav should animate the transition of components.
          */
         this.animated = true;
-        this.ionNavWillLoad = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillLoad", 7);
-        this.ionNavWillChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillChange", 3);
-        this.ionNavDidChange = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavDidChange", 3);
+        this.ionNavWillLoad = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillLoad", 7);
+        this.ionNavWillChange = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavWillChange", 3);
+        this.ionNavDidChange = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["c"])(this, "ionNavDidChange", 3);
     }
     class_1.prototype.swipeGestureChanged = function () {
         if (this.gesture) {
@@ -162,20 +162,20 @@ var Nav = /** @class */ (function () {
             !!document.querySelector('ion-router') &&
                 !this.el.closest('[no-router]');
         if (this.swipeGesture === undefined) {
-            var mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
-            this.swipeGesture = _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__["b"].getBoolean('swipeBackEnabled', mode === 'ios');
+            var mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+            this.swipeGesture = _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].getBoolean('swipeBackEnabled', mode === 'ios');
         }
         this.ionNavWillLoad.emit();
     };
     class_1.prototype.componentDidLoad = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var _a;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         this.rootChanged();
                         _a = this;
-                        return [4 /*yield*/, __webpack_require__.e(/*! import() | swipe-back-dc1b83c2-js */ "swipe-back-dc1b83c2-js").then(__webpack_require__.bind(null, /*! ./swipe-back-dc1b83c2.js */ "./node_modules/@ionic/core/dist/esm-es5/swipe-back-dc1b83c2.js"))];
+                        return [4 /*yield*/, __webpack_require__.e(/*! import() | swipe-back-35ad8e37-js */ "swipe-back-35ad8e37-js").then(__webpack_require__.bind(null, /*! ./swipe-back-35ad8e37.js */ "./node_modules/@ionic/core/dist/esm-es5/swipe-back-35ad8e37.js"))];
                     case 1:
                         _a.gesture = (_b.sent()).createSwipeBackGesture(this.el, this.canStart.bind(this), this.onStart.bind(this), this.onMove.bind(this), this.onEnd.bind(this));
                         this.swipeGestureChanged();
@@ -187,7 +187,7 @@ var Nav = /** @class */ (function () {
     class_1.prototype.componentDidUnload = function () {
         for (var _i = 0, _a = this.views; _i < _a.length; _i++) {
             var view = _a[_i];
-            Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
+            Object(_index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
             view._destroy();
         }
         if (this.gesture) {
@@ -372,8 +372,8 @@ var Nav = /** @class */ (function () {
                 resolve({
                     changed: true,
                     element: enteringEl,
-                    markVisible: function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-                        return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                    markVisible: function () { return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, function () {
+                        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
                                     mark();
@@ -394,22 +394,22 @@ var Nav = /** @class */ (function () {
         else {
             var viewController = this.views.find(function (v) { return matches(v, id, params); });
             if (viewController) {
-                finish = this.popTo(viewController, Object.assign({}, commonOpts, { direction: 'back' }));
+                finish = this.popTo(viewController, Object.assign(Object.assign({}, commonOpts), { direction: 'back' }));
             }
             else if (direction === 'forward') {
                 finish = this.push(id, params, commonOpts);
             }
             else if (direction === 'back') {
-                finish = this.setRoot(id, params, Object.assign({}, commonOpts, { direction: 'back', animated: true }));
+                finish = this.setRoot(id, params, Object.assign(Object.assign({}, commonOpts), { direction: 'back', animated: true }));
             }
         }
         return promise;
     };
     /** @internal */
     class_1.prototype.getRouteId = function () {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var active;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 active = this.getActiveSync();
                 return [2 /*return*/, active
                         ? {
@@ -552,9 +552,9 @@ var Nav = /** @class */ (function () {
         return true;
     };
     class_1.prototype.runTransition = function (ti) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var leavingView, enteringView, requiresTransition, result, _a, rejectReason_1;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _b.trys.push([0, 6, , 7]);
@@ -615,8 +615,8 @@ var Nav = /** @class */ (function () {
             ti.opts.delegate = this.delegate;
         }
         if (ti.removeView !== undefined) {
-            Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(ti.removeStart !== undefined, 'removeView needs removeStart');
-            Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(ti.removeCount !== undefined, 'removeView needs removeCount');
+            Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(ti.removeStart !== undefined, 'removeView needs removeStart');
+            Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(ti.removeCount !== undefined, 'removeView needs removeCount');
             var index = this.views.indexOf(ti.removeView);
             if (index < 0) {
                 throw new Error('removeView was not found');
@@ -645,7 +645,7 @@ var Nav = /** @class */ (function () {
         if (!insertViews) {
             return;
         }
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(insertViews.length > 0, 'length can not be zero');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(insertViews.length > 0, 'length can not be zero');
         var viewControllers = convertToViews(insertViews);
         if (viewControllers.length === 0) {
             throw new Error('invalid views to insert');
@@ -685,9 +685,9 @@ var Nav = /** @class */ (function () {
         return undefined;
     };
     class_1.prototype.postViewInit = function (enteringView, leavingView, ti) {
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(leavingView || enteringView, 'Both leavingView and enteringView are null');
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(ti.resolve, 'resolve must be valid');
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(ti.reject, 'reject must be valid');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(leavingView || enteringView, 'Both leavingView and enteringView are null');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(ti.resolve, 'resolve must be valid');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(ti.reject, 'reject must be valid');
         var opts = ti.opts;
         var insertViews = ti.insertViews;
         var removeStart = ti.removeStart;
@@ -695,8 +695,8 @@ var Nav = /** @class */ (function () {
         var destroyQueue;
         // there are views to remove
         if (removeStart !== undefined && removeCount !== undefined) {
-            Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(removeStart >= 0, 'removeStart can not be negative');
-            Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(removeCount >= 0, 'removeCount can not be negative');
+            Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(removeStart >= 0, 'removeStart can not be negative');
+            Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(removeCount >= 0, 'removeCount can not be negative');
             destroyQueue = [];
             for (var i = 0; i < removeCount; i++) {
                 var view = this.views[i + removeStart];
@@ -710,7 +710,7 @@ var Nav = /** @class */ (function () {
         var finalBalance = this.views.length +
             (insertViews !== undefined ? insertViews.length : 0) -
             (removeCount !== undefined ? removeCount : 0);
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(finalBalance >= 0, 'final balance can not be negative');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(finalBalance >= 0, 'final balance can not be negative');
         if (finalBalance === 0) {
             console.warn("You can't remove all the pages in the navigation stack. nav.pop() is probably called too many times.", this, this.el);
             throw new Error('navigation stack needs at least one root page');
@@ -738,9 +738,9 @@ var Nav = /** @class */ (function () {
         if (destroyQueue && destroyQueue.length > 0) {
             for (var _a = 0, destroyQueue_1 = destroyQueue; _a < destroyQueue_1.length; _a++) {
                 var view = destroyQueue_1[_a];
-                Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_3__["b"]);
-                Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_3__["c"]);
-                Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
+                Object(_index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["b"]);
+                Object(_index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["c"]);
+                Object(_index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__["l"])(view.element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
             }
             // once all lifecycle events has been delivered, we can safely detroy the views
             for (var _b = 0, destroyQueue_2 = destroyQueue; _b < destroyQueue_2.length; _b++) {
@@ -750,22 +750,22 @@ var Nav = /** @class */ (function () {
         }
     };
     class_1.prototype.transition = function (enteringView, leavingView, ti) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function () {
             var opts, progressCallback, mode, enteringEl, leavingEl, animationOpts, hasCompleted;
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"])(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         opts = ti.opts;
                         progressCallback = opts.progressAnimation
                             ? function (ani) { return _this.sbAni = ani; }
                             : undefined;
-                        mode = Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
+                        mode = Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["d"])(this);
                         enteringEl = enteringView.element;
                         leavingEl = leavingView && leavingView.element;
-                        animationOpts = Object.assign({ mode: mode, showGoBack: this.canGoBackSync(enteringView), baseEl: this.el, animationBuilder: this.animation || opts.animationBuilder || _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('navAnimation'), progressCallback: progressCallback, animated: this.animated && _config_6ccf652f_js__WEBPACK_IMPORTED_MODULE_2__["b"].getBoolean('animated', true), enteringEl: enteringEl,
+                        animationOpts = Object.assign({ mode: mode, showGoBack: this.canGoBackSync(enteringView), baseEl: this.el, animationBuilder: this.animation || opts.animationBuilder || _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].get('navAnimation'), progressCallback: progressCallback, animated: this.animated && _config_3c7f3790_js__WEBPACK_IMPORTED_MODULE_2__["b"].getBoolean('animated', true), enteringEl: enteringEl,
                             leavingEl: leavingEl }, opts);
-                        return [4 /*yield*/, Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__["t"])(animationOpts)];
+                        return [4 /*yield*/, Object(_index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__["t"])(animationOpts)];
                     case 1:
                         hasCompleted = (_a.sent()).hasCompleted;
                         return [2 /*return*/, this.transitionFinish(hasCompleted, enteringView, leavingView, opts)];
@@ -792,11 +792,11 @@ var Nav = /** @class */ (function () {
         if (existingIndex > -1) {
             // this view is already in the stack!!
             // move it to its new location
-            Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(view.nav === this, 'view is not part of the nav');
+            Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(view.nav === this, 'view is not part of the nav');
             views.splice(index, 0, views.splice(existingIndex, 1)[0]);
         }
         else {
-            Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(!view.nav, 'nav is used');
+            Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(!view.nav, 'nav is used');
             // this is a new view to add to the stack
             // create the new entering view
             view.nav = this;
@@ -805,10 +805,10 @@ var Nav = /** @class */ (function () {
         }
     };
     class_1.prototype.removeView = function (view) {
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(view.state === VIEW_STATE_ATTACHED || view.state === VIEW_STATE_DESTROYED, 'view state should be loaded or destroyed');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(view.state === VIEW_STATE_ATTACHED || view.state === VIEW_STATE_DESTROYED, 'view state should be loaded or destroyed');
         var views = this.views;
         var index = views.indexOf(view);
-        Object(_helpers_c90aaa66_js__WEBPACK_IMPORTED_MODULE_4__["b"])(index > -1, 'view must be part of the stack');
+        Object(_helpers_e0fdb9d0_js__WEBPACK_IMPORTED_MODULE_3__["e"])(index > -1, 'view must be part of the stack');
         if (index >= 0) {
             views.splice(index, 1);
         }
@@ -835,13 +835,13 @@ var Nav = /** @class */ (function () {
             if (i > activeViewIndex) {
                 // this view comes after the active view
                 // let's unload it
-                Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__["l"])(element, _constants_94c4865f_js__WEBPACK_IMPORTED_MODULE_3__["d"]);
+                Object(_index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__["l"])(element, _constants_3c3e1099_js__WEBPACK_IMPORTED_MODULE_4__["d"]);
                 this.destroyView(view);
             }
             else if (i < activeViewIndex) {
                 // this view comes before the active view
                 // and it is not a portal then ensure it is hidden
-                Object(_index_84f27767_js__WEBPACK_IMPORTED_MODULE_6__["s"])(element, true);
+                Object(_index_cd19f367_js__WEBPACK_IMPORTED_MODULE_6__["s"])(element, true);
             }
         }
     };
@@ -886,19 +886,19 @@ var Nav = /** @class */ (function () {
              */
             if (!shouldComplete) {
                 this.sbAni.easing('cubic-bezier(1, 0, 0.68, 0.28)');
-                newStepValue += Object(_cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["g"])(new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 0), new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 0), new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](0.68, 0.28), new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 1), stepValue);
+                newStepValue += Object(_cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["g"])(new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 0), new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 0), new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](0.68, 0.28), new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 1), stepValue);
             }
             else {
-                newStepValue += Object(_cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["g"])(new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 0), new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](0.32, 0.72), new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 1), new _cubic_bezier_90d0df24_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 1), stepValue);
+                newStepValue += Object(_cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["g"])(new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 0), new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](0.32, 0.72), new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](0, 1), new _cubic_bezier_fc4a068b_js__WEBPACK_IMPORTED_MODULE_7__["P"](1, 1), stepValue);
             }
             this.sbAni.progressEnd(shouldComplete, newStepValue, dur);
         }
     };
     class_1.prototype.render = function () {
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null));
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])("slot", null));
     };
     Object.defineProperty(class_1.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
@@ -939,9 +939,9 @@ var navLink = function (el, routerDirection, component, componentProps) {
     return Promise.resolve(false);
 };
 var NavLink = /** @class */ (function () {
-    function class_2(hostRef) {
+    function NavLink(hostRef) {
         var _this = this;
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         /**
          * The transition direction when navigating to another page.
          */
@@ -950,78 +950,78 @@ var NavLink = /** @class */ (function () {
             return navLink(_this.el, _this.routerDirection, _this.component, _this.componentProps);
         };
     }
-    class_2.prototype.render = function () {
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick }));
+    NavLink.prototype.render = function () {
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.onClick }));
     };
-    Object.defineProperty(class_2.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(NavLink.prototype, "el", {
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    return class_2;
+    return NavLink;
 }());
 var NavPop = /** @class */ (function () {
-    function class_3(hostRef) {
+    function NavPop(hostRef) {
         var _this = this;
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.pop = function () {
             return navLink(_this.el, 'back');
         };
     }
-    class_3.prototype.componentDidLoad = function () {
+    NavPop.prototype.componentDidLoad = function () {
         console.warn('[DEPRECATED][ion-nav-pop] <ion-nav-pop> is deprecated. Use `<ion-nav-link routerDirection="back">` instead.');
     };
-    class_3.prototype.render = function () {
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.pop }));
+    NavPop.prototype.render = function () {
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.pop }));
     };
-    Object.defineProperty(class_3.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(NavPop.prototype, "el", {
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    return class_3;
+    return NavPop;
 }());
 var NavPush = /** @class */ (function () {
-    function class_4(hostRef) {
+    function NavPush(hostRef) {
         var _this = this;
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.push = function () {
             return navLink(_this.el, 'forward', _this.component, _this.componentProps);
         };
     }
-    class_4.prototype.componentDidLoad = function () {
+    NavPush.prototype.componentDidLoad = function () {
         console.warn('[DEPRECATED][ion-nav-push] `<ion-nav-push component="MyComponent">` is deprecated. Use `<ion-nav-link component="MyComponent">` instead.');
     };
-    class_4.prototype.render = function () {
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.push }));
+    NavPush.prototype.render = function () {
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.push }));
     };
-    Object.defineProperty(class_4.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(NavPush.prototype, "el", {
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    return class_4;
+    return NavPush;
 }());
 var NavSetRoot = /** @class */ (function () {
-    function class_5(hostRef) {
+    function NavSetRoot(hostRef) {
         var _this = this;
-        Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
+        Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["r"])(this, hostRef);
         this.setRoot = function () {
             return navLink(_this.el, 'root', _this.component, _this.componentProps);
         };
     }
-    class_5.prototype.componentDidLoad = function () {
+    NavSetRoot.prototype.componentDidLoad = function () {
         console.warn('[DEPRECATED][ion-nav-set-root] `<ion-nav-set-root component="MyComponent">` is deprecated. Use `<ion-nav-link component="MyComponent" routerDirection="root">` instead.');
     };
-    class_5.prototype.render = function () {
-        return (Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.setRoot }));
+    NavSetRoot.prototype.render = function () {
+        return (Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["h"])(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["H"], { onClick: this.setRoot }));
     };
-    Object.defineProperty(class_5.prototype, "el", {
-        get: function () { return Object(_core_5ba38749_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
+    Object.defineProperty(NavSetRoot.prototype, "el", {
+        get: function () { return Object(_core_57385ee8_js__WEBPACK_IMPORTED_MODULE_1__["e"])(this); },
         enumerable: true,
         configurable: true
     });
-    return class_5;
+    return NavSetRoot;
 }());
 
 

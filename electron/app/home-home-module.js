@@ -2559,8 +2559,8 @@ class Data {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StorageDatabaseHelper", function() { return StorageDatabaseHelper; });
-/* harmony import */ var localforage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! localforage */ "./node_modules/localforage/dist/localforage.js");
-/* harmony import */ var localforage__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(localforage__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jeep_localforage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jeep-localforage */ "./node_modules/jeep-localforage/dist/jeep-localforage.js");
+/* harmony import */ var jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jeep_localforage__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Data */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/web-utils/Data.js");
 
 
@@ -2571,10 +2571,10 @@ class StorageDatabaseHelper {
         let config = {
             name: DATABASE,
             storeName: STORAGESTORE,
-            driver: localforage__WEBPACK_IMPORTED_MODULE_0___default.a.INDEXEDDB,
+            driver: [jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default.a.INDEXEDDB, jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default.a.WEBSQL],
             version: 1
         };
-        this._db = localforage__WEBPACK_IMPORTED_MODULE_0___default.a.createInstance(config);
+        this._db = jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default.a.createInstance(config);
     }
     set(data) {
         return this._db.setItem(data.name, data.value).then(() => {
@@ -2798,16 +2798,16 @@ Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerWebPlugin"])(Capaci
 
 /***/ }),
 
-/***/ "./node_modules/localforage/dist/localforage.js":
-/*!******************************************************!*\
-  !*** ./node_modules/localforage/dist/localforage.js ***!
-  \******************************************************/
+/***/ "./node_modules/jeep-localforage/dist/jeep-localforage.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/jeep-localforage/dist/jeep-localforage.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;/*!
-    localForage -- Offline Storage, Improved
-    Version 1.7.3
+    jeep-localForage -- Offline Storage, Improved
+    Version 1.7.5-1
     https://localforage.github.io/localForage
     (c) 2013-2017 Mozilla, Apache License 2.0
 */
@@ -3186,22 +3186,58 @@ function isIndexedDBValid() {
         if (!idb) {
             return false;
         }
+        /* Modified by JPQ as it doesn't work on chrome development tools
         // We mimic PouchDB here;
         //
         // We test for openDatabase because IE Mobile identifies itself
         // as Safari. Oh the lulz...
-        var isSafari = typeof openDatabase !== 'undefined' && /(Safari|iPhone|iPad|iPod)/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) && !/BlackBerry/.test(navigator.platform);
-
-        var hasFetch = typeof fetch === 'function' && fetch.toString().indexOf('[native code') !== -1;
-
-        // Safari <10.1 does not meet our requirements for IDB support (#5572)
-        // since Safari 10.1 shipped with fetch, we can use that to detect it
-        return (!isSafari || hasFetch) && typeof indexedDB !== 'undefined' &&
-        // some outdated implementations of IDB that appear on Samsung
-        // and HTC Android devices <4.4 are missing IDBKeyRange
-        // See: https://github.com/mozilla/localForage/issues/128
-        // See: https://github.com/mozilla/localForage/issues/272
-        typeof IDBKeyRange !== 'undefined';
+        var isSafari =
+            typeof openDatabase !== 'undefined' &&
+            /(Safari|iPhone|iPad|iPod)/.test(navigator.userAgent) &&
+            !/Chrome/.test(navigator.userAgent) &&
+            !/BlackBerry/.test(navigator.platform);
+         var hasFetch =
+            typeof fetch === 'function' &&
+            fetch.toString().indexOf('[native code') !== -1;
+         // Safari <10.1 does not meet our requirements for IDB support
+        // (see: https://github.com/pouchdb/pouchdb/issues/5572).
+        // Safari 10.1 shipped with fetch, we can use that to detect it.
+        // Note: this creates issues with `window.fetch` polyfills and
+        // overrides; see:
+        // https://github.com/localForage/localForage/issues/856
+        return (
+            (!isSafari || hasFetch) &&
+            typeof indexedDB !== 'undefined' &&
+            // some outdated implementations of IDB that appear on Samsung
+            // and HTC Android devices <4.4 are missing IDBKeyRange
+            // See: https://github.com/mozilla/localForage/issues/128
+            // See: https://github.com/mozilla/localForage/issues/272
+            typeof IDBKeyRange !== 'undefined'
+        );
+        */
+        var retValue = false;
+        var isApple = /(Macintosh|iPhone|iPad|iPod)/.test(navigator.userAgent);
+        if (isApple) {
+            var isSafari = typeof openDatabase !== 'undefined' && /(Safari|iPhone|iPad|iPod)/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) && !/BlackBerry/.test(navigator.platform) && !/Android/.test(navigator.userAgent);
+            var isVersion = /(Version)/.test(navigator.userAgent);
+            if (isSafari && isVersion) {
+                var versionString = navigator.userAgent.substring(navigator.userAgent.indexOf('Version/'));
+                versionString = versionString.substring(0, versionString.indexOf(' ')).replace('Version/', '');
+                var versionArray = versionString.split('.');
+                var version = Number(versionArray[0]);
+                var subversion = versionArray.length > 1 ? Number(versionArray[1]) : -1;
+                if (version === 10 && subversion >= 1 || version > 10) {
+                    retValue = true;
+                }
+            } else {
+                retValue = !isSafari && typeof indexedDB !== 'undefined' && typeof IDBKeyRange !== 'undefined';
+            }
+        } else {
+            if (typeof openDatabase !== 'undefined' && typeof indexedDB !== 'undefined' && typeof IDBKeyRange !== 'undefined') {
+                retValue = true;
+            }
+        }
+        return retValue;
     } catch (e) {
         return false;
     }

@@ -933,6 +933,7 @@ var DevicePluginWeb = /** @class */ (function (_super) {
                             model: uaFields.model,
                             platform: 'web',
                             appVersion: '',
+                            appBuild: '',
                             osVersion: uaFields.osVersion,
                             manufacturer: navigator.vendor,
                             isVirtual: false,
@@ -1159,7 +1160,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
      */
     FilesystemPluginWeb.prototype.writeFile = function (options) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var path, data, occupiedEntry, parentPath, parentEntry, subDirIndex, parentArgPath, now, pathObj;
+            var path, data, occupiedEntry, encoding, parentPath, parentEntry, subDirIndex, parentArgPath, now, pathObj;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -1170,6 +1171,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         occupiedEntry = _a.sent();
                         if (occupiedEntry && occupiedEntry.type === 'directory')
                             throw ('The supplied path is a directory.');
+                        encoding = options.encoding;
                         parentPath = path.substr(0, path.lastIndexOf('/'));
                         return [4 /*yield*/, this.dbRequest('get', [parentPath])];
                     case 2:
@@ -1178,7 +1180,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         subDirIndex = parentPath.indexOf('/', 1);
                         if (!(subDirIndex !== -1)) return [3 /*break*/, 4];
                         parentArgPath = parentPath.substr(subDirIndex);
-                        return [4 /*yield*/, this.mkdir({ path: parentArgPath, directory: options.directory, createIntermediateDirectories: true })];
+                        return [4 /*yield*/, this.mkdir({ path: parentArgPath, directory: options.directory, recursive: true })];
                     case 3:
                         _a.sent();
                         _a.label = 4;
@@ -1191,7 +1193,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                             size: data.length,
                             ctime: now,
                             mtime: now,
-                            content: data
+                            content: !encoding && data.indexOf(',') >= 0 ? data.split(',')[1] : data,
                         };
                         return [4 /*yield*/, this.dbRequest('put', [pathObj])];
                     case 5:
@@ -1227,7 +1229,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         parentEntry = _a.sent();
                         if (!(parentEntry === undefined)) return [3 /*break*/, 4];
                         parentArgPath = parentPath.substr(parentPath.indexOf('/', 1));
-                        return [4 /*yield*/, this.mkdir({ path: parentArgPath, directory: options.directory, createIntermediateDirectories: true })];
+                        return [4 /*yield*/, this.mkdir({ path: parentArgPath, directory: options.directory, recursive: true })];
                     case 3:
                         _a.sent();
                         _a.label = 4;
@@ -1290,12 +1292,17 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
      */
     FilesystemPluginWeb.prototype.mkdir = function (options) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var path, createIntermediateDirectories, parentPath, depth, parentEntry, occupiedEntry, parentArgPath, now, pathObj;
+            var path, createIntermediateDirectories, recursive, doRecursive, parentPath, depth, parentEntry, occupiedEntry, parentArgPath, now, pathObj;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         path = this.getPath(options.directory, options.path);
                         createIntermediateDirectories = options.createIntermediateDirectories;
+                        if (options.createIntermediateDirectories !== undefined) {
+                            console.warn('createIntermediateDirectories is deprecated, use recursive');
+                        }
+                        recursive = options.recursive;
+                        doRecursive = (createIntermediateDirectories || recursive);
                         parentPath = path.substr(0, path.lastIndexOf('/'));
                         depth = (path.match(/\//g) || []).length;
                         return [4 /*yield*/, this.dbRequest('get', [parentPath])];
@@ -1308,14 +1315,14 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                             throw Error('Cannot create Root directory');
                         if (occupiedEntry !== undefined)
                             throw Error('Current directory does already exist.');
-                        if (!createIntermediateDirectories && depth !== 2 && parentEntry === undefined)
+                        if (!doRecursive && depth !== 2 && parentEntry === undefined)
                             throw Error('Parent directory must exist');
-                        if (!(createIntermediateDirectories && depth !== 2 && parentEntry === undefined)) return [3 /*break*/, 4];
+                        if (!(doRecursive && depth !== 2 && parentEntry === undefined)) return [3 /*break*/, 4];
                         parentArgPath = parentPath.substr(parentPath.indexOf('/', 1));
                         return [4 /*yield*/, this.mkdir({
                                 path: parentArgPath,
                                 directory: options.directory,
-                                createIntermediateDirectories: createIntermediateDirectories
+                                recursive: doRecursive
                             })];
                     case 3:
                         _a.sent();
@@ -1636,7 +1643,7 @@ var FilesystemPluginWeb = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.mkdir({
                                 path: to,
                                 directory: toDirectory,
-                                createIntermediateDirectories: false,
+                                recursive: false,
                             })];
                     case 17:
                         // Create the to directory
@@ -2562,107 +2569,151 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jeep_localforage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jeep-localforage */ "./node_modules/jeep-localforage/dist/jeep-localforage.js");
 /* harmony import */ var jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jeep_localforage__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Data */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/web-utils/Data.js");
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 
 
-const DATABASE = "storageIDB";
-const STORAGESTORE = "storage_store";
+//const DATABASE: string = "storageIDB";
+//const STORAGESTORE: string = "storage_store";
 class StorageDatabaseHelper {
-    constructor() {
+    constructor(dbName, tableName) {
+        this._db = null;
+        this.openStore(dbName, tableName);
+    }
+    openStore(dbName, tableName) {
+        let ret = false;
+        const config = this.setConfig(dbName, tableName);
+        this._db = jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default.a.createInstance(config);
+        if (this._db != null) {
+            this._dbName = dbName;
+            ret = true;
+        }
+        return ret;
+    }
+    setConfig(dbName, tableName) {
         let config = {
-            name: DATABASE,
-            storeName: STORAGESTORE,
+            name: dbName,
+            storeName: tableName,
             driver: [jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default.a.INDEXEDDB, jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default.a.WEBSQL],
             version: 1
         };
-        this._db = jeep_localforage__WEBPACK_IMPORTED_MODULE_0___default.a.createInstance(config);
+        return config;
+    }
+    setTable(tableName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.openStore(this._dbName, tableName);
+        });
     }
     set(data) {
-        return this._db.setItem(data.name, data.value).then(() => {
-            return Promise.resolve(true);
-        })
-            .catch((error) => {
-            console.log('set: Error Data insertion failed: ' + error);
-            return Promise.resolve(false);
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._db.setItem(data.name, data.value).then(() => {
+                return Promise.resolve(true);
+            })
+                .catch((error) => {
+                console.log('set: Error Data insertion failed: ' + error);
+                return Promise.resolve(false);
+            });
         });
     }
     get(name) {
-        return this._db.getItem(name).then((value) => {
-            let data = new _Data__WEBPACK_IMPORTED_MODULE_1__["Data"]();
-            data.name = name;
-            data.value = value;
-            return Promise.resolve(data);
-        })
-            .catch((error) => {
-            console.log('get: Error Data retrieve failed: ' + error);
-            return Promise.resolve(null);
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._db.getItem(name).then((value) => {
+                let data = new _Data__WEBPACK_IMPORTED_MODULE_1__["Data"]();
+                data.name = name;
+                data.value = value;
+                return Promise.resolve(data);
+            })
+                .catch((error) => {
+                console.log('get: Error Data retrieve failed: ' + error);
+                return Promise.resolve(null);
+            });
         });
     }
     remove(name) {
-        return this._db.removeItem(name).then(() => {
-            return Promise.resolve(true);
-        })
-            .catch((error) => {
-            console.log('remove: Error Data remove failed: ' + error);
-            return Promise.resolve(false);
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._db.removeItem(name).then(() => {
+                return Promise.resolve(true);
+            })
+                .catch((error) => {
+                console.log('remove: Error Data remove failed: ' + error);
+                return Promise.resolve(false);
+            });
         });
     }
     clear() {
-        return this._db.clear().then(() => {
-            return Promise.resolve(true);
-        })
-            .catch((error) => {
-            console.log('clear: Error Data clear failed: ' + error);
-            return Promise.resolve(false);
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._db.clear().then(() => {
+                return Promise.resolve(true);
+            })
+                .catch((error) => {
+                console.log('clear: Error Data clear failed: ' + error);
+                return Promise.resolve(false);
+            });
         });
     }
     keys() {
-        return this._db.keys().then((keys) => {
-            return Promise.resolve(keys);
-        })
-            .catch((error) => {
-            console.log('keys: Error Data retrieve keys failed: ' + error);
-            return Promise.resolve(null);
+        return __awaiter(this, void 0, void 0, function* () {
+            return this._db.keys().then((keys) => {
+                return Promise.resolve(keys);
+            })
+                .catch((error) => {
+                console.log('keys: Error Data retrieve keys failed: ' + error);
+                return Promise.resolve(null);
+            });
         });
     }
     values() {
-        let values = [];
-        return this._db.iterate(((value) => {
-            values.push(value);
-        })).then(() => {
-            return Promise.resolve(values);
-        })
-            .catch((error) => {
-            console.log('values: Error Data retrieve values failed: ' + error);
-            return Promise.resolve(null);
+        return __awaiter(this, void 0, void 0, function* () {
+            let values = [];
+            return this._db.iterate(((value) => {
+                values.push(value);
+            })).then(() => {
+                return Promise.resolve(values);
+            })
+                .catch((error) => {
+                console.log('values: Error Data retrieve values failed: ' + error);
+                return Promise.resolve(null);
+            });
         });
     }
     keysvalues() {
-        let keysvalues = [];
-        return this._db.iterate(((value, key) => {
-            let data = new _Data__WEBPACK_IMPORTED_MODULE_1__["Data"]();
-            data.name = key;
-            data.value = value;
-            keysvalues.push(data);
-        })).then(() => {
-            return Promise.resolve(keysvalues);
-        })
-            .catch((error) => {
-            console.log('keysvalues: Error Data retrieve keys/values failed: ' + error);
-            return Promise.resolve(null);
+        return __awaiter(this, void 0, void 0, function* () {
+            let keysvalues = [];
+            return this._db.iterate(((value, key) => {
+                let data = new _Data__WEBPACK_IMPORTED_MODULE_1__["Data"]();
+                data.name = key;
+                data.value = value;
+                keysvalues.push(data);
+            })).then(() => {
+                return Promise.resolve(keysvalues);
+            })
+                .catch((error) => {
+                console.log('keysvalues: Error Data retrieve keys/values failed: ' + error);
+                return Promise.resolve(null);
+            });
         });
     }
     iskey(name) {
-        return this.get(name).then((data) => {
-            if (data.value != null) {
-                return Promise.resolve(true);
-            }
-            else {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.get(name).then((data) => {
+                if (data.value != null) {
+                    return Promise.resolve(true);
+                }
+                else {
+                    return Promise.resolve(false);
+                }
+            })
+                .catch((error) => {
+                console.log('iskey: Error Data retrieve iskey failed: ' + error);
                 return Promise.resolve(false);
-            }
-        })
-            .catch((error) => {
-            console.log('iskey: Error Data retrieve iskey failed: ' + error);
-            return Promise.resolve(false);
+            });
         });
     }
 }
@@ -2702,7 +2753,39 @@ class CapacitorDataStorageSqliteWeb extends _capacitor_core__WEBPACK_IMPORTED_MO
             name: 'CapacitorDataStorageSqlite',
             platforms: ['web']
         });
-        this.mDb = new _web_utils_StorageDatabaseHelper__WEBPACK_IMPORTED_MODULE_1__["StorageDatabaseHelper"]();
+    }
+    openStore(options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ret = false;
+            let dbName = options.database ? `${options.database}IDB` : "storageIDB";
+            let tableName = options.table ? options.table : "storage_store";
+            this.mDb = new _web_utils_StorageDatabaseHelper__WEBPACK_IMPORTED_MODULE_1__["StorageDatabaseHelper"](dbName, tableName);
+            if (this.mDb)
+                ret = true;
+            return Promise.resolve({ result: ret });
+        });
+    }
+    setTable(options) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let tableName = options.table;
+            if (tableName == null) {
+                return Promise.reject("Must provide a table name");
+            }
+            let ret = false;
+            let message = "";
+            if (this.mDb) {
+                ret = yield this.mDb.setTable(tableName);
+                if (ret) {
+                    return Promise.resolve({ result: ret, message: message });
+                }
+                else {
+                    return Promise.resolve({ result: ret, message: "failed in adding table" });
+                }
+            }
+            else {
+                return Promise.resolve({ result: ret, message: "Must open a store first" });
+            }
+        });
     }
     set(options) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -2807,7 +2890,7 @@ Object(_capacitor_core__WEBPACK_IMPORTED_MODULE_0__["registerWebPlugin"])(Capaci
 
 var require;var require;/*!
     jeep-localForage -- Offline Storage, Improved
-    Version 1.7.5-1
+    Version 1.7.5-4
     https://localforage.github.io/localForage
     (c) 2013-2017 Mozilla, Apache License 2.0
 */
@@ -3218,7 +3301,7 @@ function isIndexedDBValid() {
         var retValue = false;
         var isApple = /(Macintosh|iPhone|iPad|iPod)/.test(navigator.userAgent);
         if (isApple) {
-            var isSafari = typeof openDatabase !== 'undefined' && /(Safari|iPhone|iPad|iPod)/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) && !/BlackBerry/.test(navigator.platform) && !/Android/.test(navigator.userAgent);
+            var isSafari = typeof openDatabase !== 'undefined' && /(Safari|iPhone|iPad|iPod)/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent) && !/Firefox/.test(navigator.userAgent) && !/BlackBerry/.test(navigator.platform) && !/Android/.test(navigator.userAgent);
             var isVersion = /(Version)/.test(navigator.userAgent);
             if (isSafari && isVersion) {
                 var versionString = navigator.userAgent.substring(navigator.userAgent.indexOf('Version/'));
@@ -3233,7 +3316,7 @@ function isIndexedDBValid() {
                 retValue = !isSafari && typeof indexedDB !== 'undefined' && typeof IDBKeyRange !== 'undefined';
             }
         } else {
-            if (typeof openDatabase !== 'undefined' && typeof indexedDB !== 'undefined' && typeof IDBKeyRange !== 'undefined') {
+            if (typeof indexedDB !== 'undefined' && typeof IDBKeyRange !== 'undefined') {
                 retValue = true;
             }
         }
@@ -5734,27 +5817,49 @@ __webpack_require__.r(__webpack_exports__);
 
 var CapacitorDataStorageSqlite = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].CapacitorDataStorageSqlite, Device = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].Device;
 var HomePage = /** @class */ (function () {
+    //  storage1: any = {};
     function HomePage() {
+        this.storage = {};
     }
     HomePage.prototype.testPlugin = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var storage, info, retpopulate, retiskey, retkeys, retvalues, retkeysvalues, retremove, retclear, result, ret1, data, ret2, data1, ret3;
-            var _this = this;
+            var info;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        storage = {};
-                        return [4 /*yield*/, Device.getInfo()];
+                    case 0: return [4 /*yield*/, Device.getInfo()];
                     case 1:
                         info = _a.sent();
                         console.log('platform ', info.platform);
                         if (info.platform === "ios" || info.platform === "android") {
-                            storage = CapacitorDataStorageSqlite;
-                            console.log('storage ', storage);
+                            this.storage = CapacitorDataStorageSqlite;
+                            //      this.storage1 = CapacitorDataStorageSqlite;
+                            console.log('storage ', this.storage);
                         }
                         else {
-                            storage = capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_3__["CapacitorDataStorageSqlite"];
+                            this.storage = capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_3__["CapacitorDataStorageSqlite"];
+                            //      this.storage1 = CapacitorSQLPlugin.CapacitorDataStorageSqlite;     
                         }
+                        return [4 /*yield*/, this.testFirstStore()];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, this.testSecondStore()];
+                    case 3:
+                        _a.sent();
+                        return [4 /*yield*/, this.testThirdStore()];
+                    case 4:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    HomePage.prototype.testFirstStore = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var retTest1, retpopulate, retiskey, retkeys, retvalues, retkeysvalues, retremove, retclear, result, ret1, data, ret2, data1, ret3, res, res;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        retTest1 = false;
                         retpopulate = false;
                         retiskey = false;
                         retkeys = false;
@@ -5762,11 +5867,16 @@ var HomePage = /** @class */ (function () {
                         retkeysvalues = false;
                         retremove = false;
                         retclear = false;
-                        return [4 /*yield*/, storage.set({ key: "session", value: "Session Opened" })];
+                        return [4 /*yield*/, this.storage.openStore({})];
+                    case 1:
+                        result = _a.sent();
+                        console.log('storage retCreate ', result.result);
+                        return [4 /*yield*/, this.storage.set({ key: "session", value: "Session Opened" })];
                     case 2:
+                        // store data in the first store
                         result = _a.sent();
                         console.log("Save Data : " + result.result);
-                        return [4 /*yield*/, storage.get({ key: "session" })];
+                        return [4 /*yield*/, this.storage.get({ key: "session" })];
                     case 3:
                         result = _a.sent();
                         console.log('result ', result);
@@ -5775,10 +5885,10 @@ var HomePage = /** @class */ (function () {
                         if (result.value === "Session Opened")
                             ret1 = true;
                         data = { 'a': 20, 'b': 'Hello World', 'c': { 'c1': 40, 'c2': 'cool' } };
-                        return [4 /*yield*/, storage.set({ key: 'testJson', value: JSON.stringify(data) })];
+                        return [4 /*yield*/, this.storage.set({ key: 'testJson', value: JSON.stringify(data) })];
                     case 4:
                         _a.sent();
-                        return [4 /*yield*/, storage.get({ key: "testJson" })];
+                        return [4 /*yield*/, this.storage.get({ key: "testJson" })];
                     case 5:
                         result = _a.sent();
                         console.log("Get Data : " + result.value);
@@ -5786,10 +5896,10 @@ var HomePage = /** @class */ (function () {
                         if (result.value === JSON.stringify(data))
                             ret2 = true;
                         data1 = 243.567;
-                        return [4 /*yield*/, storage.set({ key: 'testNumber', value: data1.toString() })];
+                        return [4 /*yield*/, this.storage.set({ key: 'testNumber', value: data1.toString() })];
                     case 6:
                         _a.sent();
-                        return [4 /*yield*/, storage.get({ key: "testNumber" })];
+                        return [4 /*yield*/, this.storage.get({ key: "testNumber" })];
                     case 7:
                         result = _a.sent();
                         console.log("Get Data : " + result.value);
@@ -5800,12 +5910,12 @@ var HomePage = /** @class */ (function () {
                             retpopulate = true;
                         if (retpopulate)
                             document.querySelector('.populate').classList.remove('hidden');
-                        return [4 /*yield*/, storage.iskey({ key: "testNumber" })];
+                        return [4 /*yield*/, this.storage.iskey({ key: "testNumber" })];
                     case 8:
                         result = _a.sent();
                         console.log("isKey testNumber " + result.result);
                         ret1 = result.result;
-                        return [4 /*yield*/, storage.iskey({ key: "foo" })];
+                        return [4 /*yield*/, this.storage.iskey({ key: "foo" })];
                     case 9:
                         result = _a.sent();
                         console.log("isKey foo " + result.result);
@@ -5814,7 +5924,7 @@ var HomePage = /** @class */ (function () {
                             retiskey = true;
                         if (retiskey)
                             document.querySelector('.iskey').classList.remove('hidden');
-                        return [4 /*yield*/, storage.keys()];
+                        return [4 /*yield*/, this.storage.keys()];
                     case 10:
                         result = _a.sent();
                         console.log("Get keys : " + result.keys);
@@ -5824,7 +5934,7 @@ var HomePage = /** @class */ (function () {
                             retkeys = true;
                             document.querySelector('.keys').classList.remove('hidden');
                         }
-                        return [4 /*yield*/, storage.values()];
+                        return [4 /*yield*/, this.storage.values()];
                     case 11:
                         result = _a.sent();
                         console.log("Get values : " + result.values);
@@ -5834,67 +5944,118 @@ var HomePage = /** @class */ (function () {
                             retvalues = true;
                             document.querySelector('.values').classList.remove('hidden');
                         }
-                        storage.keysvalues().then(function (result) {
-                            result.keysvalues.forEach(function (element) {
-                                console.log(element);
-                            });
-                            console.log("KeysValues length " + result.keysvalues.length);
-                            if (result.keysvalues.length === 3 &&
-                                result.keysvalues[0].key === "session" && result.keysvalues[0].value === "Session Opened" &&
-                                result.keysvalues[1].key === "testJson" && result.keysvalues[1].value === JSON.stringify(data) &&
-                                result.keysvalues[2].key === "testNumber" && result.keysvalues[2].value === data1.toString()) {
-                                retkeysvalues = true;
-                                document.querySelector('.keysvalues').classList.remove('hidden');
-                                storage.remove({ key: "testJson" }).then(function (result) {
-                                    if (result.result) {
-                                        storage.keysvalues().then(function (res) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-                                            var res_1;
-                                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                                                switch (_a.label) {
-                                                    case 0:
-                                                        if (res.keysvalues.length === 2 &&
-                                                            res.keysvalues[0].key === "session" && res.keysvalues[0].value === "Session Opened" &&
-                                                            res.keysvalues[1].key === "testNumber" && res.keysvalues[1].value === data1.toString()) {
-                                                            retremove = true;
-                                                            document.querySelector('.remove').classList.remove('hidden');
-                                                        }
-                                                        return [4 /*yield*/, storage.clear()];
-                                                    case 1:
-                                                        result = _a.sent();
-                                                        if (!result.result) return [3 /*break*/, 3];
-                                                        return [4 /*yield*/, storage.keysvalues()];
-                                                    case 2:
-                                                        res_1 = _a.sent();
-                                                        console.log("after clear res.keysvalues.length " + res_1.keysvalues.length);
-                                                        if (res_1.keysvalues.length === 0) {
-                                                            retclear = true;
-                                                            document.querySelector('.clear').classList.remove('hidden');
-                                                        }
-                                                        if (retpopulate && retiskey && retkeys && retvalues && retkeysvalues && retremove && retclear) {
-                                                            document.querySelector('.success').classList.remove('hidden');
-                                                        }
-                                                        else {
-                                                            document.querySelector('.failure').classList.remove('hidden');
-                                                        }
-                                                        return [3 /*break*/, 4];
-                                                    case 3:
-                                                        document.querySelector('.failure').classList.remove('hidden');
-                                                        _a.label = 4;
-                                                    case 4: return [2 /*return*/];
-                                                }
-                                            });
-                                        }); });
-                                    }
-                                    else {
-                                        document.querySelector('.failure').classList.remove('hidden');
-                                    }
-                                });
+                        return [4 /*yield*/, this.storage.keysvalues()];
+                    case 12:
+                        result = _a.sent();
+                        result.keysvalues.forEach(function (element) {
+                            console.log(element);
+                        });
+                        console.log("KeysValues length " + result.keysvalues.length);
+                        if (result.keysvalues.length === 3 &&
+                            result.keysvalues[0].key === "session" && result.keysvalues[0].value === "Session Opened" &&
+                            result.keysvalues[1].key === "testJson" && result.keysvalues[1].value === JSON.stringify(data) &&
+                            result.keysvalues[2].key === "testNumber" && result.keysvalues[2].value === data1.toString()) {
+                            retkeysvalues = true;
+                            document.querySelector('.keysvalues').classList.remove('hidden');
+                        }
+                        return [4 /*yield*/, this.storage.remove({ key: "testJson" })];
+                    case 13:
+                        result = _a.sent();
+                        if (!result.result) return [3 /*break*/, 15];
+                        return [4 /*yield*/, this.storage.keysvalues()];
+                    case 14:
+                        res = _a.sent();
+                        if (res.keysvalues.length === 2 &&
+                            res.keysvalues[0].key === "session" && res.keysvalues[0].value === "Session Opened" &&
+                            res.keysvalues[1].key === "testNumber" && res.keysvalues[1].value === data1.toString()) {
+                            retremove = true;
+                            document.querySelector('.remove').classList.remove('hidden');
+                        }
+                        _a.label = 15;
+                    case 15: return [4 /*yield*/, this.storage.clear()];
+                    case 16:
+                        result = _a.sent();
+                        if (!result.result) return [3 /*break*/, 18];
+                        return [4 /*yield*/, this.storage.keysvalues()];
+                    case 17:
+                        res = _a.sent();
+                        console.log("after clear res.keysvalues.length " + res.keysvalues.length);
+                        if (res.keysvalues.length === 0) {
+                            retclear = true;
+                            document.querySelector('.clear').classList.remove('hidden');
+                            if (retpopulate && retiskey && retkeys && retvalues && retkeysvalues && retremove && retclear) {
+                                retTest1 = true;
+                                document.querySelector('.success').classList.remove('hidden');
                             }
                             else {
                                 document.querySelector('.failure').classList.remove('hidden');
                             }
-                        });
-                        return [2 /*return*/];
+                        }
+                        return [3 /*break*/, 19];
+                    case 18:
+                        document.querySelector('.failure').classList.remove('hidden');
+                        _a.label = 19;
+                    case 19: return [2 /*return*/, retTest1];
+                }
+            });
+        });
+    };
+    HomePage.prototype.testSecondStore = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var result, data;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.openStore({ database: "myStore", table: "saveData" })];
+                    case 1:
+                        result = _a.sent();
+                        return [4 /*yield*/, this.storage.clear()];
+                    case 2:
+                        result = _a.sent();
+                        return [4 /*yield*/, this.storage.set({ key: "app", value: "App Opened" })];
+                    case 3:
+                        // store data in the second store
+                        result = _a.sent();
+                        console.log("Save Data : " + result.result);
+                        data = { 'age': 40, 'name': 'jeep', 'email': 'jeep@example.com' };
+                        return [4 /*yield*/, this.storage.set({ key: 'user', value: JSON.stringify(data) })];
+                    case 4:
+                        _a.sent();
+                        return [2 /*return*/, true];
+                }
+            });
+        });
+    };
+    HomePage.prototype.testThirdStore = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var result, data;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.setTable({ table: "otherData" })];
+                    case 1:
+                        // open a third store
+                        result = _a.sent();
+                        console.log('storage2 retCreate ', result.result.toString());
+                        return [4 /*yield*/, this.storage.clear()];
+                    case 2:
+                        result = _a.sent();
+                        return [4 /*yield*/, this.storage.set({ key: "key1", value: "Hello World!" })];
+                    case 3:
+                        // store data in the third store
+                        result = _a.sent();
+                        console.log("Other Data : " + result.result);
+                        data = { 'a': 60, 'pi': '3.141516', 'b': 'cool' };
+                        return [4 /*yield*/, this.storage.set({ key: 'key2', value: JSON.stringify(data) })];
+                    case 4:
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.setTable({ table: "saveData" })];
+                    case 5:
+                        // store data in the second store
+                        result = _a.sent();
+                        return [4 /*yield*/, this.storage.set({ key: "message", value: "Welcome from Jeep" })];
+                    case 6:
+                        result = _a.sent();
+                        console.log("Save Data : " + result.result);
+                        return [2 /*return*/, true];
                 }
             });
         });

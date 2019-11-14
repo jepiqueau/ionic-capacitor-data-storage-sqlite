@@ -2,7 +2,7 @@ PODS:
   - Capacitor (1.2.1):
     - CapacitorCordova (= 1.2.1)
   - CapacitorCordova (1.2.1)
-  - CapacitorDataStorageSqlite (1.2.1-4):
+  - CapacitorDataStorageSqlite (1.2.1-11):
     - Capacitor
     - SQLite.swift
   - SQLite.swift (0.12.2):
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - CapacitorDataStorageSqlite (from `../../node_modules/capacitor-data-storage-sqlite`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - SQLite.swift
 
 EXTERNAL SOURCES:
@@ -29,9 +29,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Capacitor: e89d041bf912bccbbccab2e07d0f32aa4ca0f11a
   CapacitorCordova: 806e405d02de22c10a9b20a2ee4fb3f097cfb8a5
-  CapacitorDataStorageSqlite: e422f42dcc105888cd07a2bf9ae95ae13865987c
+  CapacitorDataStorageSqlite: 69ec3d5ba0189e50efde5b1c47558c86d708f38d
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
 
 PODFILE CHECKSUM: 1debc503171eabe60ebc8a5e8102b9b760845a75
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.8.3

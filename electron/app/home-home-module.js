@@ -5732,7 +5732,7 @@ module.exports = localforage_js;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"ion-padding\">\n    The world is your oyster.\n    <p>If you get lost, the <a target=\"_blank\" rel=\"noopener\" href=\"https://ionicframework.com/docs\">docs</a> will be your guide.</p>\n    <ion-button (click)=\"testPlugin()\" color='primary' size=\"large\">Test Plugin</ion-button>\n    <p class=\"populate hidden\">\n      Storing data successful\n    </p>\n    <p class=\"iskey hidden\">\n      Iskey successful\n    </p>\n    <p class=\"keys hidden\">\n      Get keys successful\n    </p>\n    <p class=\"values hidden\">\n      Get values successful\n    </p>\n    <p class=\"keysvalues hidden\">\n      Get keys/values successful\n    </p>\n    <p class=\"remove hidden\">\n      Remove key successful\n    </p>\n    <p class=\"clear hidden\">\n      Clear keys successful\n    </p>\n    <p class=\"success hidden\">\n      The test was successful\n    </p>\n    <p class=\"failure hidden\">\n      The test failed\n    </p>\n  </div>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"ion-padding\">\n    The world is your oyster.\n    <p>If you get lost, the <a target=\"_blank\" rel=\"noopener\" href=\"https://ionicframework.com/docs\">docs</a> will be your guide.</p>\n    <ion-button (click)=\"testPlugin()\" color='primary' size=\"large\">Test Plugin</ion-button>\n    <p class=\"populate hidden\">\n      Storing data successful\n    </p>\n    <p class=\"iskey hidden\">\n      Iskey successful\n    </p>\n    <p class=\"keys hidden\">\n      Get keys successful\n    </p>\n    <p class=\"values hidden\">\n      Get values successful\n    </p>\n    <p class=\"keysvalues hidden\">\n      Get keys/values successful\n    </p>\n    <p class=\"remove hidden\">\n      Remove key successful\n    </p>\n    <p class=\"clear hidden\">\n      Clear keys successful\n    </p>\n    <p class=\"success1 display\">\n      The test 1 was successful\n    </p>\n    <p class=\"failure1 display\">\n      The test 1 failed\n    </p>\n    <p class=\"success2 display\">\n      The test 2 was successful\n    </p>\n    <p class=\"failure2 display\">\n      The test 2 failed\n    </p>\n    <p class=\"success3 display\">\n      The test 3 was successful\n    </p>\n    <p class=\"failure3 display\">\n      The test 3 failed\n    </p>\n    <p class=\"success display\">\n      The set of tests was successful\n    </p>\n    <p class=\"failure display\">\n      The set of tests failed\n    </p>\n  </div>\n</ion-content>\n"
 
 /***/ }),
 
@@ -5793,7 +5793,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".hidden {\n  visibility: hidden;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9xdWVhdWplYW5waWVycmUvRG9jdW1lbnRzL1Byb2plY3Rzd2l0aENhcGFjaXRvci9wdWJsaXNoUHJvamVjdHMvaW9uaWM0LWNhcGFjaXRvci1hcHBzL2lvbmljLWNhcGFjaXRvci1kYXRhLXN0b3JhZ2Utc3FsaXRlL3NyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0FDQ0oiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmhpZGRlbiB7XG4gICAgdmlzaWJpbGl0eTogaGlkZGVuO1xufVxuXG4iLCIuaGlkZGVuIHtcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xufSJdfQ== */"
+module.exports = ".hidden {\n  visibility: hidden;\n}\n\n.display {\n  display: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9xdWVhdWplYW5waWVycmUvRG9jdW1lbnRzL1Byb2plY3Rzd2l0aENhcGFjaXRvci9wdWJsaXNoUHJvamVjdHMvaW9uaWM0LWNhcGFjaXRvci1hcHBzL2lvbmljLWNhcGFjaXRvci1kYXRhLXN0b3JhZ2Utc3FsaXRlL3NyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyIsInNyYy9hcHAvaG9tZS9ob21lLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGtCQUFBO0FDQ0o7O0FEQ0E7RUFDSSxhQUFBO0FDRUoiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmhpZGRlbiB7XG4gICAgdmlzaWJpbGl0eTogaGlkZGVuO1xufVxuLmRpc3BsYXkge1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG5cbiIsIi5oaWRkZW4ge1xuICB2aXNpYmlsaXR5OiBoaWRkZW47XG59XG5cbi5kaXNwbGF5IHtcbiAgZGlzcGxheTogbm9uZTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -5817,13 +5817,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var CapacitorDataStorageSqlite = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].CapacitorDataStorageSqlite, Device = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].Device;
 var HomePage = /** @class */ (function () {
-    //  storage1: any = {};
     function HomePage() {
         this.storage = {};
     }
     HomePage.prototype.testPlugin = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var info;
+            var info, retTest1, retTest2, retTest3;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, Device.getInfo()];
@@ -5832,22 +5831,28 @@ var HomePage = /** @class */ (function () {
                         console.log('platform ', info.platform);
                         if (info.platform === "ios" || info.platform === "android") {
                             this.storage = CapacitorDataStorageSqlite;
-                            //      this.storage1 = CapacitorDataStorageSqlite;
                             console.log('storage ', this.storage);
                         }
                         else {
                             this.storage = capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_3__["CapacitorDataStorageSqlite"];
-                            //      this.storage1 = CapacitorSQLPlugin.CapacitorDataStorageSqlite;     
                         }
                         return [4 /*yield*/, this.testFirstStore()];
                     case 2:
-                        _a.sent();
+                        retTest1 = _a.sent();
                         return [4 /*yield*/, this.testSecondStore()];
                     case 3:
-                        _a.sent();
+                        retTest2 = _a.sent();
                         return [4 /*yield*/, this.testThirdStore()];
                     case 4:
-                        _a.sent();
+                        retTest3 = _a.sent();
+                        if (retTest1 && retTest2 && retTest3) {
+                            document.querySelector('.success').classList.remove('display');
+                            return [2 /*return*/, true];
+                        }
+                        else {
+                            document.querySelector('.failure').classList.remove('display');
+                            return [2 /*return*/, false];
+                        }
                         return [2 /*return*/];
                 }
             });
@@ -5985,15 +5990,15 @@ var HomePage = /** @class */ (function () {
                             document.querySelector('.clear').classList.remove('hidden');
                             if (retpopulate && retiskey && retkeys && retvalues && retkeysvalues && retremove && retclear) {
                                 retTest1 = true;
-                                document.querySelector('.success').classList.remove('hidden');
+                                document.querySelector('.success1').classList.remove('display');
                             }
                             else {
-                                document.querySelector('.failure').classList.remove('hidden');
+                                document.querySelector('.failure1').classList.remove('display');
                             }
                         }
                         return [3 /*break*/, 19];
                     case 18:
-                        document.querySelector('.failure').classList.remove('hidden');
+                        document.querySelector('.failure1').classList.remove('display');
                         _a.label = 19;
                     case 19: return [2 /*return*/, retTest1];
                 }
@@ -6002,7 +6007,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage.prototype.testSecondStore = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var result, data;
+            var result, data, res;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.storage.openStore({ database: "myStore", table: "saveData" })];
@@ -6020,17 +6025,42 @@ var HomePage = /** @class */ (function () {
                         return [4 /*yield*/, this.storage.set({ key: 'user', value: JSON.stringify(data) })];
                     case 4:
                         _a.sent();
-                        return [2 /*return*/, true];
+                        return [4 /*yield*/, this.storage.get({ key: "user" })];
+                    case 5:
+                        result = _a.sent();
+                        console.log("Get Data in Second Store: " + result.value);
+                        if (!(result.value === JSON.stringify(data))) return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.storage.get({ key: "app" })];
+                    case 6:
+                        res = _a.sent();
+                        if (res.value === "App Opened") {
+                            document.querySelector('.success2').classList.remove('display');
+                            return [2 /*return*/, true];
+                        }
+                        else {
+                            document.querySelector('.failure2').classList.remove('display');
+                            return [2 /*return*/, false];
+                        }
+                        return [3 /*break*/, 8];
+                    case 7:
+                        document.querySelector('.failure2').classList.remove('display');
+                        return [2 /*return*/, false];
+                    case 8: return [2 /*return*/];
                 }
             });
         });
     };
     HomePage.prototype.testThirdStore = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var result, data;
+            var ret, retKey1, retKey2, retKey3, result, res, data, data_1;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.storage.setTable({ table: "otherData" })];
+                    case 0:
+                        ret = false;
+                        retKey1 = false;
+                        retKey2 = false;
+                        retKey3 = false;
+                        return [4 /*yield*/, this.storage.setTable({ table: "otherData" })];
                     case 1:
                         // open a third store
                         result = _a.sent();
@@ -6042,20 +6072,57 @@ var HomePage = /** @class */ (function () {
                     case 3:
                         // store data in the third store
                         result = _a.sent();
-                        console.log("Other Data : " + result.result);
+                        return [4 /*yield*/, this.storage.get({ key: "key1" })];
+                    case 4:
+                        res = _a.sent();
+                        console.log("Get Data in Third Store key1: " + res.value);
+                        if (res.value === "Hello World!")
+                            retKey1 = true;
                         data = { 'a': 60, 'pi': '3.141516', 'b': 'cool' };
                         return [4 /*yield*/, this.storage.set({ key: 'key2', value: JSON.stringify(data) })];
-                    case 4:
-                        _a.sent();
-                        return [4 /*yield*/, this.storage.setTable({ table: "saveData" })];
                     case 5:
+                        result = _a.sent();
+                        return [4 /*yield*/, this.storage.get({ key: "key2" })];
+                    case 6:
+                        res = _a.sent();
+                        console.log("Get Data in Third Store key2: " + res.value);
+                        if (res.value === JSON.stringify(data))
+                            retKey2 = true;
+                        return [4 /*yield*/, this.storage.setTable({ table: "saveData" })];
+                    case 7:
                         // store data in the second store
                         result = _a.sent();
                         return [4 /*yield*/, this.storage.set({ key: "message", value: "Welcome from Jeep" })];
-                    case 6:
+                    case 8:
                         result = _a.sent();
                         console.log("Save Data : " + result.result);
-                        return [2 /*return*/, true];
+                        return [4 /*yield*/, this.storage.get({ key: "message" })];
+                    case 9:
+                        res = _a.sent();
+                        console.log("Get Data in Second Store message: " + res.value);
+                        if (!(res.value === "Welcome from Jeep")) return [3 /*break*/, 12];
+                        data_1 = { 'age': 50, 'name': 'jeep', 'email': 'jeep@example.com' };
+                        return [4 /*yield*/, this.storage.set({ key: 'user', value: JSON.stringify(data_1) })];
+                    case 10:
+                        result = _a.sent();
+                        return [4 /*yield*/, this.storage.get({ key: "user" })];
+                    case 11:
+                        res = _a.sent();
+                        console.log("Get Data in Second Store user: " + res.value);
+                        if (res.value === JSON.stringify(data_1)) {
+                            retKey3 = true;
+                        }
+                        _a.label = 12;
+                    case 12:
+                        if (retKey1 && retKey2 && retKey3) {
+                            document.querySelector('.success3').classList.remove('display');
+                            return [2 /*return*/, true];
+                        }
+                        else {
+                            document.querySelector('.failure3').classList.remove('display');
+                            return [2 /*return*/, false];
+                        }
+                        return [2 /*return*/];
                 }
             });
         });

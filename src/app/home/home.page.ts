@@ -12,7 +12,6 @@ const { CapacitorDataStorageSqlite, Device } = Plugins;
 })
 export class HomePage {
   storage: any = {};
-//  storage1: any = {};
   constructor() {
 
   }
@@ -21,15 +20,20 @@ export class HomePage {
     console.log('platform ',info.platform)
     if (info.platform === "ios" || info.platform === "android") {
       this.storage = CapacitorDataStorageSqlite;
-//      this.storage1 = CapacitorDataStorageSqlite;
       console.log('storage ',this.storage)
     }  else {
       this.storage = CapacitorSQLPlugin.CapacitorDataStorageSqlite;     
-//      this.storage1 = CapacitorSQLPlugin.CapacitorDataStorageSqlite;     
     }
-    await this.testFirstStore();
-    await this.testSecondStore();
-    await this.testThirdStore();
+    const retTest1 = await this.testFirstStore();
+    const retTest2 = await this.testSecondStore();
+    const retTest3 = await this.testThirdStore();
+    if(retTest1 && retTest2 && retTest3) {
+      document.querySelector('.success').classList.remove('display');
+      return true;
+    } else {
+      document.querySelector('.failure').classList.remove('display');
+      return false;
+    }
 
   }
   async testFirstStore(): Promise<boolean> {
@@ -128,13 +132,13 @@ export class HomePage {
         document.querySelector('.clear').classList.remove('hidden');
         if(retpopulate && retiskey && retkeys && retvalues && retkeysvalues && retremove && retclear) {
           retTest1 = true;
-          document.querySelector('.success').classList.remove('hidden');
+          document.querySelector('.success1').classList.remove('display');
         } else {
-          document.querySelector('.failure').classList.remove('hidden');
+          document.querySelector('.failure1').classList.remove('display');
         }
       }
     } else {
-        document.querySelector('.failure').classList.remove('hidden');
+        document.querySelector('.failure1').classList.remove('display');
     }
     return retTest1;
   }
@@ -148,9 +152,27 @@ export class HomePage {
     console.log("Save Data : " + result.result);
     let data:any = {'age':40,'name':'jeep','email':'jeep@example.com'}
     await this.storage.set({key:'user',value:JSON.stringify(data)});
-    return true;
+    result = await this.storage.get({key:"user"});
+    console.log("Get Data in Second Store: " + result.value);
+    if (result.value === JSON.stringify(data)) {
+      const res:any = await this.storage.get({key:"app"});
+      if (res.value === "App Opened") {
+        document.querySelector('.success2').classList.remove('display');
+        return true;
+      } else {
+        document.querySelector('.failure2').classList.remove('display');
+        return false;
+      }
+    } else {
+      document.querySelector('.failure2').classList.remove('display');
+      return false;
+    }
   }
-  async testThirdStore(): Promise<boolean> { 
+  async testThirdStore(): Promise<boolean> {
+    let ret: boolean = false;
+    let retKey1: boolean = false; 
+    let retKey2: boolean = false; 
+    let retKey3: boolean = false;
     let result: any;
     // open a third store
     result = await this.storage.setTable({table:"otherData"});
@@ -158,13 +180,35 @@ export class HomePage {
     result = await this.storage.clear();
     // store data in the third store
     result = await this.storage.set({key:"key1", value:"Hello World!"});
-    console.log("Other Data : " + result.result);
+    let res:any = await this.storage.get({key:"key1"});
+    console.log("Get Data in Third Store key1: " + res.value);
+    if (res.value === "Hello World!") retKey1 = true;
     let data:any = {'a':60,'pi':'3.141516','b':'cool'}
-    await this.storage.set({key:'key2',value:JSON.stringify(data)});
+    result = await this.storage.set({key:'key2',value:JSON.stringify(data)});
+    res= await this.storage.get({key:"key2"});
+    console.log("Get Data in Third Store key2: " + res.value);
+    if (res.value === JSON.stringify(data)) retKey2 = true;
 
     // store data in the second store
     result = await this.storage.setTable({table:"saveData"});    
     result = await this.storage.set({key:"message", value:"Welcome from Jeep"});
     console.log("Save Data : " + result.result);
-    return true;
+    res = await this.storage.get({key:"message"});
+    console.log("Get Data in Second Store message: " + res.value);
+    if (res.value === "Welcome from Jeep") {
+      let data:any = {'age':50,'name':'jeep','email':'jeep@example.com'}
+      result = await this.storage.set({key:'user',value:JSON.stringify(data)});
+      res = await this.storage.get({key:"user"});
+      console.log("Get Data in Second Store user: " + res.value);
+      if (res.value === JSON.stringify(data)) {
+        retKey3 = true;
+      }
+    } 
+    if(retKey1 && retKey2 && retKey3) {
+      document.querySelector('.success3').classList.remove('display');
+      return true;
+    } else {
+      document.querySelector('.failure3').classList.remove('display');
+      return false;
+    }
   }}

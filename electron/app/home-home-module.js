@@ -5732,7 +5732,7 @@ module.exports = localforage_js;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"ion-padding\">\n    The world is your oyster.\n    <p>If you get lost, the <a target=\"_blank\" rel=\"noopener\" href=\"https://ionicframework.com/docs\">docs</a> will be your guide.</p>\n    <ion-button (click)=\"testPlugin()\" color='primary' size=\"large\">Test Plugin</ion-button>\n    <p class=\"populate hidden\">\n      Storing data successful\n    </p>\n    <p class=\"iskey hidden\">\n      Iskey successful\n    </p>\n    <p class=\"keys hidden\">\n      Get keys successful\n    </p>\n    <p class=\"values hidden\">\n      Get values successful\n    </p>\n    <p class=\"keysvalues hidden\">\n      Get keys/values successful\n    </p>\n    <p class=\"remove hidden\">\n      Remove key successful\n    </p>\n    <p class=\"clear hidden\">\n      Clear keys successful\n    </p>\n    <p class=\"success1 display\">\n      The test 1 was successful\n    </p>\n    <p class=\"failure1 display\">\n      The test 1 failed\n    </p>\n    <p class=\"success2 display\">\n      The test 2 was successful\n    </p>\n    <p class=\"failure2 display\">\n      The test 2 failed\n    </p>\n    <p class=\"success3 display\">\n      The test 3 was successful\n    </p>\n    <p class=\"failure3 display\">\n      The test 3 failed\n    </p>\n    <p class=\"success display\">\n      The set of tests was successful\n    </p>\n    <p class=\"failure display\">\n      The set of tests failed\n    </p>\n  </div>\n</ion-content>\n"
+module.exports = "<ion-header>\n  <ion-toolbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"ion-padding\">\n    The world is your oyster.\n    <p>If you get lost, the <a target=\"_blank\" rel=\"noopener\" href=\"https://ionicframework.com/docs\">docs</a> will be your guide.</p>\n    <ion-button (click)=\"testPlugin()\" color='primary' size=\"large\">Test Plugin</ion-button>\n    <ion-button (click)=\"testPluginWithWrapper()\" color='primary' size=\"large\">Test Plugin With Wrapper</ion-button>\n    <p class=\"populate hidden\">\n      Storing data successful\n    </p>\n    <p class=\"iskey hidden\">\n      Iskey successful\n    </p>\n    <p class=\"keys hidden\">\n      Get keys successful\n    </p>\n    <p class=\"values hidden\">\n      Get values successful\n    </p>\n    <p class=\"keysvalues hidden\">\n      Get keys/values successful\n    </p>\n    <p class=\"remove hidden\">\n      Remove key successful\n    </p>\n    <p class=\"clear hidden\">\n      Clear keys successful\n    </p>\n    <p class=\"success1 display\">\n      The test 1 was successful\n    </p>\n    <p class=\"failure1 display\">\n      The test 1 failed\n    </p>\n    <p class=\"success2 display\">\n      The test 2 was successful\n    </p>\n    <p class=\"failure2 display\">\n      The test 2 failed\n    </p>\n    <p class=\"success3 display\">\n      The test 3 was successful\n    </p>\n    <p class=\"failure3 display\">\n      The test 3 failed\n    </p>\n    <p class=\"success display\">\n      The set of tests was successful\n    </p>\n    <p class=\"failure display\">\n      The set of tests failed\n    </p>\n    <p class=\"wrapper-success display\">\n      The test with wrapper was successful\n    </p>\n    <p class=\"wrapper-failure display\">\n      The test with wrapper failed\n    </p>\n  </div>\n</ion-content>\n"
 
 /***/ }),
 
@@ -5810,7 +5810,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
-/* harmony import */ var capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! capacitor-data-storage-sqlite */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/index.js");
+/* harmony import */ var _utils_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/util */ "./src/utils/util.ts");
 
 
 
@@ -5820,31 +5820,121 @@ var HomePage = /** @class */ (function () {
     function HomePage() {
         this.storage = {};
     }
-    HomePage.prototype.testPlugin = function () {
+    HomePage.prototype.testPluginWithWrapper = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var info, retTest1, retTest2, retTest3;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, Device.getInfo()];
+            var _a, ret1, ret2, ret3, ret4, ret5, ret6, result, value, keys, statusTable;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["setStorage"])()];
                     case 1:
-                        info = _a.sent();
-                        console.log('platform ', info.platform);
-                        if (info.platform === "ios" || info.platform === "android") {
-                            this.storage = CapacitorDataStorageSqlite;
-                            console.log('storage ', this.storage);
+                        _a.storage = _b.sent();
+                        ret1 = false;
+                        ret2 = false;
+                        ret3 = false;
+                        ret4 = false;
+                        ret5 = false;
+                        ret6 = false;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).openStore({})];
+                    case 2:
+                        result = _b.sent();
+                        if (!result) return [3 /*break*/, 17];
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).clear()];
+                    case 3:
+                        _b.sent();
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setItem("key-test", "This is a test")];
+                    case 4:
+                        _b.sent();
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getItem("key-test")];
+                    case 5:
+                        value = _b.sent();
+                        console.log("Get Data : " + value);
+                        if (value === "This is a test")
+                            ret1 = true;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getAllKeys()];
+                    case 6:
+                        keys = _b.sent();
+                        console.log("Get All Keys : " + keys);
+                        if (keys[0] === "key-test")
+                            ret2 = true;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).removeItem("key-test")];
+                    case 7:
+                        _b.sent();
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getAllKeys()];
+                    case 8:
+                        keys = _b.sent();
+                        console.log("Get All Keys : " + keys);
+                        if (keys.length === 0)
+                            ret3 = true;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).openStore({ database: "testStore", table: "table1" })];
+                    case 9:
+                        result = _b.sent();
+                        if (!result) return [3 /*break*/, 17];
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).clear()];
+                    case 10:
+                        _b.sent();
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setItem("key1-test", "This is a new store")];
+                    case 11:
+                        _b.sent();
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getItem("key1-test")];
+                    case 12:
+                        value = _b.sent();
+                        console.log("Get Data : " + value);
+                        if (value === "This is a new store")
+                            ret4 = true;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setTable({ table: "table2" })];
+                    case 13:
+                        statusTable = _b.sent();
+                        console.log('statusTable[0] ', statusTable[0]);
+                        console.log('statusTable[1] ', statusTable[1]);
+                        if (statusTable[0])
+                            ret5 = true;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).clear()];
+                    case 14:
+                        _b.sent();
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setItem("key2-test", "This is a second table")];
+                    case 15:
+                        _b.sent();
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getItem("key2-test")];
+                    case 16:
+                        value = _b.sent();
+                        console.log("Get Data : " + value);
+                        if (value === "This is a second table")
+                            ret6 = true;
+                        _b.label = 17;
+                    case 17:
+                        if (ret1 && ret2 && ret3 && ret4 && ret5 && ret6) {
+                            console.log('testPlugin2 is successful');
+                            document.querySelector('.wrapper-success').classList.remove('display');
                         }
                         else {
-                            this.storage = capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_3__["CapacitorDataStorageSqlite"];
+                            document.querySelector('.wrapper-failure').classList.remove('display');
                         }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    HomePage.prototype.testPlugin = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a, retTest1, retTest2, retTest3;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["setStorage"])()];
+                    case 1:
+                        _a.storage = _b.sent();
                         return [4 /*yield*/, this.testFirstStore()];
                     case 2:
-                        retTest1 = _a.sent();
+                        retTest1 = _b.sent();
                         return [4 /*yield*/, this.testSecondStore()];
                     case 3:
-                        retTest2 = _a.sent();
+                        retTest2 = _b.sent();
                         return [4 /*yield*/, this.testThirdStore()];
                     case 4:
-                        retTest3 = _a.sent();
+                        retTest3 = _b.sent();
                         if (retTest1 && retTest2 && retTest3) {
                             document.querySelector('.success').classList.remove('display');
                             return [2 /*return*/, true];
@@ -5876,13 +5966,16 @@ var HomePage = /** @class */ (function () {
                     case 1:
                         result = _a.sent();
                         console.log('storage retCreate ', result.result);
-                        return [4 /*yield*/, this.storage.set({ key: "session", value: "Session Opened" })];
+                        return [4 /*yield*/, this.storage.clear()];
                     case 2:
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.set({ key: "session", value: "Session Opened" })];
+                    case 3:
                         // store data in the first store
                         result = _a.sent();
                         console.log("Save Data : " + result.result);
                         return [4 /*yield*/, this.storage.get({ key: "session" })];
-                    case 3:
+                    case 4:
                         result = _a.sent();
                         console.log('result ', result);
                         console.log("Get Data : " + result.value);
@@ -5891,10 +5984,10 @@ var HomePage = /** @class */ (function () {
                             ret1 = true;
                         data = { 'a': 20, 'b': 'Hello World', 'c': { 'c1': 40, 'c2': 'cool' } };
                         return [4 /*yield*/, this.storage.set({ key: 'testJson', value: JSON.stringify(data) })];
-                    case 4:
+                    case 5:
                         _a.sent();
                         return [4 /*yield*/, this.storage.get({ key: "testJson" })];
-                    case 5:
+                    case 6:
                         result = _a.sent();
                         console.log("Get Data : " + result.value);
                         ret2 = false;
@@ -5902,10 +5995,10 @@ var HomePage = /** @class */ (function () {
                             ret2 = true;
                         data1 = 243.567;
                         return [4 /*yield*/, this.storage.set({ key: 'testNumber', value: data1.toString() })];
-                    case 6:
+                    case 7:
                         _a.sent();
                         return [4 /*yield*/, this.storage.get({ key: "testNumber" })];
-                    case 7:
+                    case 8:
                         result = _a.sent();
                         console.log("Get Data : " + result.value);
                         ret3 = false;
@@ -5916,12 +6009,12 @@ var HomePage = /** @class */ (function () {
                         if (retpopulate)
                             document.querySelector('.populate').classList.remove('hidden');
                         return [4 /*yield*/, this.storage.iskey({ key: "testNumber" })];
-                    case 8:
+                    case 9:
                         result = _a.sent();
                         console.log("isKey testNumber " + result.result);
                         ret1 = result.result;
                         return [4 /*yield*/, this.storage.iskey({ key: "foo" })];
-                    case 9:
+                    case 10:
                         result = _a.sent();
                         console.log("isKey foo " + result.result);
                         ret2 = result.result;
@@ -5930,7 +6023,7 @@ var HomePage = /** @class */ (function () {
                         if (retiskey)
                             document.querySelector('.iskey').classList.remove('hidden');
                         return [4 /*yield*/, this.storage.keys()];
-                    case 10:
+                    case 11:
                         result = _a.sent();
                         console.log("Get keys : " + result.keys);
                         console.log("Keys length " + result.keys.length);
@@ -5940,7 +6033,7 @@ var HomePage = /** @class */ (function () {
                             document.querySelector('.keys').classList.remove('hidden');
                         }
                         return [4 /*yield*/, this.storage.values()];
-                    case 11:
+                    case 12:
                         result = _a.sent();
                         console.log("Get values : " + result.values);
                         console.log("Values length " + result.values.length);
@@ -5950,7 +6043,7 @@ var HomePage = /** @class */ (function () {
                             document.querySelector('.values').classList.remove('hidden');
                         }
                         return [4 /*yield*/, this.storage.keysvalues()];
-                    case 12:
+                    case 13:
                         result = _a.sent();
                         result.keysvalues.forEach(function (element) {
                             console.log(element);
@@ -5964,11 +6057,11 @@ var HomePage = /** @class */ (function () {
                             document.querySelector('.keysvalues').classList.remove('hidden');
                         }
                         return [4 /*yield*/, this.storage.remove({ key: "testJson" })];
-                    case 13:
-                        result = _a.sent();
-                        if (!result.result) return [3 /*break*/, 15];
-                        return [4 /*yield*/, this.storage.keysvalues()];
                     case 14:
+                        result = _a.sent();
+                        if (!result.result) return [3 /*break*/, 16];
+                        return [4 /*yield*/, this.storage.keysvalues()];
+                    case 15:
                         res = _a.sent();
                         if (res.keysvalues.length === 2 &&
                             res.keysvalues[0].key === "session" && res.keysvalues[0].value === "Session Opened" &&
@@ -5976,13 +6069,13 @@ var HomePage = /** @class */ (function () {
                             retremove = true;
                             document.querySelector('.remove').classList.remove('hidden');
                         }
-                        _a.label = 15;
-                    case 15: return [4 /*yield*/, this.storage.clear()];
-                    case 16:
-                        result = _a.sent();
-                        if (!result.result) return [3 /*break*/, 18];
-                        return [4 /*yield*/, this.storage.keysvalues()];
+                        _a.label = 16;
+                    case 16: return [4 /*yield*/, this.storage.clear()];
                     case 17:
+                        result = _a.sent();
+                        if (!result.result) return [3 /*break*/, 19];
+                        return [4 /*yield*/, this.storage.keysvalues()];
+                    case 18:
                         res = _a.sent();
                         console.log("after clear res.keysvalues.length " + res.keysvalues.length);
                         if (res.keysvalues.length === 0) {
@@ -5996,11 +6089,11 @@ var HomePage = /** @class */ (function () {
                                 document.querySelector('.failure1').classList.remove('display');
                             }
                         }
-                        return [3 /*break*/, 19];
-                    case 18:
+                        return [3 /*break*/, 20];
+                    case 19:
                         document.querySelector('.failure1').classList.remove('display');
-                        _a.label = 19;
-                    case 19: return [2 /*return*/, retTest1];
+                        _a.label = 20;
+                    case 20: return [2 /*return*/, retTest1];
                 }
             });
         });
@@ -6138,6 +6231,125 @@ var HomePage = /** @class */ (function () {
     return HomePage;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/utils/util.ts":
+/*!***************************!*\
+  !*** ./src/utils/util.ts ***!
+  \***************************/
+/*! exports provided: setStorage, wrapperToCapacitorSqliteStorage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setStorage", function() { return setStorage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapperToCapacitorSqliteStorage", function() { return wrapperToCapacitorSqliteStorage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! capacitor-data-storage-sqlite */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/index.js");
+var _this = undefined;
+
+
+
+var CapacitorDataStorageSqlite = _capacitor_core__WEBPACK_IMPORTED_MODULE_1__["Plugins"].CapacitorDataStorageSqlite, Device = _capacitor_core__WEBPACK_IMPORTED_MODULE_1__["Plugins"].Device;
+var setStorage = function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+    var info;
+    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, Device.getInfo()];
+            case 1:
+                info = _a.sent();
+                console.log('platform ', info.platform);
+                if (info.platform === "ios" || info.platform === "android") {
+                    return [2 /*return*/, CapacitorDataStorageSqlite];
+                }
+                else {
+                    return [2 /*return*/, capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_2__["CapacitorDataStorageSqlite"]];
+                }
+                return [2 /*return*/];
+        }
+    });
+}); };
+var wrapperToCapacitorSqliteStorage = function (storage) {
+    return {
+        openStore: function (options) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            var result;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, storage.openStore(options)];
+                    case 1:
+                        result = (_a.sent()).result;
+                        return [2 /*return*/, result];
+                }
+            });
+        }); },
+        setTable: function (table) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            var _a, result, message;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, storage.setTable(table)];
+                    case 1:
+                        _a = _b.sent(), result = _a.result, message = _a.message;
+                        return [2 /*return*/, Promise.resolve([result, message])];
+                }
+            });
+        }); },
+        setItem: function (key, value) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, storage.set({ key: key, value: value })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); },
+        getItem: function (key) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            var value;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, storage.get({ key: key })];
+                    case 1:
+                        value = (_a.sent()).value;
+                        return [2 /*return*/, value];
+                }
+            });
+        }); },
+        getAllKeys: function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            var keys;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, storage.keys()];
+                    case 1:
+                        keys = (_a.sent()).keys;
+                        return [2 /*return*/, keys];
+                }
+            });
+        }); },
+        removeItem: function (key) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, storage.remove({ key: key })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); },
+        clear: function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, storage.clear()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        }); },
+    };
+};
 
 
 /***/ })

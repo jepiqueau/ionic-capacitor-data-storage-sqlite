@@ -11,6 +11,7 @@
     The world is your oyster.
     <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
     <ion-button (click)="testPlugin()" color='primary' size="large">Test Plugin</ion-button>
+    <ion-button (click)="testPluginWithWrapper()" color='primary' size="large">Test Plugin With Wrapper</ion-button>
     <p class="populate hidden">
       Storing data successful
     </p>
@@ -55,6 +56,12 @@
     </p>
     <p class="failure display">
       The set of tests failed
+    </p>
+    <p class="wrapper-success display">
+      The test with wrapper was successful
+    </p>
+    <p class="wrapper-failure display">
+      The test with wrapper failed
     </p>
   </div>
 </ion-content>

@@ -5809,101 +5809,97 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return HomePage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
-/* harmony import */ var _utils_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/util */ "./src/utils/util.ts");
+/* harmony import */ var _utils_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/util */ "./src/utils/util.ts");
+/* harmony import */ var _utils_storageAPIWrapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/storageAPIWrapper */ "./src/utils/storageAPIWrapper.ts");
 
 
 
 
-var CapacitorDataStorageSqlite = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].CapacitorDataStorageSqlite, Device = _capacitor_core__WEBPACK_IMPORTED_MODULE_2__["Plugins"].Device;
 var HomePage = /** @class */ (function () {
     function HomePage() {
         this.storage = {};
     }
     HomePage.prototype.testPluginWithWrapper = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a, ret1, ret2, ret3, ret4, ret5, ret6, result, value, keys, statusTable;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
-                switch (_b.label) {
+            var ret1, ret2, ret3, ret4, ret5, ret6, result, value, keys, statusTable;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _a = this;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["setStorage"])()];
-                    case 1:
-                        _a.storage = _b.sent();
+                        this.storage = new _utils_storageAPIWrapper__WEBPACK_IMPORTED_MODULE_3__["StorageAPIWrapper"]();
                         ret1 = false;
                         ret2 = false;
                         ret3 = false;
                         ret4 = false;
                         ret5 = false;
                         ret6 = false;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).openStore({})];
+                        return [4 /*yield*/, this.storage.openStore({})];
+                    case 1:
+                        result = _a.sent();
+                        if (!result) return [3 /*break*/, 16];
+                        return [4 /*yield*/, this.storage.clear()];
                     case 2:
-                        result = _b.sent();
-                        if (!result) return [3 /*break*/, 17];
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).clear()];
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.setItem("key-test", "This is a test")];
                     case 3:
-                        _b.sent();
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setItem("key-test", "This is a test")];
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.getItem("key-test")];
                     case 4:
-                        _b.sent();
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getItem("key-test")];
-                    case 5:
-                        value = _b.sent();
+                        value = _a.sent();
                         console.log("Get Data : " + value);
                         if (value === "This is a test")
                             ret1 = true;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getAllKeys()];
-                    case 6:
-                        keys = _b.sent();
+                        return [4 /*yield*/, this.storage.getAllKeys()];
+                    case 5:
+                        keys = _a.sent();
                         console.log("Get All Keys : " + keys);
                         if (keys[0] === "key-test")
                             ret2 = true;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).removeItem("key-test")];
+                        return [4 /*yield*/, this.storage.removeItem("key-test")];
+                    case 6:
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.getAllKeys()];
                     case 7:
-                        _b.sent();
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getAllKeys()];
-                    case 8:
-                        keys = _b.sent();
+                        keys = _a.sent();
                         console.log("Get All Keys : " + keys);
                         if (keys.length === 0)
                             ret3 = true;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).openStore({ database: "testStore", table: "table1" })];
+                        return [4 /*yield*/, this.storage.openStore({ database: "testStore", table: "table1" })];
+                    case 8:
+                        result = _a.sent();
+                        if (!result) return [3 /*break*/, 16];
+                        return [4 /*yield*/, this.storage.clear()];
                     case 9:
-                        result = _b.sent();
-                        if (!result) return [3 /*break*/, 17];
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).clear()];
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.setItem("key1-test", "This is a new store")];
                     case 10:
-                        _b.sent();
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setItem("key1-test", "This is a new store")];
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.getItem("key1-test")];
                     case 11:
-                        _b.sent();
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getItem("key1-test")];
-                    case 12:
-                        value = _b.sent();
+                        value = _a.sent();
                         console.log("Get Data : " + value);
                         if (value === "This is a new store")
                             ret4 = true;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setTable({ table: "table2" })];
-                    case 13:
-                        statusTable = _b.sent();
+                        return [4 /*yield*/, this.storage.setTable({ table: "table2" })];
+                    case 12:
+                        statusTable = _a.sent();
                         console.log('statusTable[0] ', statusTable[0]);
                         console.log('statusTable[1] ', statusTable[1]);
                         if (statusTable[0])
                             ret5 = true;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).clear()];
+                        return [4 /*yield*/, this.storage.clear()];
+                    case 13:
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.setItem("key2-test", "This is a second table")];
                     case 14:
-                        _b.sent();
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).setItem("key2-test", "This is a second table")];
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.getItem("key2-test")];
                     case 15:
-                        _b.sent();
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["wrapperToCapacitorSqliteStorage"])(this.storage).getItem("key2-test")];
-                    case 16:
-                        value = _b.sent();
+                        value = _a.sent();
                         console.log("Get Data : " + value);
                         if (value === "This is a second table")
                             ret6 = true;
-                        _b.label = 17;
-                    case 17:
+                        _a.label = 16;
+                    case 16:
                         if (ret1 && ret2 && ret3 && ret4 && ret5 && ret6) {
                             console.log('testPlugin2 is successful');
                             document.querySelector('.wrapper-success').classList.remove('display');
@@ -5923,7 +5919,7 @@ var HomePage = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _a = this;
-                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_3__["setStorage"])()];
+                        return [4 /*yield*/, Object(_utils_util__WEBPACK_IMPORTED_MODULE_2__["setStorage"])()];
                     case 1:
                         _a.storage = _b.sent();
                         return [4 /*yield*/, this.testFirstStore()];
@@ -6235,17 +6231,155 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/utils/storageAPIWrapper.ts":
+/*!****************************************!*\
+  !*** ./src/utils/storageAPIWrapper.ts ***!
+  \****************************************/
+/*! exports provided: StorageAPIWrapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StorageAPIWrapper", function() { return StorageAPIWrapper; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
+/* harmony import */ var capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! capacitor-data-storage-sqlite */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/index.js");
+
+
+
+var CapacitorDataStorageSqlite = _capacitor_core__WEBPACK_IMPORTED_MODULE_1__["Plugins"].CapacitorDataStorageSqlite, Device = _capacitor_core__WEBPACK_IMPORTED_MODULE_1__["Plugins"].Device;
+var StorageAPIWrapper = /** @class */ (function () {
+    function StorageAPIWrapper() {
+        this.storage = {};
+    }
+    StorageAPIWrapper.prototype.init = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var info;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, Device.getInfo()];
+                    case 1:
+                        info = _a.sent();
+                        console.log('platform ', info.platform);
+                        if (info.platform === "ios" || info.platform === "android") {
+                            this.storage = CapacitorDataStorageSqlite;
+                        }
+                        else {
+                            this.storage = capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_2__["CapacitorDataStorageSqlite"];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    StorageAPIWrapper.prototype.openStore = function (options) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var result;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.init()];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.storage.openStore(options)];
+                    case 2:
+                        result = (_a.sent()).result;
+                        return [2 /*return*/, result];
+                }
+            });
+        });
+    };
+    StorageAPIWrapper.prototype.setTable = function (table) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _a, result, message;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, this.storage.setTable(table)];
+                    case 1:
+                        _a = _b.sent(), result = _a.result, message = _a.message;
+                        return [2 /*return*/, Promise.resolve([result, message])];
+                }
+            });
+        });
+    };
+    StorageAPIWrapper.prototype.setItem = function (key, value) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.set({ key: key, value: value })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    StorageAPIWrapper.prototype.getItem = function (key) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var value;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.get({ key: key })];
+                    case 1:
+                        value = (_a.sent()).value;
+                        return [2 /*return*/, value];
+                }
+            });
+        });
+    };
+    StorageAPIWrapper.prototype.getAllKeys = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var keys;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.keys()];
+                    case 1:
+                        keys = (_a.sent()).keys;
+                        return [2 /*return*/, keys];
+                }
+            });
+        });
+    };
+    StorageAPIWrapper.prototype.removeItem = function (key) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.remove({ key: key })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    StorageAPIWrapper.prototype.clear = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.storage.clear()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return StorageAPIWrapper;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/utils/util.ts":
 /*!***************************!*\
   !*** ./src/utils/util.ts ***!
   \***************************/
-/*! exports provided: setStorage, wrapperToCapacitorSqliteStorage */
+/*! exports provided: setStorage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setStorage", function() { return setStorage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "wrapperToCapacitorSqliteStorage", function() { return wrapperToCapacitorSqliteStorage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _capacitor_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @capacitor/core */ "./node_modules/@capacitor/core/dist/esm/index.js");
 /* harmony import */ var capacitor_data_storage_sqlite__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! capacitor-data-storage-sqlite */ "./node_modules/capacitor-data-storage-sqlite/dist/esm/index.js");
@@ -6272,84 +6406,6 @@ var setStorage = function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awai
         }
     });
 }); };
-var wrapperToCapacitorSqliteStorage = function (storage) {
-    return {
-        openStore: function (options) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            var result;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, storage.openStore(options)];
-                    case 1:
-                        result = (_a.sent()).result;
-                        return [2 /*return*/, result];
-                }
-            });
-        }); },
-        setTable: function (table) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            var _a, result, message;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4 /*yield*/, storage.setTable(table)];
-                    case 1:
-                        _a = _b.sent(), result = _a.result, message = _a.message;
-                        return [2 /*return*/, Promise.resolve([result, message])];
-                }
-            });
-        }); },
-        setItem: function (key, value) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, storage.set({ key: key, value: value })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); },
-        getItem: function (key) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            var value;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, storage.get({ key: key })];
-                    case 1:
-                        value = (_a.sent()).value;
-                        return [2 /*return*/, value];
-                }
-            });
-        }); },
-        getAllKeys: function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            var keys;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, storage.keys()];
-                    case 1:
-                        keys = (_a.sent()).keys;
-                        return [2 /*return*/, keys];
-                }
-            });
-        }); },
-        removeItem: function (key) { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, storage.remove({ key: key })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); },
-        clear: function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, storage.clear()];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); },
-    };
-};
 
 
 /***/ })

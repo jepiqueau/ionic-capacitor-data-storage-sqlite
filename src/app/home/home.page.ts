@@ -1,10 +1,7 @@
 
 import { Component } from '@angular/core';
-import { Plugins } from '@capacitor/core';
-import * as CapacitorSQLPlugin from 'capacitor-data-storage-sqlite';
-import { setStorage, wrapperToCapacitorSqliteStorage } from '../../utils/util';
-
-const { CapacitorDataStorageSqlite, Device } = Plugins;
+import { setStorage } from '../../utils/util';
+import { StorageAPIWrapper } from '../../utils/storageAPIWrapper';
 
 @Component({
   selector: 'app-home',
@@ -18,41 +15,41 @@ export class HomePage {
   }
 
   async testPluginWithWrapper() {
-    this.storage = await setStorage();
+    this.storage = new StorageAPIWrapper();
     let ret1: boolean = false;
     let ret2: boolean = false;
     let ret3: boolean = false;
     let ret4: boolean = false;
     let ret5: boolean = false;
     let ret6: boolean = false;
-    let result: boolean = await wrapperToCapacitorSqliteStorage(this.storage).openStore({});
+    let result: boolean = await this.storage.openStore({});
     if(result){
-      await wrapperToCapacitorSqliteStorage(this.storage).clear();
-      await wrapperToCapacitorSqliteStorage(this.storage).setItem("key-test", "This is a test");
-      let value:string = await wrapperToCapacitorSqliteStorage(this.storage).getItem("key-test")
+      await this.storage.clear();
+      await this.storage.setItem("key-test", "This is a test");
+      let value:string = await this.storage.getItem("key-test")
       console.log("Get Data : " + value);
       if (value === "This is a test") ret1 = true;
-      let keys:Array<string> = await wrapperToCapacitorSqliteStorage(this.storage).getAllKeys();
+      let keys:Array<string> = await this.storage.getAllKeys();
       console.log("Get All Keys : " + keys);
       if (keys[0] === "key-test") ret2 = true;     
-      await wrapperToCapacitorSqliteStorage(this.storage).removeItem("key-test");
-      keys = await wrapperToCapacitorSqliteStorage(this.storage).getAllKeys();
+      await this.storage.removeItem("key-test");
+      keys = await this.storage.getAllKeys();
       console.log("Get All Keys : " + keys);
       if (keys.length === 0) ret3 = true;           
-      result = await wrapperToCapacitorSqliteStorage(this.storage).openStore({database:"testStore",table:"table1"});
+      result = await this.storage.openStore({database:"testStore",table:"table1"});
       if(result) {
-        await wrapperToCapacitorSqliteStorage(this.storage).clear();
-        await wrapperToCapacitorSqliteStorage(this.storage).setItem("key1-test", "This is a new store");
-        value = await wrapperToCapacitorSqliteStorage(this.storage).getItem("key1-test")
+        await this.storage.clear();
+        await this.storage.setItem("key1-test", "This is a new store");
+        value = await this.storage.getItem("key1-test")
         console.log("Get Data : " + value);
         if (value === "This is a new store") ret4 = true;
-        let statusTable: any = await wrapperToCapacitorSqliteStorage(this.storage).setTable({table:"table2"}); 
+        let statusTable: any = await this.storage.setTable({table:"table2"}); 
         console.log('statusTable[0] ',statusTable[0])
         console.log('statusTable[1] ',statusTable[1])
         if(statusTable[0]) ret5 = true;
-        await wrapperToCapacitorSqliteStorage(this.storage).clear();
-        await wrapperToCapacitorSqliteStorage(this.storage).setItem("key2-test", "This is a second table");
-        value = await wrapperToCapacitorSqliteStorage(this.storage).getItem("key2-test")
+        await this.storage.clear();
+        await this.storage.setItem("key2-test", "This is a second table");
+        value = await this.storage.getItem("key2-test")
         console.log("Get Data : " + value);
         if (value === "This is a second table") ret6 = true;
       }

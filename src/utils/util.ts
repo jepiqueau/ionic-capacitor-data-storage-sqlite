@@ -6,8 +6,8 @@ export const setStorage = async (): Promise<any>=> {
   const info = await Device.getInfo();
   console.log('platform ',info.platform)
   if (info.platform === "ios" || info.platform === "android") {
-    return CapacitorDataStorageSqlite;
+    return {plugin:CapacitorDataStorageSqlite, platform:info.platform};
   }  else {
-    return CapacitorSQLPlugin.CapacitorDataStorageSqlite;     
+    return {plugin:CapacitorSQLPlugin.CapacitorDataStorageSqlite, platform:"web"};     
   } 
 }

@@ -6,7 +6,7 @@ import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
 
 import java.util.ArrayList;
-import com.jeep.plugin.capacitor.capacitordatastoragesqlite.CapacitorDataStorageSqlite;
+import com.jeep.plugin.capacitor.CapacitorDataStorageSqlite;
 
 public class MainActivity extends BridgeActivity {
   @Override

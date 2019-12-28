@@ -1,5 +1,5 @@
 # Ionic App to test the capacitor-data-storage-sqlite plugin
-Example of a Ionic Application to test and validate the Capacitor Data Storage SQLite Plugin
+Example of a Ionic Application to test and validate the Capacitor Data Storage SQLite Plugin with database encryption
 
 [capacitor-data-storage-sqlite](https://github.com/jepiqueau/capacitor-data-storage-sqlite)
 
@@ -63,7 +63,7 @@ import android.os.Bundle;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
-import com.jeep.plugin.capacitor.capacitordatastoragesqlite.CapacitorDataStorageSqlite;
+import com.jeep.plugin.capacitor.CapacitorDataStorageSqlite;
 
 
 import java.util.ArrayList;

@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { setStorage } from '../../utils/util';
 import { StorageAPIWrapper } from '../../utils/storageAPIWrapper';
@@ -10,10 +9,9 @@ import { StorageAPIWrapper } from '../../utils/storageAPIWrapper';
 })
 export class HomePage {
   storage: any = {};
-  constructor() {
+  platform: string = "web";
 
-  }
-
+  constructor() {}
   async testPluginWithWrapper() {
     this.storage = new StorageAPIWrapper();
     let ret1: boolean = false;
@@ -24,6 +22,7 @@ export class HomePage {
     let ret6: boolean = false;
     let result: boolean = await this.storage.openStore({});
     if(result){
+      this.platform = this.storage.platform;
       await this.storage.clear();
       await this.storage.setItem("key-test", "This is a test");
       let value:string = await this.storage.getItem("key-test")
@@ -61,12 +60,31 @@ export class HomePage {
       document.querySelector('.wrapper-failure').classList.remove('display');
     }
   }
+
   async testPlugin() { 
-    this.storage = await setStorage();
+    const store:any = await setStorage();
+    this.storage = store.plugin;
+    this.platform = store.platform;
+    const result:any = await this.storage.echo({value:"Hello from Jeep"});
+    console.log('in testPlugin value ',JSON.stringify(result));
+    const divEchoEl = document.querySelector('.echo');
+    divEchoEl.innerHTML = result.value;
     const retTest1 = await this.testFirstStore();
+
     const retTest2 = await this.testSecondStore();
     const retTest3 = await this.testThirdStore();
-    if(retTest1 && retTest2 && retTest3) {
+    var retEncrypted: Boolean = true;
+    if(this.platform != "web") {      
+      const retTest4 = await this.testEncryptSecondStore();
+      const retTest5 = await this.testSecondStoreReOpenWithWrongSecret();
+      const retTest6 = await this.testSecondStoreReOpenWithGoodSecret(); 
+      const retTest7 = await this.testSecondStoreChangeSecret(); 
+      const retTest8 = await this.testSecondStoreReOpenWithNewSecret(); 
+      const retTest9 = await this.testNewEncryptedFourthStore();
+      if (!retTest4 || !retTest5 
+        || !retTest6 || !retTest7 || !retTest8 || !retTest9) retEncrypted = false;
+    } 
+   if(retTest1 && retTest2 && retTest3 && retEncrypted) {
       document.querySelector('.success').classList.remove('display');
       return true;
     } else {
@@ -75,6 +93,7 @@ export class HomePage {
     }
 
   }
+  
   async testFirstStore(): Promise<boolean> {
     //populate some data
     //string
@@ -86,105 +105,111 @@ export class HomePage {
     let retkeysvalues = false;
     let retremove = false;
     let retclear = false;
+    console.log('in testFirstStore ***** ')
     let result:any = await this.storage.openStore({});
     console.log('storage retCreate ',result.result)
-    await this.storage.clear();
-    // store data in the first store
-    result = await this.storage.set({key:"session",value:"Session Opened"});
-    console.log("Save Data : " + result.result);
-    result = await this.storage.get({key:"session"})
-    console.log('result ',result)
-    console.log("Get Data : " + result.value);
-    let ret1: boolean = false;
-    if (result.value === "Session Opened") ret1 = true;
-    // json
-    let data: any = {'a':20,'b':'Hello World','c':{'c1':40,'c2':'cool'}}
-    await this.storage.set({key:'testJson',value:JSON.stringify(data)})
-    result = await this.storage.get({key:"testJson"})
-    console.log("Get Data : " + result.value);
-    let ret2: boolean = false;
-    if (result.value === JSON.stringify(data)) ret2 = true;
-    // number
-    let data1: any = 243.567
-    await this.storage.set({key:'testNumber',value:data1.toString()})
-    result = await this.storage.get({key:"testNumber"})
-    console.log("Get Data : " + result.value);
-    let ret3: boolean = false;
-    if (result.value === data1.toString()) ret3 = true;
-    if (ret1 && ret2 && ret3) retpopulate = true;
-    if (retpopulate) document.querySelector('.populate').classList.remove('hidden');
-
-    result = await this.storage.iskey({key:"testNumber"})
-    console.log("isKey testNumber " + result.result)
-    ret1 = result.result
-    result = await this.storage.iskey({key:"foo"})
-    console.log("isKey foo " + result.result)
-    ret2 = result.result
-    if (ret1 && !ret2) retiskey = true
-    if (retiskey) document.querySelector('.iskey').classList.remove('hidden');
-    
-    result = await this.storage.keys()
-    console.log("Get keys : " + result.keys);
-    console.log("Keys length " + result.keys.length)
-
-    if(result.keys.length === 3 && result.keys[0] === "session"
-        && result.keys[1] === "testJson" && result.keys[2] === "testNumber") {
-      retkeys = true;
-      document.querySelector('.keys').classList.remove('hidden');
-    }
-    result = await this.storage.values()
-    console.log("Get values : " + result.values);
-    console.log("Values length " + result.values.length)
-    if(result.values.length === 3 && result.values[0] === "Session Opened"
-        && result.values[1] === JSON.stringify(data) && result.values[2] === data1.toString()) {
-      retvalues = true;
-      document.querySelector('.values').classList.remove('hidden');
-    }
-
-    result = await this.storage.keysvalues();
-    result.keysvalues.forEach(element => {
-      console.log(element)
-    });
-    console.log("KeysValues length " + result.keysvalues.length)
-    if(result.keysvalues.length === 3 &&
-        result.keysvalues[0].key === "session" && result.keysvalues[0].value === "Session Opened" &&
-        result.keysvalues[1].key === "testJson" && result.keysvalues[1].value === JSON.stringify(data) &&
-        result.keysvalues[2].key === "testNumber" && result.keysvalues[2].value === data1.toString()) {
-      retkeysvalues = true;
-      document.querySelector('.keysvalues').classList.remove('hidden');
-    }
-    result = await this.storage.remove({key:"testJson"});
-    if(result.result) {
-      let res: any = await this.storage.keysvalues();
-      if(res.keysvalues.length === 2 && 
-        res.keysvalues[0].key === "session" && res.keysvalues[0].value === "Session Opened" &&
-        res.keysvalues[1].key === "testNumber" && res.keysvalues[1].value === data1.toString()) {
-        retremove = true;
-        document.querySelector('.remove').classList.remove('hidden');
+    if (result.result) {
+      await this.storage.clear();
+      // store data in the first store
+      result = await this.storage.set({key:"session",value:"Session Opened"});
+      console.log("Save Data : " + result.result);
+      result = await this.storage.get({key:"session"})
+      console.log('result ',result)
+      console.log("Get Data : " + result.value);
+      let ret1: boolean = false;
+      if (result.value === "Session Opened") ret1 = true;
+      // json
+      let data: any = {'a':20,'b':'Hello World','c':{'c1':40,'c2':'cool'}}
+      await this.storage.set({key:'testJson',value:JSON.stringify(data)})
+      result = await this.storage.get({key:"testJson"})
+      console.log("Get Data : " + result.value);
+      let ret2: boolean = false;
+      if (result.value === JSON.stringify(data)) ret2 = true;
+      // number
+      let data1: any = 243.567
+      await this.storage.set({key:'testNumber',value:data1.toString()})
+      result = await this.storage.get({key:"testNumber"})
+      console.log("Get Data : " + result.value);
+      let ret3: boolean = false;
+      if (result.value === data1.toString()) ret3 = true;
+      if (ret1 && ret2 && ret3) retpopulate = true;
+      if (retpopulate) document.querySelector('.populate').classList.remove('hidden');
+      console.log(" before isKey testNumber ") 
+      result = await this.storage.iskey({key:"testNumber"})
+      console.log("isKey testNumber " + result.result)
+      ret1 = result.result
+      result = await this.storage.iskey({key:"foo"})
+      console.log("isKey foo " + result.result)
+      ret2 = result.result
+      if (ret1 && !ret2) retiskey = true
+      if (retiskey) document.querySelector('.iskey').classList.remove('hidden');
+      
+      result = await this.storage.keys()
+      console.log("Get keys : " + result.keys);
+      console.log("Keys length " + result.keys.length)
+  
+      if(result.keys.length === 3 && result.keys[0] === "session"
+          && result.keys[1] === "testJson" && result.keys[2] === "testNumber") {
+        retkeys = true;
+        document.querySelector('.keys').classList.remove('hidden');
       }
-    }
-    result = await this.storage.clear();
-    if(result.result) {
-      let res: any = await this.storage.keysvalues();
-      console.log("after clear res.keysvalues.length " + res.keysvalues.length)
-      if(res.keysvalues.length === 0) {
-        retclear = true;
-        document.querySelector('.clear').classList.remove('hidden');
-        if(retpopulate && retiskey && retkeys && retvalues && retkeysvalues && retremove && retclear) {
-          retTest1 = true;
-          document.querySelector('.success1').classList.remove('display');
-        } else {
-          document.querySelector('.failure1').classList.remove('display');
+      result = await this.storage.values()
+      console.log("Get values : " + result.values);
+      console.log("Values length " + result.values.length)
+      if(result.values.length === 3 && result.values[0] === "Session Opened"
+          && result.values[1] === JSON.stringify(data) && result.values[2] === data1.toString()) {
+        retvalues = true;
+        document.querySelector('.values').classList.remove('hidden');
+      }
+  
+      result = await this.storage.keysvalues();
+      result.keysvalues.forEach(element => {
+        console.log(element)
+      });
+      console.log("KeysValues length " + result.keysvalues.length)
+      if(result.keysvalues.length === 3 &&
+          result.keysvalues[0].key === "session" && result.keysvalues[0].value === "Session Opened" &&
+          result.keysvalues[1].key === "testJson" && result.keysvalues[1].value === JSON.stringify(data) &&
+          result.keysvalues[2].key === "testNumber" && result.keysvalues[2].value === data1.toString()) {
+        retkeysvalues = true;
+        document.querySelector('.keysvalues').classList.remove('hidden');
+      }
+      result = await this.storage.remove({key:"testJson"});
+      if(result.result) {
+        let res: any = await this.storage.keysvalues();
+        if(res.keysvalues.length === 2 && 
+          res.keysvalues[0].key === "session" && res.keysvalues[0].value === "Session Opened" &&
+          res.keysvalues[1].key === "testNumber" && res.keysvalues[1].value === data1.toString()) {
+          retremove = true;
+          document.querySelector('.remove').classList.remove('hidden');
         }
       }
-    } else {
-        document.querySelector('.failure1').classList.remove('display');
+      result = await this.storage.clear();
+      if(result.result) {
+        let res: any = await this.storage.keysvalues();
+        console.log("after clear res.keysvalues.length " + res.keysvalues.length)
+        if(res.keysvalues.length === 0) {
+          retclear = true;
+          document.querySelector('.clear').classList.remove('hidden');
+          if(retpopulate && retiskey && retkeys && retvalues && retkeysvalues && retremove && retclear) {
+            retTest1 = true;
+            document.querySelector('.success1').classList.remove('display');
+          } else {
+            document.querySelector('.failure1').classList.remove('display');
+          }
+        }
+      } else {
+          document.querySelector('.failure1').classList.remove('display');
+      }
+  
     }
+    console.log('in testFirstStore end ***** ')
+
     return retTest1;
   }
-
   async testSecondStore(): Promise<boolean> { 
     // open a second store
+    console.log('in testSecondStore ***** ')
     let result: any = await this.storage.openStore({database:"myStore",table:"saveData"});
     result = await this.storage.clear();
     // store data in the second store
@@ -198,13 +223,16 @@ export class HomePage {
       const res:any = await this.storage.get({key:"app"});
       if (res.value === "App Opened") {
         document.querySelector('.success2').classList.remove('display');
+        console.log('in testSecondStore end true ***** ')
         return true;
       } else {
         document.querySelector('.failure2').classList.remove('display');
+        console.log('in testSecondStore end false ***** ')
         return false;
       }
     } else {
       document.querySelector('.failure2').classList.remove('display');
+      console.log('in testSecondStore end false ***** ')
       return false;
     }
   }
@@ -214,6 +242,7 @@ export class HomePage {
     let retKey2: boolean = false; 
     let retKey3: boolean = false;
     let result: any;
+    console.log('in testThirdStore ***** ')
     // open a third store
     result = await this.storage.setTable({table:"otherData"});
     console.log('storage2 retCreate ',result.result.toString())
@@ -246,9 +275,195 @@ export class HomePage {
     } 
     if(retKey1 && retKey2 && retKey3) {
       document.querySelector('.success3').classList.remove('display');
+      console.log('in testThirdStore end true ***** ')
       return true;
     } else {
       document.querySelector('.failure3').classList.remove('display');
+      console.log('in testThirdStore end false ***** ')
       return false;
     }
-  }}
+  }
+  async testEncryptSecondStore(): Promise<boolean> {
+    console.log("*** start testEncryptSecondStore ***")
+    let ret: boolean = false;
+    var ret1: boolean = false;
+    var ret2: boolean = false;
+    var ret3: boolean = false;
+    var retKey1: boolean = false;
+    var retKey2: boolean = false;
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:false,secret:"test secret"});
+    if(resultOpen.result) {
+
+      var res:any = await this.storage.get({key:"app"});
+      if (res.value === "App Opened") ret1 = true;
+      let data:any = {'age':50,'name':'jeep','email':'jeep@example.com'}
+
+      res = await this.storage.get({key:"user"});
+      if(res.value === JSON.stringify(data)) ret2 = true;
+      res = await this.storage.get({key:"message"});
+      if (res.value === "Welcome from Jeep")  ret3 = true;  
+      // open a third store
+      const result: boolean = await this.storage.setTable({table:"otherData"});
+      res = await this.storage.get({key:"key1"});
+      console.log("Get Data in Third Store key1: " + res.value);
+      if (res.value === "Hello World!") retKey1 = true;
+      data = {'a':60,'pi':'3.141516','b':'cool'}
+      res= await this.storage.get({key:"key2"});
+      console.log("Get Data in Third Store key2: " + res.value);
+      if (res.value === JSON.stringify(data)) retKey2 = true;
+      if(ret1 && ret2 && ret3 && retKey1 && retKey2) {
+      ret = true
+      }
+  
+    }
+    if(ret) {
+      document.querySelector('.success4').classList.remove('display');
+      console.log("*** end testEncryptSecondStore true *** ")
+    } else {
+      document.querySelector('.failure4').classList.remove('display');
+      console.log("*** end testEncryptSecondStore false *** ")
+    }
+    return ret
+  }
+  async testSecondStoreReOpenWithWrongSecret() : Promise<boolean> {
+    console.log("*** start testSecondStoreReOpenWithWrongSecret ***")
+    let ret: boolean = false;
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,secret:"test wrong secret"});
+    if (resultOpen.result) {
+      console.log("in testSecondStoreReOpenWithWrongSecret true")
+    } else {
+      console.log("in testSecondStoreReOpenWithWrongSecret false")
+    }
+    if (!resultOpen.result) {
+      ret = true
+    }
+    if(ret) {
+      document.querySelector('.success5').classList.remove('display');
+      console.log("*** end testSecondStoreReOpenWithWrongSecret true *** ")
+    } else {
+      console.log("*** end testSecondStoreReOpenWithWrongSecret false *** ")
+      document.querySelector('.failure5').classList.remove('display');
+    }
+    return ret
+  }
+  async testSecondStoreReOpenWithGoodSecret(): Promise<boolean> {
+    console.log("*** start testSecondStoreReOpenWithGoodSecret ***")
+    let ret: boolean = false;
+    var ret1: boolean = false;
+    var ret2: boolean = false;
+    var ret3: boolean = false;
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,secret:"test secret"});
+    if(resultOpen.result) {
+
+      var res:any = await this.storage.get({key:"app"});
+      if (res.value === "App Opened") ret1 = true;
+      let data:any = {'age':50,'name':'jeep','email':'jeep@example.com'}
+
+      res = await this.storage.get({key:"user"});
+      if(res.value === JSON.stringify(data)) ret2 = true;
+      res = await this.storage.get({key:"message"});
+      if (res.value === "Welcome from Jeep") ret3 = true;      
+      if(ret1 && ret2 && ret3) {
+        ret = true
+      }
+  
+    }
+    if(ret) {
+      document.querySelector('.success6').classList.remove('display');
+    } else {
+      document.querySelector('.failure6').classList.remove('display');
+    }
+    console.log("*** end testSecondStoreReOpenWithGoodSecret *** ",ret)
+    return ret
+  }
+  async testSecondStoreChangeSecret(): Promise<boolean> {
+    console.log("*** start testSecondStoreChangeSecret ***")
+    let ret: boolean = false;
+    var ret1: boolean = false;
+    var ret2: boolean = false;
+    var ret3: boolean = false;
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,
+      secret:"test secret",newsecret:"test new secret"});
+    if(resultOpen.result) {
+
+      var res:any = await this.storage.get({key:"app"});
+      if (res.value === "App Opened") ret1 = true;
+      let data:any = {'age':50,'name':'jeep','email':'jeep@example.com'}
+
+      res = await this.storage.get({key:"user"});
+      if(res.value === JSON.stringify(data)) ret2 = true;
+      res = await this.storage.get({key:"message"});
+      if (res.value === "Welcome from Jeep") ret3 = true;      
+      if(ret1 && ret2 && ret3) {
+        ret = true
+      }
+    }
+    if(ret){
+      document.querySelector('.success7').classList.remove('display');
+    } else {
+      document.querySelector('.failure7').classList.remove('display');
+    }
+    console.log("*** end testSecondStoreChangeSecret *** ",ret)
+    return ret
+  }
+  async testSecondStoreReOpenWithNewSecret(): Promise<boolean> {
+    console.log("*** start testSecondStoreReOpenWithNewSecret ***");
+    let ret: boolean = false;
+    var ret1: boolean = false;
+    var ret2: boolean = false;
+    var ret3: boolean = false;
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,
+      secret:"test new secret"});
+    if(resultOpen.result) {
+
+      var res:any = await this.storage.get({key:"app"});
+      if (res.value === "App Opened") ret1 = true;
+      let data:any = {'age':50,'name':'jeep','email':'jeep@example.com'}
+
+      res = await this.storage.get({key:"user"});
+      if(res.value === JSON.stringify(data)) ret2 = true;
+      res = await this.storage.get({key:"message"});
+      if (res.value === "Welcome from Jeep") ret3 = true;      
+      if(ret1 && ret2 && ret3) {
+        ret = true
+      }
+  
+    }
+    if (ret) {
+      document.querySelector('.success8').classList.remove('display');
+    } else {
+      document.querySelector('.failure8').classList.remove('display');
+    }
+    console.log("*** end testSecondStoreReOpenWithNewSecret *** ",ret);
+    return ret
+  }
+  async testNewEncryptedFourthStore(): Promise<boolean> {
+    console.log("*** start testNewEncryptedFourthStore *** ");
+    let ret: boolean = false;
+    var result: boolean = false;
+    var retKey1: boolean = false;
+    var retKey2: boolean = false;
+    let resultOpen: any = await this.storage.openStore({database:"fourthStore",table:"test1_table",encrypted:true,
+      secret:"my own secret four"});
+    if(resultOpen.result) {
+      // store data in the fourth store
+      result = await this.storage.set({key:"my_key1", value:"Hello World from Jeep!"});
+      let res:any = await this.storage.get({key:"my_key1"});
+      console.log("Get Data in Fourth Store key1: " + res.value);
+      if (res.value === "Hello World from Jeep!") retKey1 = true;
+      let data:any = {'radius':100,'x':10,'y':50,'color':'red',}
+      result = await this.storage.set({key:'my_key2',value:JSON.stringify(data)});
+      res= await this.storage.get({key:"my_key2"});
+      console.log("Get Data in Fourth Store key2: " + res.value);
+      if (res.value === JSON.stringify(data)) retKey2 = true;
+      if(retKey1 && retKey2) ret = true;
+    }
+    if (ret) {
+      document.querySelector('.success9').classList.remove('display');
+    } else {
+      document.querySelector('.failure9').classList.remove('display');
+    }
+    console.log("*** end testNewEncryptedFourthStore *** ",ret);
+    return ret
+  }
+}

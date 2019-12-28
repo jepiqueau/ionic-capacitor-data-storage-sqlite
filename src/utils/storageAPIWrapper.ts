@@ -1,11 +1,16 @@
 import { setStorage } from '../utils/util';
 
 export class StorageAPIWrapper {
-    public storage: any = {}
-    constructor() { 
+    public storage: any = {};
+    public platform: string = "web";
+    constructor() {
+
     }
     async init(): Promise<void> {
-        this.storage = await setStorage();
+        const store: any = await setStorage();
+        console.log('in StorageAPIWrapper store ',store)
+        this.storage = store.plugin;
+        this.platform = store.platform;
     }
     public async openStore(options:any): Promise<boolean> {
         await this.init();

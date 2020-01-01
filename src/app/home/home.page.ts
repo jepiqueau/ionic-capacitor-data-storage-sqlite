@@ -291,7 +291,7 @@ export class HomePage {
     var ret3: boolean = false;
     var retKey1: boolean = false;
     var retKey2: boolean = false;
-    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:false,secret:"test secret"});
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,mode:"encryption"});
     if(resultOpen.result) {
 
       var res:any = await this.storage.get({key:"app"});
@@ -328,7 +328,7 @@ export class HomePage {
   async testSecondStoreReOpenWithWrongSecret() : Promise<boolean> {
     console.log("*** start testSecondStoreReOpenWithWrongSecret ***")
     let ret: boolean = false;
-    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,secret:"test wrong secret"});
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,mode:"wrongsecret"});
     if (resultOpen.result) {
       console.log("in testSecondStoreReOpenWithWrongSecret true")
     } else {
@@ -352,7 +352,7 @@ export class HomePage {
     var ret1: boolean = false;
     var ret2: boolean = false;
     var ret3: boolean = false;
-    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,secret:"test secret"});
+    let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,mode:"secret"});
     if(resultOpen.result) {
 
       var res:any = await this.storage.get({key:"app"});
@@ -383,7 +383,7 @@ export class HomePage {
     var ret2: boolean = false;
     var ret3: boolean = false;
     let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,
-      secret:"test secret",newsecret:"test new secret"});
+      mode:"newsecret"});
     if(resultOpen.result) {
 
       var res:any = await this.storage.get({key:"app"});
@@ -413,7 +413,7 @@ export class HomePage {
     var ret2: boolean = false;
     var ret3: boolean = false;
     let resultOpen: any = await this.storage.openStore({database:"myStore",table:"saveData",encrypted:true,
-      secret:"test new secret"});
+      mode:"secret"});
     if(resultOpen.result) {
 
       var res:any = await this.storage.get({key:"app"});
@@ -444,7 +444,7 @@ export class HomePage {
     var retKey1: boolean = false;
     var retKey2: boolean = false;
     let resultOpen: any = await this.storage.openStore({database:"fourthStore",table:"test1_table",encrypted:true,
-      secret:"my own secret four"});
+      mode:"secret"});
     if(resultOpen.result) {
       // store data in the fourth store
       result = await this.storage.set({key:"my_key1", value:"Hello World from Jeep!"});
